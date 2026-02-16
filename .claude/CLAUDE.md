@@ -5,6 +5,7 @@ This repository contains the Windows-native implementation of **Mac MD**, a Mark
 This file is the primary operating manual for Claude Code agents. Follow it strictly.
 
 ## Product Goals (Non-Negotiable)
+
 1. **Cross-platform look**: The Windows UI should resemble the SwiftUI UI strongly (layout, spacing, typography, theme system, preview rendering).
 2. **Native Windows**: Must run on Windows 10 + Windows 11 and support x64 and ARM64 (and optionally x86 if practical).
 3. **Fast + offline-first**: Local persistence first, cloud sync later.
@@ -12,13 +13,27 @@ This file is the primary operating manual for Claude Code agents. Follow it stri
 5. **Zero manual coding by user**: Claude Code agents do all coding. The user only tests at defined checkpoints.
 
 ## Key Architectural Decision (How to think about this repo)
+
 This is **NOT a code fork** of the SwiftUI app. It is a **sibling implementation**.
 
 We may keep a copy of the Apple project in `/reference/` strictly as read-only reference material for UI/behavior/spec. The Windows app lives in `/src/`.
 
 Shared assets (localization JSON, markdown preview HTML/CSS/JS if applicable) live in `/shared/` or `/tools/`.
 
+## Agent Skills & Context
+
+Claude Code agents should reference the curated skills in `.claude/skills/` for coding patterns, workflow conventions, and domain-specific guidance. The directory contains:
+
+- `.claude/skills/dotnet/` — C#/.NET coding patterns, project conventions, and best practices relevant to this project's tech stack.
+- `.claude/skills/workflow/` — Git workflow, PR conventions, commit hygiene, and CI/CD patterns.
+- `.claude/skills/community/` — Community-contributed tips and conventions.
+- `.claude/skills/MANIFEST.md` — Full inventory of all fetched skill files with sources and structure.
+- `.claude/agents.md` — Agent role definitions and coordination rules.
+
+When starting work on a milestone, agents should consult the relevant skills for context before writing code.
+
 ## UI Specification (High-level)
+
 The Windows app should replicate the Mac MD core layout:
 
 - **Three-column structure**:
@@ -31,6 +46,7 @@ The Windows app should replicate the Mac MD core layout:
 - **Menus/Commands**: Standard app commands (New, Open, Save/Export PDF/HTML, Find, Toggle Preview, Settings).
 
 ## Recommended Windows Tech Stack (Default)
+
 - Language/runtime: **C# on .NET 8**
 - UI: **WinUI 3 (Windows App SDK)**
 - Markdown parsing: **Markdig** (or equivalent, MIT)
@@ -42,13 +58,17 @@ The Windows app should replicate the Mac MD core layout:
 Do not introduce heavy frameworks or nonstandard UI frameworks unless explicitly approved.
 
 ## Development Workflow (How agents must work)
+
 Agents must work in **milestones**. Each milestone must result in a buildable app.
 
 ### Golden rule
+
 **Never break the build.** If something fails, revert/repair immediately.
 
 ### Stop points (User testing gates)
+
 At the end of each milestone, STOP and ask the user to:
+
 - build the solution
 - run the app
 - confirm basic acceptance criteria
@@ -56,6 +76,7 @@ At the end of each milestone, STOP and ask the user to:
 Do not proceed to the next milestone until the user confirms.
 
 ### Suggested Milestones (initial)
+
 M1 — App shell + layout
 - WinUI 3 app launches
 - 3-column UI layout exists with placeholder data
@@ -88,8 +109,13 @@ M6 — Polish + Store packaging prep
 Cloud sync is explicitly postponed until after local-first is solid.
 
 ## Code Organization (Required)
+
 Use a clean, readable structure:
 
+- `/.claude/` — Agent configuration, skills, and coordination
+  - `CLAUDE.md` — this file (project memory)
+  - `agents.md` — agent role definitions
+  - `skills/` — curated reference skills (dotnet, workflow, community)
 - `/src/MacMD.Win/` — main WinUI 3 app
 - `/src/MacMD.Core/` — domain models + services (no UI references)
 - `/src/MacMD.Tests/` — optional tests
@@ -98,27 +124,33 @@ Use a clean, readable structure:
 - `/reference/` — read-only Apple app reference (optional)
 
 ## Naming & Style
+
 - Use clear names: `Document`, `Project`, `Tag`, `Snippet`
 - Avoid clever abstractions.
 - Prefer straightforward services: `DatabaseService`, `MarkdownService`, `ThemeService`, `LocalizationService`.
 - Prefer async where needed, but do not overcomplicate concurrency.
 
-## Constraints / Don’ts
+## Constraints / Don'ts
+
 - Do not implement cloud sync until explicitly scheduled.
 - Do not add paid tooling requirements.
 - Do not assume access to Apple frameworks (SwiftData, CloudKit, iCloud).
 - Do not add malware-like behavior or anything that trips Store certification.
-- Do not create giant “rewrite everything” commits.
+- Do not create giant "rewrite everything" commits.
 
 ## Definition of Done (for any milestone)
+
 A milestone is done only when:
+
 - `dotnet build` succeeds for x64 (and ideally arm64)
 - app launches
 - key acceptance criteria for that milestone are met
 - user has tested and approved
 
 ## Reference Context (Apple App)
+
 The original Mac MD app (SwiftUI/SwiftData/CloudKit) includes:
+
 - three-column layout
 - live preview with WebView
 - export PDF (WebView-based)
