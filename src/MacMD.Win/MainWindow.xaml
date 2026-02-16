@@ -19,17 +19,7 @@
 
         <!-- Left Column: Projects -->
         <Grid Grid.Column="0" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
-            <StackPanel Margin="12">
-                <TextBlock Text="Projects"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           Margin="0,0,0,12" />
-                <TextBlock Text="All Documents" Margin="0,4" />
-                <TextBlock Text="Favorites" Margin="0,4" />
-                <TextBlock Text="(Projects will load here)"
-                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                           Margin="0,12,0,0"
-                           FontStyle="Italic" />
-            </StackPanel>
+            <local:ProjectListView x:Name="ProjectListView"/>
         </Grid>
 
         <!-- Splitter 1 -->
@@ -38,14 +28,7 @@
 
         <!-- Middle Column: Document List -->
         <Grid Grid.Column="2">
-            <StackPanel Margin="12">
-                <TextBlock Text="Documents"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           Margin="0,0,0,12" />
-                <TextBlock Text="(Documents will load here)"
-                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                           FontStyle="Italic" />
-            </StackPanel>
+            <local:DocumentListView x:Name="DocumentListView"/>
         </Grid>
 
         <!-- Splitter 2 -->

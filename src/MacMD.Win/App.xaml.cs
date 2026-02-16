@@ -12,8 +12,13 @@ public partial class App : Application
     {
         this.InitializeComponent();
 
+        var dbDir = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "MacMD");
+        var dbPath = Path.Combine(dbDir, "macmd.db");
+
         var services = new ServiceCollection();
-        services.AddMacMDCore();
+        services.AddMacMDCore(dbPath);
         Services = services.BuildServiceProvider();
     }
 
