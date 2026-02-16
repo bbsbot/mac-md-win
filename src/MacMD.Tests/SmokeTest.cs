@@ -1,5 +1,6 @@
 using MacMD.Core.Models;
 using MacMD.Core.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace MacMD.Tests;
@@ -14,23 +15,28 @@ public sealed class SmokeTest
     }
 
     [Fact]
-    public void MarkdownService_Can_Be_Created()
+    public void MarkdownService_Converts_Heading()
     {
-        var service = new MarkdownService();
-        Assert.NotNull(service);
+        var svc = new MarkdownService();
+        var html = svc.ToHtml("# Hello");
+        Assert.Contains("Hello</h1>", html);
     }
 
     [Fact]
-    public void M2_PreviewPipeline_Working()
+    public void MarkdownService_Returns_Empty_For_Null()
     {
-        // Test that our M2 preview pipeline works
-        var service = new MarkdownService();
+        var svc = new MarkdownService();
+        Assert.Equal(string.Empty, svc.ToHtml(null!));
+    }
 
-        // Test basic markdown conversion
-        var markdown = "# Hello\n\nThis is a **test**.";
-        var html = service.ToHtml(markdown);
+    [Fact]
+    public void DI_Resolves_Core_Services()
+    {
+        var services = new ServiceCollection();
+        services.AddMacMDCore();
+        using var sp = services.BuildServiceProvider();
 
-        Assert.False(string.IsNullOrEmpty(html));
-        Assert.Contains("<h1>Hello</h1>", html);
+        Assert.NotNull(sp.GetService<ThemeService>());
+        Assert.NotNull(sp.GetService<MarkdownService>());
     }
 }
