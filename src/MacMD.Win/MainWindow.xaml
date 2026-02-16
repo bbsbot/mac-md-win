@@ -1,0 +1,72 @@
+<Window
+    x:Class="MacMD.Win.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MacMD.Win.Views"
+    Title="Mac MD">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!-- Left: Projects / Tags / Navigation -->
+            <ColumnDefinition Width="220" MinWidth="150" />
+            <ColumnDefinition Width="Auto" />
+            <!-- Middle: Document List -->
+            <ColumnDefinition Width="280" MinWidth="180" />
+            <ColumnDefinition Width="Auto" />
+            <!-- Right: Editor + Preview -->
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Column: Projects -->
+        <Grid Grid.Column="0" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+            <local:ProjectListView x:Name="ProjectListView"/>
+        </Grid>
+
+        <!-- Splitter 1 -->
+        <Border Grid.Column="1" Width="1"
+                Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
+        <!-- Middle Column: Document List -->
+        <Grid Grid.Column="2">
+            <local:DocumentListView x:Name="DocumentListView"/>
+        </Grid>
+
+        <!-- Splitter 2 -->
+        <Border Grid.Column="3" Width="1"
+                Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
+        <!-- Right Column: Editor + Preview -->
+        <Grid Grid.Column="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Toolbar -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal"
+                        Padding="12,8" Spacing="8">
+                <Button x:Name="ThemeToggleButton" Content="Toggle Theme"
+                        Click="OnToggleTheme" />
+            </StackPanel>
+
+            <!-- Editor and Preview side-by-side -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Editor -->
+                <local:EditorView Grid.Column="0" x:Name="EditorView" />
+
+                <!-- Splitter -->
+                <Border Grid.Column="1" Width="1"
+                        Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
+                <!-- Preview -->
+                <local:PreviewView Grid.Column="2" x:Name="PreviewView" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
