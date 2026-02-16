@@ -1,0 +1,84 @@
+############################################
+# OS / editor noise
+############################################
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+############################################
+# .NET / Visual Studio / MSBuild outputs
+############################################
+**/bin/
+**/obj/
+**/TestResults/
+**/*.user
+**/*.suo
+**/*.userosscache
+**/*.sln.docstates
+**/*.cache
+**/*.log
+
+# NuGet
+**/packages/
+**/*.nupkg
+**/*.snupkg
+**/project.lock.json
+**/project.assets.json
+**/.nuget/NuGet.Config  # keep if you create one intentionally
+
+############################################
+# WinUI / Windows App SDK / MSIX artifacts
+############################################
+**/AppPackages/
+**/BundleArtifacts/
+**/*.appx
+**/*.appxbundle
+**/*.msix
+**/*.msixbundle
+**/*.msixupload
+**/*.cer
+**/*.pfx
+
+############################################
+# Python
+############################################
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+pip-wheel-metadata/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+############################################
+# Tooling / temp / generated
+############################################
+tmp/
+temp/
+out/
+dist/
+build/
+
+# If you generate Windows localization files from JSON and want to keep them
+# in source control, REMOVE these lines. If you want them generated-only,
+# keep them ignored.
+# src/**/Strings/
+# src/**/Resources.resw
+
+############################################
+# Git submodules
+############################################
+# If you use the Apple repo as a *submodule*, do NOT ignore it.
+# If you instead do a plain clone under reference/ and don't want it tracked,
+# uncomment the following line:
+# reference/apple/
