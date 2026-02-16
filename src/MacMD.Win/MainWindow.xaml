@@ -2,6 +2,7 @@
     x:Class="MacMD.Win.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MacMD.Win.Views"
     Title="Mac MD">
 
     <Grid>
@@ -65,18 +66,24 @@
                         Click="OnToggleTheme" />
             </StackPanel>
 
-            <!-- Editor area placeholder -->
-            <TextBox Grid.Row="1"
-                     x:Name="EditorTextBox"
-                     AcceptsReturn="True"
-                     TextWrapping="Wrap"
-                     FontFamily="Cascadia Code,Consolas,Courier New"
-                     FontSize="14"
-                     PlaceholderText="Start writing Markdown here..."
-                     Margin="12,0,12,12"
-                     BorderThickness="0"
-                     VerticalAlignment="Stretch"
-                     HorizontalAlignment="Stretch" />
+            <!-- Editor and Preview side-by-side -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Editor -->
+                <local:EditorView Grid.Column="0" x:Name="EditorView" />
+
+                <!-- Splitter -->
+                <Border Grid.Column="1" Width="1"
+                        Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
+                <!-- Preview -->
+                <local:PreviewView Grid.Column="2" x:Name="PreviewView" />
+            </Grid>
         </Grid>
     </Grid>
 </Window>

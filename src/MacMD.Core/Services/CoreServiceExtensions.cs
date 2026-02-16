@@ -11,6 +11,7 @@ public static class CoreServiceExtensions
         this IServiceCollection services)
     {
         services.AddSingleton<ThemeService>();
+        services.AddSingleton<MarkdownService>();
         return services;
     }
 }
