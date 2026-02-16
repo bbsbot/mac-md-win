@@ -1,0 +1,3 @@
+[submodule "reference/apple"]
+	path = reference/apple
+	url = https://github.com/bbsbot/markdown-editor-win32.git
