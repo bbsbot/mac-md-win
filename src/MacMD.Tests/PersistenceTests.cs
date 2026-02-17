@@ -96,4 +96,26 @@ public sealed class PersistenceTests : IDisposable
         Assert.Single(filtered);
         Assert.Equal("Doc in project", filtered[0].Title);
     }
+
+    [Fact]
+    public void CheckIntegrity_Returns_Null_For_Healthy_DB()
+    {
+        var result = _db.CheckIntegrity();
+        Assert.Null(result);
+    }
+
+    [Theory]
+    [InlineData(@"C:\Users\me\Dropbox\notes\macmd.db", true)]
+    [InlineData(@"C:\Users\me\OneDrive\Documents\macmd.db", true)]
+    [InlineData(@"C:\Users\me\OneDrive - Contoso\macmd.db", true)]
+    [InlineData(@"C:\Users\me\iCloud Drive\macmd.db", true)]
+    [InlineData(@"C:\Users\me\Google Drive\macmd.db", true)]
+    [InlineData(@"C:\Users\me\My Drive\macmd.db", true)]
+    [InlineData(@"C:\Users\me\GoogleDriveFS\macmd.db", true)]
+    [InlineData(@"C:\Users\me\AppData\Local\MacMD\macmd.db", false)]
+    [InlineData(@"/home/user/.local/share/macmd/macmd.db", false)]
+    public void DetectCloudSync_Identifies_Synced_Folders(string path, bool expected)
+    {
+        Assert.Equal(expected, DatabaseService.DetectCloudSync(path));
+    }
 }
