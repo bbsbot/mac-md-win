@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="AboutItem.Text" xml:space="preserve">
+    <value>Sobre</value>
+  </data>
+  <data name="EditorHeader.Text" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="ExportHtmlItem.Text" xml:space="preserve">
+    <value>Exportar como HTML...</value>
+  </data>
+  <data name="ExportMdItem.Text" xml:space="preserve">
+    <value>Exportar como rebajado...</value>
+  </data>
+  <data name="ExportPdfItem.Text" xml:space="preserve">
+    <value>Exportar como PDF...</value>
+  </data>
+  <data name="NoDocumentSelected.Text" xml:space="preserve">
+    <value>Ningún documento seleccionado</value>
+  </data>
+  <data name="PreviewHeader.Text" xml:space="preserve">
+    <value>Tráiler</value>
+  </data>
+  <data name="SortByLabel.Text" xml:space="preserve">
+    <value>Ordenar por</value>
+  </data>
+  <data name="aa" xml:space="preserve">
+    <value>AA</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>Sobre</value>
+  </data>
+  <data name="advanced_encryption_protocols_safeguard_confidential_communications_and_ensure_privacy_throughout_transmission" xml:space="preserve">
+    <value>Los protocolos de cifrado avanzados salvaguardan las comunicaciones confidenciales y garantizan la privacidad durante toda la transmisión.</value>
+  </data>
+  <data name="ahammock" xml:space="preserve">
+    <value>Una hamaca</value>
+  </data>
+  <data name="automated_backup_systems_preserve_critical_data_and_enable_quick_recovery_in_case_of_unexpected_failures" xml:space="preserve">
+    <value>Los sistemas de copia de seguridad automatizados conservan datos críticos y permiten una recuperación rápida en caso de fallos inesperados.</value>
+  </data>
+  <data name="automated_workflow_optimization_reduces_manual_effort_while_maintaining_high_quality_standards_across_operations" xml:space="preserve">
+    <value>La optimización automatizada del flujo de trabajo reduce el esfuerzo manual al tiempo que mantiene altos estándares de calidad en todas las operaciones.</value>
+  </data>
+  <data name="build" xml:space="preserve">
+    <value>Cuerpo</value>
+  </data>
+  <data name="cloud_based_infrastructure_provides_scalable_resources_that_adapt_to_changing_demands_and_usage_patterns" xml:space="preserve">
+    <value>La infraestructura basada en la nube proporciona recursos escalables que se adaptan a las demandas cambiantes y a los patrones de uso.</value>
+  </data>
+  <data name="collaborative_editing_features_allow_multiple_users_to_work_simultaneously_on_shared_documents_and_projects" xml:space="preserve">
+    <value>Las funciones de edición colaborativa permiten a múltiples usuarios trabajar simultáneamente en documentos y proyectos compartidos.</value>
+  </data>
+  <data name="collaborative_workspace_environments_foster_creativity_and_enable_teams_to_achieve_remarkable_results_together" xml:space="preserve">
+    <value>Los entornos de espacio de trabajo colaborativo fomentan la creatividad y permiten a los equipos lograr resultados notables juntos.</value>
+  </data>
+  <data name="color_theme" xml:space="preserve">
+    <value>Tema de color</value>
+  </data>
+  <data name="comprehensive_data_analytics_provide_actionable_insights_that_drive_strategic_business_decision_making_processes" xml:space="preserve">
+    <value>El análisis integral de datos proporciona información práctica que impulsa los procesos estratégicos de toma de decisiones empresariales.</value>
+  </data>
+  <data name="comprehensive_documentation_resources_provide_detailed_guidance_for_both_novice_and_experienced_users_alike" xml:space="preserve">
+    <value>Los recursos de documentación integral proporcionan orientación detallada tanto para usuarios novatos como experimentados.</value>
+  </data>
+  <data name="continuous_improvement_processes_incorporate_user_feedback_to_refine_features_and_enhance_overall_satisfaction" xml:space="preserve">
+    <value>Los procesos de mejora continua incorporan comentarios de los usuarios para refinar las características y mejorar la satisfacción general.</value>
+  </data>
+  <data name="customizable_interface_options_allow_users_to_personalize_their_experience_according_to_individual_preferences" xml:space="preserve">
+    <value>Las opciones de interfaz personalizables permiten a los usuarios personalizar su experiencia de acuerdo con las preferencias individuales.</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>¿Eliminar &quot;{0}&quot;?</value>
+  </data>
+  <data name="delete_documents" xml:space="preserve">
+    <value>¿Eliminar {0} Documentos?</value>
+  </data>
+  <data name="delete_documents_in_this_project_will_not_be_deleted" xml:space="preserve">
+    <value>¿Eliminar &apos;{0}&apos;? Los documentos de este proyecto no se eliminarán.</value>
+  </data>
+  <data name="delete_this_tag_will_be_removed_from_all_documents" xml:space="preserve">
+    <value>¿Eliminar &apos;{0}&apos;? Esta etiqueta se eliminará de todos los documentos.</value>
+  </data>
+  <data name="developer" xml:space="preserve">
+    <value>Promotor</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="export_as_html" xml:space="preserve">
+    <value>Exportar como HTML...</value>
+  </data>
+  <data name="export_as_markdown" xml:space="preserve">
+    <value>Exportar como rebajado...</value>
+  </data>
+  <data name="export_as_pdf" xml:space="preserve">
+    <value>Exportar como PDF...</value>
+  </data>
+  <data name="find_in_documents" xml:space="preserve">
+    <value>Buscar en Documentos...</value>
+  </data>
+  <data name="flexible_configuration_options_enable_administrators_to_tailor_system_behavior_to_organizational_requirements" xml:space="preserve">
+    <value>Las opciones de configuración flexibles permiten a los administradores adaptar el comportamiento del sistema a los requisitos de la organización.</value>
+  </data>
+  <data name="font_family" xml:space="preserve">
+    <value>Familia de fuentes</value>
+  </data>
+  <data name="font_size" xml:space="preserve">
+    <value>Tamaño de la fuente</value>
+  </data>
+  <data name="information" xml:space="preserve">
+    <value>Información</value>
+  </data>
+  <data name="intelligent_search_algorithms_deliver_precise_results_by_understanding_context_and_user_intent_effectively" xml:space="preserve">
+    <value>Los algoritmos de búsqueda inteligentes ofrecen resultados precisos al comprender el contexto y la intención del usuario de manera efectiva.</value>
+  </data>
+  <data name="interactive_visualization_components_transform_complex_datasets_into_intuitive_graphical_representations" xml:space="preserve">
+    <value>Los componentes de visualización interactiva transforman conjuntos de datos complejos en representaciones gráficas intuitivas.</value>
+  </data>
+  <data name="intuitive_navigation_structures_help_users_discover_features_and_accomplish_tasks_with_minimal_learning_curve" xml:space="preserve">
+    <value>Las estructuras de navegación intuitivas ayudan a los usuarios a descubrir características y realizar tareas con una curva de aprendizaje mínima.</value>
+  </data>
+  <data name="mac_md_premium" xml:space="preserve">
+    <value>Mac MD Premium</value>
+  </data>
+  <data name="md" xml:space="preserve">
+    <value>Maryland</value>
+  </data>
+  <data name="monospaced" xml:space="preserve">
+    <value>Monoespaciado</value>
+  </data>
+  <data name="navigate" xml:space="preserve">
+    <value>Navegar</value>
+  </data>
+  <data name="no_document_selected" xml:space="preserve">
+    <value>Ningún documento seleccionado</value>
+  </data>
+  <data name="performance_monitoring_tools_track_system_metrics_and_identify_potential_bottlenecks_before_they_impact_users" xml:space="preserve">
+    <value>Las herramientas de monitoreo de rendimiento rastrean las métricas del sistema e identifican posibles cuellos de botella antes de que afecten a los usuarios.</value>
+  </data>
+  <data name="premium" xml:space="preserve">
+    <value>Prima</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>Tráiler</value>
+  </data>
+  <data name="project_color" xml:space="preserve">
+    <value>Color del proyecto</value>
+  </data>
+  <data name="real_time_synchronization_ensures_consistent_data_availability_across_all_connected_devices_and_platforms" xml:space="preserve">
+    <value>La sincronización en tiempo real garantiza una disponibilidad constante de datos en todos los dispositivos y plataformas conectados.</value>
+  </data>
+  <data name="responsive_design_principles_guarantee_optimal_viewing_experiences_across_various_screen_sizes_and_devices" xml:space="preserve">
+    <value>Los principios de diseño receptivo garantizan experiencias de visualización óptimas en varios tamaños de pantalla y dispositivos.</value>
+  </data>
+  <data name="rounded" xml:space="preserve">
+    <value>Redondeado</value>
+  </data>
+  <data name="seamless_integration_capabilities_connect_disparate_systems_and_enable_efficient_data_exchange_between_platforms" xml:space="preserve">
+    <value>Las capacidades de integración perfecta conectan sistemas dispares y permiten un intercambio eficiente de datos entre plataformas.</value>
+  </data>
+  <data name="secure_authentication_mechanisms_protect_sensitive_information_while_providing_convenient_access_for_authorized_users" xml:space="preserve">
+    <value>Los mecanismos de autenticación segura protegen la información confidencial al tiempo que proporcionan un acceso conveniente a los usuarios autorizados.</value>
+  </data>
+  <data name="select_a_document_from_the_list_or_create_a_new_one_to_get_started" xml:space="preserve">
+    <value>Seleccione un documento de la lista o cree uno nuevo para comenzar.</value>
+  </data>
+  <data name="select_color" xml:space="preserve">
+    <value>Seleccionar color</value>
+  </data>
+  <data name="serif" xml:space="preserve">
+    <value>Serifa</value>
+  </data>
+  <data name="sort_by" xml:space="preserve">
+    <value>Ordenar por</value>
+  </data>
+  <data name="sync" xml:space="preserve">
+    <value>Sincronización</value>
+  </data>
+  <data name="system_sans_serif" xml:space="preserve">
+    <value>Sistema (sans-serif)</value>
+  </data>
+  <data name="test_key" xml:space="preserve">
+    <value>CLAVE DE PRUEBA</value>
+  </data>
+  <data name="the_innovative_technology_platform_seamlessly_integrates_advanced_features_to_enhance_user_productivity" xml:space="preserve">
+    <value>La innovadora plataforma tecnológica integra a la perfección funciones avanzadas para mejorar la productividad del usuario.</value>
+  </data>
+  <data name="the_quick_brown_fox_jumps_over_the_lazy_dog" xml:space="preserve">
+    <value>El rápido zorro marrón salta sobre el perro perezoso.</value>
+  </data>
+  <data name="themes" xml:space="preserve">
+    <value>Temas</value>
+  </data>
+  <data name="toggle_favorite" xml:space="preserve">
+    <value>Alternar Favorito</value>
+  </data>
+  <data name="toggle_preview" xml:space="preserve">
+    <value>Alternar vista previa</value>
+  </data>
+  <data name="unlock_powerful_features_that_keep_your_writing_in_sync_across_all_your_apple_devices" xml:space="preserve">
+    <value>Desbloquea potentes funciones que mantienen tu escritura sincronizada en todos tus dispositivos Apple.</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Variante</value>
+  </data>
+</root>

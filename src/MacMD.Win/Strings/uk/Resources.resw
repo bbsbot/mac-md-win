@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="AboutItem.Text" xml:space="preserve">
+    <value>Про</value>
+  </data>
+  <data name="EditorHeader.Text" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="ExportHtmlItem.Text" xml:space="preserve">
+    <value>Експортувати як HTML...</value>
+  </data>
+  <data name="ExportMdItem.Text" xml:space="preserve">
+    <value>Експорт як Markdown...</value>
+  </data>
+  <data name="ExportPdfItem.Text" xml:space="preserve">
+    <value>Експортувати як PDF...</value>
+  </data>
+  <data name="NoDocumentSelected.Text" xml:space="preserve">
+    <value>Документ не вибрано</value>
+  </data>
+  <data name="PreviewHeader.Text" xml:space="preserve">
+    <value>Попередній перегляд</value>
+  </data>
+  <data name="SortByLabel.Text" xml:space="preserve">
+    <value>Сортувати за</value>
+  </data>
+  <data name="aa" xml:space="preserve">
+    <value>Аа</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>Про</value>
+  </data>
+  <data name="advanced_encryption_protocols_safeguard_confidential_communications_and_ensure_privacy_throughout_transmission" xml:space="preserve">
+    <value>Розширені протоколи шифрування захищають конфіденційні комунікації та забезпечують конфіденційність протягом всієї передачі.</value>
+  </data>
+  <data name="ahammock" xml:space="preserve">
+    <value>Гамак</value>
+  </data>
+  <data name="automated_backup_systems_preserve_critical_data_and_enable_quick_recovery_in_case_of_unexpected_failures" xml:space="preserve">
+    <value>Автоматизовані системи резервного копіювання зберігають критичні дані та забезпечують швидке відновлення у разі несподіваних збоїв.</value>
+  </data>
+  <data name="automated_workflow_optimization_reduces_manual_effort_while_maintaining_high_quality_standards_across_operations" xml:space="preserve">
+    <value>Автоматизована оптимізація робочого процесу зменшує ручні зусилля, зберігаючи при цьому високі стандарти якості в усіх операціях.</value>
+  </data>
+  <data name="build" xml:space="preserve">
+    <value>Побудувати</value>
+  </data>
+  <data name="cloud_based_infrastructure_provides_scalable_resources_that_adapt_to_changing_demands_and_usage_patterns" xml:space="preserve">
+    <value>Хмарна інфраструктура забезпечує масштабовані ресурси, які адаптуються до мінливих вимог та моделей використання.</value>
+  </data>
+  <data name="collaborative_editing_features_allow_multiple_users_to_work_simultaneously_on_shared_documents_and_projects" xml:space="preserve">
+    <value>Спільні функції редагування дозволяють кільком користувачам працювати одночасно над спільними документами та проектами.</value>
+  </data>
+  <data name="collaborative_workspace_environments_foster_creativity_and_enable_teams_to_achieve_remarkable_results_together" xml:space="preserve">
+    <value>Спільні робочі середовища сприяють творчості та дозволяють командам досягати чудових результатів разом.</value>
+  </data>
+  <data name="color_theme" xml:space="preserve">
+    <value>Кольорова тема</value>
+  </data>
+  <data name="comprehensive_data_analytics_provide_actionable_insights_that_drive_strategic_business_decision_making_processes" xml:space="preserve">
+    <value>Комплексна аналітика даних надає дієву інформацію, яка керує стратегічними процесами прийняття бізнес-рішень.</value>
+  </data>
+  <data name="comprehensive_documentation_resources_provide_detailed_guidance_for_both_novice_and_experienced_users_alike" xml:space="preserve">
+    <value>Комплексні ресурси документації надають детальні вказівки як для початківців, так і для досвідчених користувачів.</value>
+  </data>
+  <data name="continuous_improvement_processes_incorporate_user_feedback_to_refine_features_and_enhance_overall_satisfaction" xml:space="preserve">
+    <value>Процеси постійного вдосконалення включають відгуки користувачів для вдосконалення функцій та підвищення загального задоволення.</value>
+  </data>
+  <data name="customizable_interface_options_allow_users_to_personalize_their_experience_according_to_individual_preferences" xml:space="preserve">
+    <value>Настроювані параметри інтерфейсу дозволяють користувачам персоналізувати свій досвід відповідно до індивідуальних уподобань.</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Видалити &quot;{0}&quot;?</value>
+  </data>
+  <data name="delete_documents" xml:space="preserve">
+    <value>Видалити {0} Документи?</value>
+  </data>
+  <data name="delete_documents_in_this_project_will_not_be_deleted" xml:space="preserve">
+    <value>Видалити &apos;{0}&apos;? Документи в цьому проєкті не будуть видалені.</value>
+  </data>
+  <data name="delete_this_tag_will_be_removed_from_all_documents" xml:space="preserve">
+    <value>Видалити &apos;{0}&apos;? Цей тег буде видалено з усіх документів.</value>
+  </data>
+  <data name="developer" xml:space="preserve">
+    <value>Розробник</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="export_as_html" xml:space="preserve">
+    <value>Експортувати як HTML...</value>
+  </data>
+  <data name="export_as_markdown" xml:space="preserve">
+    <value>Експорт як Markdown...</value>
+  </data>
+  <data name="export_as_pdf" xml:space="preserve">
+    <value>Експортувати як PDF...</value>
+  </data>
+  <data name="find_in_documents" xml:space="preserve">
+    <value>Знайти в документах...</value>
+  </data>
+  <data name="flexible_configuration_options_enable_administrators_to_tailor_system_behavior_to_organizational_requirements" xml:space="preserve">
+    <value>Гнучкі параметри конфігурації дозволяють адміністраторам адаптувати поведінку системи до організаційних вимог.</value>
+  </data>
+  <data name="font_family" xml:space="preserve">
+    <value>Сімейство шрифтів</value>
+  </data>
+  <data name="font_size" xml:space="preserve">
+    <value>Розмір шрифту</value>
+  </data>
+  <data name="information" xml:space="preserve">
+    <value>Інформація</value>
+  </data>
+  <data name="intelligent_search_algorithms_deliver_precise_results_by_understanding_context_and_user_intent_effectively" xml:space="preserve">
+    <value>Інтелектуальні алгоритми пошуку забезпечують точні результати, ефективно розуміючи контекст та наміри користувача.</value>
+  </data>
+  <data name="interactive_visualization_components_transform_complex_datasets_into_intuitive_graphical_representations" xml:space="preserve">
+    <value>Інтерактивні компоненти візуалізації перетворюють складні набори даних на інтуїтивно зрозумілі графічні представлення.</value>
+  </data>
+  <data name="intuitive_navigation_structures_help_users_discover_features_and_accomplish_tasks_with_minimal_learning_curve" xml:space="preserve">
+    <value>Інтуїтивно зрозумілі навігаційні структури допомагають користувачам знаходити функції та виконувати завдання з мінімальною кривою навчання.</value>
+  </data>
+  <data name="mac_md_premium" xml:space="preserve">
+    <value>Mac MD Преміум</value>
+  </data>
+  <data name="md" xml:space="preserve">
+    <value>Доктор медичних наук</value>
+  </data>
+  <data name="monospaced" xml:space="preserve">
+    <value>Монопросторний</value>
+  </data>
+  <data name="navigate" xml:space="preserve">
+    <value>Навігація</value>
+  </data>
+  <data name="no_document_selected" xml:space="preserve">
+    <value>Документ не вибрано</value>
+  </data>
+  <data name="performance_monitoring_tools_track_system_metrics_and_identify_potential_bottlenecks_before_they_impact_users" xml:space="preserve">
+    <value>Інструменти моніторингу продуктивності відстежують системні показники та виявляють потенційні вузькі місця, перш ніж вони вплинуть на користувачів.</value>
+  </data>
+  <data name="premium" xml:space="preserve">
+    <value>Преміум</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>Попередній перегляд</value>
+  </data>
+  <data name="project_color" xml:space="preserve">
+    <value>Колір проекту</value>
+  </data>
+  <data name="real_time_synchronization_ensures_consistent_data_availability_across_all_connected_devices_and_platforms" xml:space="preserve">
+    <value>Синхронізація в режимі реального часу забезпечує постійну доступність даних на всіх підключених пристроях і платформах.</value>
+  </data>
+  <data name="responsive_design_principles_guarantee_optimal_viewing_experiences_across_various_screen_sizes_and_devices" xml:space="preserve">
+    <value>Адаптивні принципи дизайну гарантують оптимальний досвід перегляду на різних розмірах екранів та пристроях.</value>
+  </data>
+  <data name="rounded" xml:space="preserve">
+    <value>Округлий</value>
+  </data>
+  <data name="seamless_integration_capabilities_connect_disparate_systems_and_enable_efficient_data_exchange_between_platforms" xml:space="preserve">
+    <value>Можливості бездоганної інтеграції з&apos;єднують розрізнені системи та забезпечують ефективний обмін даними між платформами.</value>
+  </data>
+  <data name="secure_authentication_mechanisms_protect_sensitive_information_while_providing_convenient_access_for_authorized_users" xml:space="preserve">
+    <value>Безпечні механізми автентифікації захищають конфіденційну інформацію, забезпечуючи зручний доступ для авторизованих користувачів.</value>
+  </data>
+  <data name="select_a_document_from_the_list_or_create_a_new_one_to_get_started" xml:space="preserve">
+    <value>Виберіть документ зі списку або створіть новий, щоб розпочати.</value>
+  </data>
+  <data name="select_color" xml:space="preserve">
+    <value>Виберіть колір</value>
+  </data>
+  <data name="serif" xml:space="preserve">
+    <value>Сериф</value>
+  </data>
+  <data name="sort_by" xml:space="preserve">
+    <value>Сортувати за</value>
+  </data>
+  <data name="sync" xml:space="preserve">
+    <value>Синхронізувати</value>
+  </data>
+  <data name="system_sans_serif" xml:space="preserve">
+    <value>Система (Sans-serif)</value>
+  </data>
+  <data name="test_key" xml:space="preserve">
+    <value>ТЕСТ-КЛЮЧ</value>
+  </data>
+  <data name="the_innovative_technology_platform_seamlessly_integrates_advanced_features_to_enhance_user_productivity" xml:space="preserve">
+    <value>Інноваційна технологічна платформа легко інтегрує розширені функції для підвищення продуктивності користувачів.</value>
+  </data>
+  <data name="the_quick_brown_fox_jumps_over_the_lazy_dog" xml:space="preserve">
+    <value>Швидка коричнева лисиця перестрибує через ледачу собаку.</value>
+  </data>
+  <data name="themes" xml:space="preserve">
+    <value>Теми</value>
+  </data>
+  <data name="toggle_favorite" xml:space="preserve">
+    <value>Перемкнути Улюблене</value>
+  </data>
+  <data name="toggle_preview" xml:space="preserve">
+    <value>Перемкнути попередній перегляд</value>
+  </data>
+  <data name="unlock_powerful_features_that_keep_your_writing_in_sync_across_all_your_apple_devices" xml:space="preserve">
+    <value>Розблокуйте потужні функції, які синхронізують ваше письмо на всіх ваших пристроях Apple.</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Версія</value>
+  </data>
+</root>

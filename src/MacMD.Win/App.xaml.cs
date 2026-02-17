@@ -1,4 +1,5 @@
 using MacMD.Core.Services;
+using MacMD.Win.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 
@@ -19,6 +20,7 @@ public partial class App : Application
 
         var services = new ServiceCollection();
         services.AddMacMDCore(dbPath);
+        services.AddSingleton<LocalizationService>();
         Services = services.BuildServiceProvider();
     }
 

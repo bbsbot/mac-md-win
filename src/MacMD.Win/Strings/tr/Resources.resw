@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="AboutItem.Text" xml:space="preserve">
+    <value>Hakkında</value>
+  </data>
+  <data name="EditorHeader.Text" xml:space="preserve">
+    <value>Editör</value>
+  </data>
+  <data name="ExportHtmlItem.Text" xml:space="preserve">
+    <value>HTML olarak dışa aktar...</value>
+  </data>
+  <data name="ExportMdItem.Text" xml:space="preserve">
+    <value>İndirim Olarak Dışa Aktar...</value>
+  </data>
+  <data name="ExportPdfItem.Text" xml:space="preserve">
+    <value>PDF olarak dışa aktar...</value>
+  </data>
+  <data name="NoDocumentSelected.Text" xml:space="preserve">
+    <value>Belge Seçilmedi</value>
+  </data>
+  <data name="PreviewHeader.Text" xml:space="preserve">
+    <value>Özel gösterim</value>
+  </data>
+  <data name="SortByLabel.Text" xml:space="preserve">
+    <value>Sırala</value>
+  </data>
+  <data name="aa" xml:space="preserve">
+    <value>Aa</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>Hakkında</value>
+  </data>
+  <data name="advanced_encryption_protocols_safeguard_confidential_communications_and_ensure_privacy_throughout_transmission" xml:space="preserve">
+    <value>Gelişmiş şifreleme protokolleri gizli iletişimleri korur ve iletim boyunca gizliliği sağlar.</value>
+  </data>
+  <data name="ahammock" xml:space="preserve">
+    <value>Ahamak</value>
+  </data>
+  <data name="automated_backup_systems_preserve_critical_data_and_enable_quick_recovery_in_case_of_unexpected_failures" xml:space="preserve">
+    <value>Otomatik yedekleme sistemleri kritik verileri korur ve beklenmedik arızalar durumunda hızlı kurtarma sağlar.</value>
+  </data>
+  <data name="automated_workflow_optimization_reduces_manual_effort_while_maintaining_high_quality_standards_across_operations" xml:space="preserve">
+    <value>Otomatik iş akışı optimizasyonu, operasyonlar arasında yüksek kalite standartlarını korurken manuel çabayı azaltır.</value>
+  </data>
+  <data name="build" xml:space="preserve">
+    <value>Inşa etmek</value>
+  </data>
+  <data name="cloud_based_infrastructure_provides_scalable_resources_that_adapt_to_changing_demands_and_usage_patterns" xml:space="preserve">
+    <value>Bulut tabanlı altyapı, değişen taleplere ve kullanım modellerine uyum sağlayan ölçeklenebilir kaynaklar sağlar.</value>
+  </data>
+  <data name="collaborative_editing_features_allow_multiple_users_to_work_simultaneously_on_shared_documents_and_projects" xml:space="preserve">
+    <value>İşbirlikçi düzenleme özellikleri, birden fazla kullanıcının paylaşılan belgeler ve projeler üzerinde aynı anda çalışmasına olanak tanır.</value>
+  </data>
+  <data name="collaborative_workspace_environments_foster_creativity_and_enable_teams_to_achieve_remarkable_results_together" xml:space="preserve">
+    <value>İşbirlikçi çalışma alanı ortamları yaratıcılığı teşvik eder ve ekiplerin birlikte dikkate değer sonuçlar elde etmelerini sağlar.</value>
+  </data>
+  <data name="color_theme" xml:space="preserve">
+    <value>Renk Teması</value>
+  </data>
+  <data name="comprehensive_data_analytics_provide_actionable_insights_that_drive_strategic_business_decision_making_processes" xml:space="preserve">
+    <value>Kapsamlı veri analizi, stratejik iş karar verme süreçlerini yönlendiren eyleme geçirilebilir içgörüler sağlar.</value>
+  </data>
+  <data name="comprehensive_documentation_resources_provide_detailed_guidance_for_both_novice_and_experienced_users_alike" xml:space="preserve">
+    <value>Kapsamlı dokümantasyon kaynakları, hem acemi hem de deneyimli kullanıcılar için ayrıntılı rehberlik sağlar.</value>
+  </data>
+  <data name="continuous_improvement_processes_incorporate_user_feedback_to_refine_features_and_enhance_overall_satisfaction" xml:space="preserve">
+    <value>Sürekli iyileştirme süreçleri, özellikleri iyileştirmek ve genel memnuniyeti artırmak için kullanıcı geri bildirimlerini içerir.</value>
+  </data>
+  <data name="customizable_interface_options_allow_users_to_personalize_their_experience_according_to_individual_preferences" xml:space="preserve">
+    <value>Özelleştirilebilir arayüz seçenekleri, kullanıcıların deneyimlerini bireysel tercihlere göre kişiselleştirmelerine olanak tanır.</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>&quot;{0}&quot; SILIN MI?</value>
+  </data>
+  <data name="delete_documents" xml:space="preserve">
+    <value>{0} Belgelerini Sil?</value>
+  </data>
+  <data name="delete_documents_in_this_project_will_not_be_deleted" xml:space="preserve">
+    <value>&apos;{0}&apos;i silin mi? Bu projedeki belgeler silinmeyecek.</value>
+  </data>
+  <data name="delete_this_tag_will_be_removed_from_all_documents" xml:space="preserve">
+    <value>&apos;{0}&apos;i silin mi? Bu etiket tüm belgelerden kaldırılacaktır.</value>
+  </data>
+  <data name="developer" xml:space="preserve">
+    <value>Müteahhit</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>Editör</value>
+  </data>
+  <data name="export_as_html" xml:space="preserve">
+    <value>HTML olarak dışa aktar...</value>
+  </data>
+  <data name="export_as_markdown" xml:space="preserve">
+    <value>İndirim Olarak Dışa Aktar...</value>
+  </data>
+  <data name="export_as_pdf" xml:space="preserve">
+    <value>PDF olarak dışa aktar...</value>
+  </data>
+  <data name="find_in_documents" xml:space="preserve">
+    <value>Belgelerde Bul...</value>
+  </data>
+  <data name="flexible_configuration_options_enable_administrators_to_tailor_system_behavior_to_organizational_requirements" xml:space="preserve">
+    <value>Esnek yapılandırma seçenekleri, yöneticilerin sistem davranışını kurumsal gereksinimlere göre uyarlamasını sağlar.</value>
+  </data>
+  <data name="font_family" xml:space="preserve">
+    <value>Yazı Tipi Ailesi</value>
+  </data>
+  <data name="font_size" xml:space="preserve">
+    <value>Yazı Tipi Boyutu</value>
+  </data>
+  <data name="information" xml:space="preserve">
+    <value>Bilgi</value>
+  </data>
+  <data name="intelligent_search_algorithms_deliver_precise_results_by_understanding_context_and_user_intent_effectively" xml:space="preserve">
+    <value>Akıllı arama algoritmaları, bağlamı ve kullanıcı niyetini etkili bir şekilde anlayarak kesin sonuçlar verir.</value>
+  </data>
+  <data name="interactive_visualization_components_transform_complex_datasets_into_intuitive_graphical_representations" xml:space="preserve">
+    <value>Etkileşimli görselleştirme bileşenleri, karmaşık veri kümelerini sezgisel grafiksel temsillere dönüştürür.</value>
+  </data>
+  <data name="intuitive_navigation_structures_help_users_discover_features_and_accomplish_tasks_with_minimal_learning_curve" xml:space="preserve">
+    <value>Sezgisel navigasyon yapıları, kullanıcıların özellikleri keşfetmelerine ve minimum öğrenme eğrisiyle görevleri yerine getirmelerine yardımcı olur.</value>
+  </data>
+  <data name="mac_md_premium" xml:space="preserve">
+    <value>Mac MD Premium</value>
+  </data>
+  <data name="md" xml:space="preserve">
+    <value>MD</value>
+  </data>
+  <data name="monospaced" xml:space="preserve">
+    <value>Tek aralıklı</value>
+  </data>
+  <data name="navigate" xml:space="preserve">
+    <value>Yolculuk yapmak</value>
+  </data>
+  <data name="no_document_selected" xml:space="preserve">
+    <value>Belge Seçilmedi</value>
+  </data>
+  <data name="performance_monitoring_tools_track_system_metrics_and_identify_potential_bottlenecks_before_they_impact_users" xml:space="preserve">
+    <value>Performans izleme araçları, sistem ölçümlerini takip eder ve kullanıcıları etkilemeden önce olası darboğazları belirler.</value>
+  </data>
+  <data name="premium" xml:space="preserve">
+    <value>Prim</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>Özel gösterim</value>
+  </data>
+  <data name="project_color" xml:space="preserve">
+    <value>Proje Rengi</value>
+  </data>
+  <data name="real_time_synchronization_ensures_consistent_data_availability_across_all_connected_devices_and_platforms" xml:space="preserve">
+    <value>Gerçek zamanlı senkronizasyon, bağlı tüm cihazlarda ve platformlarda tutarlı veri kullanılabilirliği sağlar.</value>
+  </data>
+  <data name="responsive_design_principles_guarantee_optimal_viewing_experiences_across_various_screen_sizes_and_devices" xml:space="preserve">
+    <value>Duyarlı tasarım ilkeleri, çeşitli ekran boyutlarında ve cihazlarda optimum görüntüleme deneyimlerini garanti eder.</value>
+  </data>
+  <data name="rounded" xml:space="preserve">
+    <value>Yuvarlak</value>
+  </data>
+  <data name="seamless_integration_capabilities_connect_disparate_systems_and_enable_efficient_data_exchange_between_platforms" xml:space="preserve">
+    <value>Sorunsuz entegrasyon yetenekleri, farklı sistemleri birbirine bağlar ve platformlar arasında verimli veri alışverişi sağlar.</value>
+  </data>
+  <data name="secure_authentication_mechanisms_protect_sensitive_information_while_providing_convenient_access_for_authorized_users" xml:space="preserve">
+    <value>Güvenli kimlik doğrulama mekanizmaları, yetkili kullanıcılar için kolay erişim sağlarken hassas bilgileri korur.</value>
+  </data>
+  <data name="select_a_document_from_the_list_or_create_a_new_one_to_get_started" xml:space="preserve">
+    <value>Başlamak için listeden bir belge seçin veya yeni bir belge oluşturun.</value>
+  </data>
+  <data name="select_color" xml:space="preserve">
+    <value>Renk seç</value>
+  </data>
+  <data name="serif" xml:space="preserve">
+    <value>Serif</value>
+  </data>
+  <data name="sort_by" xml:space="preserve">
+    <value>Sırala</value>
+  </data>
+  <data name="sync" xml:space="preserve">
+    <value>Senkronizasyon</value>
+  </data>
+  <data name="system_sans_serif" xml:space="preserve">
+    <value>Sistem (Sans-serif)</value>
+  </data>
+  <data name="test_key" xml:space="preserve">
+    <value>TEST ANAHTARI</value>
+  </data>
+  <data name="the_innovative_technology_platform_seamlessly_integrates_advanced_features_to_enhance_user_productivity" xml:space="preserve">
+    <value>Yenilikçi teknoloji platformu, kullanıcı verimliliğini artırmak için gelişmiş özellikleri sorunsuz bir şekilde entegre eder.</value>
+  </data>
+  <data name="the_quick_brown_fox_jumps_over_the_lazy_dog" xml:space="preserve">
+    <value>Hızlı kahverengi tilki tembel köpeğin üzerinden atlar.</value>
+  </data>
+  <data name="themes" xml:space="preserve">
+    <value>Temalar</value>
+  </data>
+  <data name="toggle_favorite" xml:space="preserve">
+    <value>Favoriyi Değiştir</value>
+  </data>
+  <data name="toggle_preview" xml:space="preserve">
+    <value>Önizlemeyi Değiştir</value>
+  </data>
+  <data name="unlock_powerful_features_that_keep_your_writing_in_sync_across_all_your_apple_devices" xml:space="preserve">
+    <value>Yazınızı tüm Apple cihazlarınızda senkronize tutan güçlü özelliklerin kilidini açın.</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Çeviri</value>
+  </data>
+</root>

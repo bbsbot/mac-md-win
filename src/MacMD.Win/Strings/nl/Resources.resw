@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="AboutItem.Text" xml:space="preserve">
+    <value>Over</value>
+  </data>
+  <data name="EditorHeader.Text" xml:space="preserve">
+    <value>Redacteur</value>
+  </data>
+  <data name="ExportHtmlItem.Text" xml:space="preserve">
+    <value>Exporteren als HTML...</value>
+  </data>
+  <data name="ExportMdItem.Text" xml:space="preserve">
+    <value>Exporteren als Markdown...</value>
+  </data>
+  <data name="ExportPdfItem.Text" xml:space="preserve">
+    <value>Exporteren als PDF...</value>
+  </data>
+  <data name="NoDocumentSelected.Text" xml:space="preserve">
+    <value>Geen Document Geselecteerd</value>
+  </data>
+  <data name="PreviewHeader.Text" xml:space="preserve">
+    <value>Voorvertoning</value>
+  </data>
+  <data name="SortByLabel.Text" xml:space="preserve">
+    <value>Sorteer op</value>
+  </data>
+  <data name="aa" xml:space="preserve">
+    <value>AA</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>Over</value>
+  </data>
+  <data name="advanced_encryption_protocols_safeguard_confidential_communications_and_ensure_privacy_throughout_transmission" xml:space="preserve">
+    <value>Geavanceerde coderingsprotocollen beschermen vertrouwelijke communicatie en zorgen voor privacy tijdens de verzending.</value>
+  </data>
+  <data name="ahammock" xml:space="preserve">
+    <value>Hangmat</value>
+  </data>
+  <data name="automated_backup_systems_preserve_critical_data_and_enable_quick_recovery_in_case_of_unexpected_failures" xml:space="preserve">
+    <value>Geautomatiseerde back-upsystemen bewaren kritieke gegevens en maken snel herstel mogelijk in geval van onverwachte storingen.</value>
+  </data>
+  <data name="automated_workflow_optimization_reduces_manual_effort_while_maintaining_high_quality_standards_across_operations" xml:space="preserve">
+    <value>Geautomatiseerde workflow-optimalisatie vermindert handmatige inspanning met behoud van hoge kwaliteitsnormen voor alle operaties.</value>
+  </data>
+  <data name="build" xml:space="preserve">
+    <value>Bouwen</value>
+  </data>
+  <data name="cloud_based_infrastructure_provides_scalable_resources_that_adapt_to_changing_demands_and_usage_patterns" xml:space="preserve">
+    <value>Cloudgebaseerde infrastructuur biedt schaalbare bronnen die zich aanpassen aan veranderende eisen en gebruikspatronen.</value>
+  </data>
+  <data name="collaborative_editing_features_allow_multiple_users_to_work_simultaneously_on_shared_documents_and_projects" xml:space="preserve">
+    <value>Met collaboratieve bewerkingsfuncties kunnen meerdere gebruikers tegelijkertijd aan gedeelde documenten en projecten werken.</value>
+  </data>
+  <data name="collaborative_workspace_environments_foster_creativity_and_enable_teams_to_achieve_remarkable_results_together" xml:space="preserve">
+    <value>Samenwerkingswerkruimtes bevorderen creativiteit en stellen teams in staat om samen opmerkelijke resultaten te behalen.</value>
+  </data>
+  <data name="color_theme" xml:space="preserve">
+    <value>Kleurthema</value>
+  </data>
+  <data name="comprehensive_data_analytics_provide_actionable_insights_that_drive_strategic_business_decision_making_processes" xml:space="preserve">
+    <value>Uitgebreide data-analyses bieden bruikbare inzichten die strategische zakelijke besluitvormingsprocessen stimuleren.</value>
+  </data>
+  <data name="comprehensive_documentation_resources_provide_detailed_guidance_for_both_novice_and_experienced_users_alike" xml:space="preserve">
+    <value>Uitgebreide documentatiebronnen bieden gedetailleerde richtlijnen voor zowel beginnende als ervaren gebruikers.</value>
+  </data>
+  <data name="continuous_improvement_processes_incorporate_user_feedback_to_refine_features_and_enhance_overall_satisfaction" xml:space="preserve">
+    <value>Continue verbeteringsprocessen bevatten feedback van gebruikers om functies te verfijnen en de algehele tevredenheid te vergroten.</value>
+  </data>
+  <data name="customizable_interface_options_allow_users_to_personalize_their_experience_according_to_individual_preferences" xml:space="preserve">
+    <value>Met aanpasbare interface-opties kunnen gebruikers hun ervaring personaliseren op basis van individuele voorkeuren.</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>&quot;{0}&quot; verwijderen?</value>
+  </data>
+  <data name="delete_documents" xml:space="preserve">
+    <value>{0} Documenten verwijderen?</value>
+  </data>
+  <data name="delete_documents_in_this_project_will_not_be_deleted" xml:space="preserve">
+    <value>&apos;{0}&apos; verwijderen? Documenten in dit project worden niet verwijderd.</value>
+  </data>
+  <data name="delete_this_tag_will_be_removed_from_all_documents" xml:space="preserve">
+    <value>&apos;{0}&apos; verwijderen? Deze tag wordt uit alle documenten verwijderd.</value>
+  </data>
+  <data name="developer" xml:space="preserve">
+    <value>Ontwikkelaar</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>Redacteur</value>
+  </data>
+  <data name="export_as_html" xml:space="preserve">
+    <value>Exporteren als HTML...</value>
+  </data>
+  <data name="export_as_markdown" xml:space="preserve">
+    <value>Exporteren als Markdown...</value>
+  </data>
+  <data name="export_as_pdf" xml:space="preserve">
+    <value>Exporteren als PDF...</value>
+  </data>
+  <data name="find_in_documents" xml:space="preserve">
+    <value>Zoek in Documenten...</value>
+  </data>
+  <data name="flexible_configuration_options_enable_administrators_to_tailor_system_behavior_to_organizational_requirements" xml:space="preserve">
+    <value>Flexibele configuratie-opties stellen beheerders in staat om het systeemgedrag aan te passen aan de vereisten van de organisatie.</value>
+  </data>
+  <data name="font_family" xml:space="preserve">
+    <value>Lettertypefamilie</value>
+  </data>
+  <data name="font_size" xml:space="preserve">
+    <value>Lettergrootte</value>
+  </data>
+  <data name="information" xml:space="preserve">
+    <value>Informatie</value>
+  </data>
+  <data name="intelligent_search_algorithms_deliver_precise_results_by_understanding_context_and_user_intent_effectively" xml:space="preserve">
+    <value>Intelligente zoekalgoritmen leveren nauwkeurige resultaten op door de context en de intentie van de gebruiker effectief te begrijpen.</value>
+  </data>
+  <data name="interactive_visualization_components_transform_complex_datasets_into_intuitive_graphical_representations" xml:space="preserve">
+    <value>Interactieve visualisatiecomponenten transformeren complexe datasets in intuïtieve grafische weergaven.</value>
+  </data>
+  <data name="intuitive_navigation_structures_help_users_discover_features_and_accomplish_tasks_with_minimal_learning_curve" xml:space="preserve">
+    <value>Intuïtieve navigatiestructuren helpen gebruikers functies te ontdekken en taken uit te voeren met minimale leercurve.</value>
+  </data>
+  <data name="mac_md_premium" xml:space="preserve">
+    <value>Mac MD Premium</value>
+  </data>
+  <data name="md" xml:space="preserve">
+    <value>Doctor in de medicijnen</value>
+  </data>
+  <data name="monospaced" xml:space="preserve">
+    <value>Monospaced</value>
+  </data>
+  <data name="navigate" xml:space="preserve">
+    <value>De route aangeven</value>
+  </data>
+  <data name="no_document_selected" xml:space="preserve">
+    <value>Geen Document Geselecteerd</value>
+  </data>
+  <data name="performance_monitoring_tools_track_system_metrics_and_identify_potential_bottlenecks_before_they_impact_users" xml:space="preserve">
+    <value>Tools voor prestatiebewaking volgen systeemstatistieken en identificeren potentiële knelpunten voordat ze gebruikers beïnvloeden.</value>
+  </data>
+  <data name="premium" xml:space="preserve">
+    <value>Premie</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>Voorvertoning</value>
+  </data>
+  <data name="project_color" xml:space="preserve">
+    <value>Projectkleur</value>
+  </data>
+  <data name="real_time_synchronization_ensures_consistent_data_availability_across_all_connected_devices_and_platforms" xml:space="preserve">
+    <value>Realtime synchronisatie zorgt voor consistente gegevensbeschikbaarheid op alle aangesloten apparaten en platforms.</value>
+  </data>
+  <data name="responsive_design_principles_guarantee_optimal_viewing_experiences_across_various_screen_sizes_and_devices" xml:space="preserve">
+    <value>Responsieve ontwerpprincipes garanderen optimale kijkervaringen op verschillende schermformaten en apparaten.</value>
+  </data>
+  <data name="rounded" xml:space="preserve">
+    <value>Rond</value>
+  </data>
+  <data name="seamless_integration_capabilities_connect_disparate_systems_and_enable_efficient_data_exchange_between_platforms" xml:space="preserve">
+    <value>Naadloze integratiemogelijkheden verbinden verschillende systemen en maken efficiënte gegevensuitwisseling tussen platforms mogelijk.</value>
+  </data>
+  <data name="secure_authentication_mechanisms_protect_sensitive_information_while_providing_convenient_access_for_authorized_users" xml:space="preserve">
+    <value>Veilige authenticatiemechanismen beschermen gevoelige informatie en bieden gemakkelijke toegang voor geautoriseerde gebruikers.</value>
+  </data>
+  <data name="select_a_document_from_the_list_or_create_a_new_one_to_get_started" xml:space="preserve">
+    <value>Selecteer een document uit de lijst of maak een nieuw document om aan de slag te gaan.</value>
+  </data>
+  <data name="select_color" xml:space="preserve">
+    <value>Selecteer kleur</value>
+  </data>
+  <data name="serif" xml:space="preserve">
+    <value>Schreef</value>
+  </data>
+  <data name="sort_by" xml:space="preserve">
+    <value>Sorteer op</value>
+  </data>
+  <data name="sync" xml:space="preserve">
+    <value>Synchroniseren</value>
+  </data>
+  <data name="system_sans_serif" xml:space="preserve">
+    <value>Systeem (Sans-serif)</value>
+  </data>
+  <data name="test_key" xml:space="preserve">
+    <value>TESTSLEUTEL</value>
+  </data>
+  <data name="the_innovative_technology_platform_seamlessly_integrates_advanced_features_to_enhance_user_productivity" xml:space="preserve">
+    <value>Het innovatieve technologieplatform integreert naadloos geavanceerde functies om de productiviteit van de gebruiker te verbeteren.</value>
+  </data>
+  <data name="the_quick_brown_fox_jumps_over_the_lazy_dog" xml:space="preserve">
+    <value>De snelle bruine vos springt over de luie hond.</value>
+  </data>
+  <data name="themes" xml:space="preserve">
+    <value>Thema&apos;s</value>
+  </data>
+  <data name="toggle_favorite" xml:space="preserve">
+    <value>Favoriet Omschakelen</value>
+  </data>
+  <data name="toggle_preview" xml:space="preserve">
+    <value>Voorbeeld omschakelen</value>
+  </data>
+  <data name="unlock_powerful_features_that_keep_your_writing_in_sync_across_all_your_apple_devices" xml:space="preserve">
+    <value>Ontgrendel krachtige functies die uw schrijven synchroon houden op al uw Apple-apparaten.</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Versie</value>
+  </data>
+</root>

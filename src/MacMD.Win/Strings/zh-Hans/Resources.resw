@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="AboutItem.Text" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="AllDocumentsLink.Content" xml:space="preserve">
+    <value>所有文档</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="DeleteButton.Content" xml:space="preserve">
+    <value>删除项目</value>
+  </data>
+  <data name="DocumentsHeader.Text" xml:space="preserve">
+    <value>文档</value>
+  </data>
+  <data name="DoneButton.Content" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="EditorHeader.Text" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="ExportHtmlItem.Text" xml:space="preserve">
+    <value>导出为HTML...</value>
+  </data>
+  <data name="ExportMdItem.Text" xml:space="preserve">
+    <value>导出为Markdown...</value>
+  </data>
+  <data name="ExportPdfItem.Text" xml:space="preserve">
+    <value>导出为PDF...</value>
+  </data>
+  <data name="FavoritesHeader.Text" xml:space="preserve">
+    <value>收藏夹</value>
+  </data>
+  <data name="NewDocumentButton.Content" xml:space="preserve">
+    <value>新建文档</value>
+  </data>
+  <data name="NewProjectButton.Content" xml:space="preserve">
+    <value>新建项目…</value>
+  </data>
+  <data name="NoDocumentSelected.Text" xml:space="preserve">
+    <value>未选择文档</value>
+  </data>
+  <data name="PreviewHeader.Text" xml:space="preserve">
+    <value>预告</value>
+  </data>
+  <data name="ProjectsHeader.Text" xml:space="preserve">
+    <value>项目</value>
+  </data>
+  <data name="SaveButton.Content" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>搜索文档</value>
+  </data>
+  <data name="SettingsHeader.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="SortByLabel.Text" xml:space="preserve">
+    <value>排序方式</value>
+  </data>
+  <data name="TagsHeader.Text" xml:space="preserve">
+    <value>标签</value>
+  </data>
+  <data name="WordCountLabel.Text" xml:space="preserve">
+    <value>{0} 字</value>
+  </data>
+  <data name="aa" xml:space="preserve">
+    <value>嗜酒者互诫协会</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="actions" xml:space="preserve">
+    <value>操作 ({0})</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="add_to_favorites" xml:space="preserve">
+    <value>添加到收藏夹</value>
+  </data>
+  <data name="advanced_encryption_protocols_safeguard_confidential_communications_and_ensure_privacy_throughout_transmission" xml:space="preserve">
+    <value>先进的加密协议保护机密通信，并确保整个传输过程的隐私。</value>
+  </data>
+  <data name="ahammock" xml:space="preserve">
+    <value>吊床</value>
+  </data>
+  <data name="all_documents" xml:space="preserve">
+    <value>所有文档</value>
+  </data>
+  <data name="apply_tag" xml:space="preserve">
+    <value>应用标签</value>
+  </data>
+  <data name="apply_tags" xml:space="preserve">
+    <value>应用标签</value>
+  </data>
+  <data name="archive" xml:space="preserve">
+    <value>归档</value>
+  </data>
+  <data name="archived" xml:space="preserve">
+    <value>已归档</value>
+  </data>
+  <data name="automated_backup_systems_preserve_critical_data_and_enable_quick_recovery_in_case_of_unexpected_failures" xml:space="preserve">
+    <value>自动备份系统可以保留关键数据，并在发生意外故障时实现快速恢复。</value>
+  </data>
+  <data name="automated_workflow_optimization_reduces_manual_effort_while_maintaining_high_quality_standards_across_operations" xml:space="preserve">
+    <value>自动化工作流程优化减少了人工工作量，同时保持了整个运营的高质量标准。</value>
+  </data>
+  <data name="build" xml:space="preserve">
+    <value>人体</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="cloud_based_infrastructure_provides_scalable_resources_that_adapt_to_changing_demands_and_usage_patterns" xml:space="preserve">
+    <value>基于云的基础设施提供可扩展的资源，以适应不断变化的需求和使用模式。</value>
+  </data>
+  <data name="collaborative_editing_features_allow_multiple_users_to_work_simultaneously_on_shared_documents_and_projects" xml:space="preserve">
+    <value>协作编辑功能允许多个用户同时处理共享文档和项目。</value>
+  </data>
+  <data name="collaborative_workspace_environments_foster_creativity_and_enable_teams_to_achieve_remarkable_results_together" xml:space="preserve">
+    <value>协作工作空间环境培养了创造力，并使团队能够共同取得显著成果。</value>
+  </data>
+  <data name="color" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="color_theme" xml:space="preserve">
+    <value>颜色主题</value>
+  </data>
+  <data name="comprehensive_data_analytics_provide_actionable_insights_that_drive_strategic_business_decision_making_processes" xml:space="preserve">
+    <value>全面的数据分析提供了可操作的见解，推动了战略业务决策过程。</value>
+  </data>
+  <data name="comprehensive_documentation_resources_provide_detailed_guidance_for_both_novice_and_experienced_users_alike" xml:space="preserve">
+    <value>全面的文档资源为新手和经验丰富的用户提供详细的指导。</value>
+  </data>
+  <data name="continuous_improvement_processes_incorporate_user_feedback_to_refine_features_and_enhance_overall_satisfaction" xml:space="preserve">
+    <value>持续改进流程结合用户反馈来完善功能并提高整体满意度。</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>创建</value>
+  </data>
+  <data name="customizable_interface_options_allow_users_to_personalize_their_experience_according_to_individual_preferences" xml:space="preserve">
+    <value>可定制的界面选项允许用户根据个人偏好个性化体验。</value>
+  </data>
+  <data name="date_created" xml:space="preserve">
+    <value>创建日期</value>
+  </data>
+  <data name="date_modified" xml:space="preserve">
+    <value>修改日期</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>删除“{0}”？</value>
+  </data>
+  <data name="delete_documents" xml:space="preserve">
+    <value>删除{0}文档？</value>
+  </data>
+  <data name="delete_documents_in_this_project_will_not_be_deleted" xml:space="preserve">
+    <value>删除“{0}”？ 此项目中的文档将不会被删除。</value>
+  </data>
+  <data name="delete_project" xml:space="preserve">
+    <value>删除项目</value>
+  </data>
+  <data name="delete_project_only" xml:space="preserve">
+    <value>仅删除项目</value>
+  </data>
+  <data name="delete_tag" xml:space="preserve">
+    <value>删除标签</value>
+  </data>
+  <data name="delete_this_tag_will_be_removed_from_all_documents" xml:space="preserve">
+    <value>删除“{0}”？ 此标签将从所有文档中删除。</value>
+  </data>
+  <data name="description_optional" xml:space="preserve">
+    <value>描述（可选）</value>
+  </data>
+  <data name="developer" xml:space="preserve">
+    <value>开发商</value>
+  </data>
+  <data name="document_title" xml:space="preserve">
+    <value>文档标题</value>
+  </data>
+  <data name="documents" xml:space="preserve">
+    <value>文档</value>
+  </data>
+  <data name="done" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="dont_show_this_again" xml:space="preserve">
+    <value>不再显示</value>
+  </data>
+  <data name="duplicate" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="edit_project" xml:space="preserve">
+    <value>编辑项目</value>
+  </data>
+  <data name="edit_tag" xml:space="preserve">
+    <value>编辑标签</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>导出</value>
+  </data>
+  <data name="export_as_html" xml:space="preserve">
+    <value>导出为HTML...</value>
+  </data>
+  <data name="export_as_markdown" xml:space="preserve">
+    <value>导出为Markdown...</value>
+  </data>
+  <data name="export_as_pdf" xml:space="preserve">
+    <value>导出为PDF...</value>
+  </data>
+  <data name="favorite" xml:space="preserve">
+    <value>收藏</value>
+  </data>
+  <data name="favorites" xml:space="preserve">
+    <value>收藏夹</value>
+  </data>
+  <data name="find_in_documents" xml:space="preserve">
+    <value>在文档中查找...</value>
+  </data>
+  <data name="flexible_configuration_options_enable_administrators_to_tailor_system_behavior_to_organizational_requirements" xml:space="preserve">
+    <value>灵活的配置选项使管理员能够根据组织要求定制系统行为。</value>
+  </data>
+  <data name="font_family" xml:space="preserve">
+    <value>字体家族</value>
+  </data>
+  <data name="font_size" xml:space="preserve">
+    <value>字体大小</value>
+  </data>
+  <data name="get_started" xml:space="preserve">
+    <value>开始使用</value>
+  </data>
+  <data name="grid_view" xml:space="preserve">
+    <value>网格视图</value>
+  </data>
+  <data name="hide_preview" xml:space="preserve">
+    <value>隐藏预览</value>
+  </data>
+  <data name="icloud_sync" xml:space="preserve">
+    <value>iCloud 同步</value>
+  </data>
+  <data name="icon" xml:space="preserve">
+    <value>图标</value>
+  </data>
+  <data name="information" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="intelligent_search_algorithms_deliver_precise_results_by_understanding_context_and_user_intent_effectively" xml:space="preserve">
+    <value>智能搜索算法通过有效地理解上下文和用户意图来提供精确的结果。</value>
+  </data>
+  <data name="interactive_visualization_components_transform_complex_datasets_into_intuitive_graphical_representations" xml:space="preserve">
+    <value>交互式可视化组件将复杂的数据集转换为直观的图形表示。</value>
+  </data>
+  <data name="intuitive_navigation_structures_help_users_discover_features_and_accomplish_tasks_with_minimal_learning_curve" xml:space="preserve">
+    <value>直观的导航结构帮助用户以最小的学习曲线发现功能并完成任务。</value>
+  </data>
+  <data name="keep_your_documents_in_sync_across_all_your_apple_devices_automatically" xml:space="preserve">
+    <value>自动在所有 Apple 设备之间同步您的文档。</value>
+  </data>
+  <data name="list_view" xml:space="preserve">
+    <value>列表视图</value>
+  </data>
+  <data name="live_preview" xml:space="preserve">
+    <value>实时预览</value>
+  </data>
+  <data name="mac_md" xml:space="preserve">
+    <value>Mac MD</value>
+  </data>
+  <data name="mac_md_premium" xml:space="preserve">
+    <value>Mac MD 高级版</value>
+  </data>
+  <data name="md" xml:space="preserve">
+    <value>马里兰州</value>
+  </data>
+  <data name="modern_markdown_editing" xml:space="preserve">
+    <value>现代 Markdown 编辑</value>
+  </data>
+  <data name="monospaced" xml:space="preserve">
+    <value>等距的</value>
+  </data>
+  <data name="move_to_project" xml:space="preserve">
+    <value>移动到项目</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="navigate" xml:space="preserve">
+    <value>导航</value>
+  </data>
+  <data name="new_document" xml:space="preserve">
+    <value>新建文档</value>
+  </data>
+  <data name="new_project" xml:space="preserve">
+    <value>新建项目…</value>
+  </data>
+  <data name="new_tag" xml:space="preserve">
+    <value>新建标签</value>
+  </data>
+  <data name="no_content" xml:space="preserve">
+    <value>无内容</value>
+  </data>
+  <data name="no_document_selected" xml:space="preserve">
+    <value>未选择文档</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="organize_documents_with_projects_and_apply_multiple_tags" xml:space="preserve">
+    <value>用项目组织文档并应用多个标签</value>
+  </data>
+  <data name="performance_monitoring_tools_track_system_metrics_and_identify_potential_bottlenecks_before_they_impact_users" xml:space="preserve">
+    <value>性能监控工具跟踪系统指标，并在潜在瓶颈影响用户之前识别。</value>
+  </data>
+  <data name="premium" xml:space="preserve">
+    <value>保险费</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>预告</value>
+  </data>
+  <data name="preview_below" xml:space="preserve">
+    <value>下方预览</value>
+  </data>
+  <data name="preview_on_left" xml:space="preserve">
+    <value>左侧预览</value>
+  </data>
+  <data name="preview_on_right" xml:space="preserve">
+    <value>右侧预览</value>
+  </data>
+  <data name="preview_position" xml:space="preserve">
+    <value>预览位置</value>
+  </data>
+  <data name="project_color" xml:space="preserve">
+    <value>项目颜色</value>
+  </data>
+  <data name="project_information" xml:space="preserve">
+    <value>项目信息</value>
+  </data>
+  <data name="projects" xml:space="preserve">
+    <value>项目</value>
+  </data>
+  <data name="projects_documents_and_editor_side_by_side_for_efficient_workflow" xml:space="preserve">
+    <value>项目、文档和编辑器并排显示，实现高效工作流程</value>
+  </data>
+  <data name="projects_tags" xml:space="preserve">
+    <value>项目与标签</value>
+  </data>
+  <data name="purchase_could_not_be_verified" xml:space="preserve">
+    <value>无法验证购买。</value>
+  </data>
+  <data name="real_time_synchronization_ensures_consistent_data_availability_across_all_connected_devices_and_platforms" xml:space="preserve">
+    <value>实时同步确保所有连接的设备和平台的一致数据可用性。</value>
+  </data>
+  <data name="recent" xml:space="preserve">
+    <value>最近</value>
+  </data>
+  <data name="remove_from_favorites" xml:space="preserve">
+    <value>从收藏夹中移除</value>
+  </data>
+  <data name="responsive_design_principles_guarantee_optimal_viewing_experiences_across_various_screen_sizes_and_devices" xml:space="preserve">
+    <value>响应式设计原则保证了各种屏幕尺寸和设备的最佳观看体验。</value>
+  </data>
+  <data name="restart_mac_md_to_apply_sync_changes" xml:space="preserve">
+    <value>重新启动 Mac MD 以应用同步更改。</value>
+  </data>
+  <data name="rounded" xml:space="preserve">
+    <value>圆形的</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="seamless_integration_capabilities_connect_disparate_systems_and_enable_efficient_data_exchange_between_platforms" xml:space="preserve">
+    <value>无缝集成功能连接不同的系统，并实现平台之间的高效数据交换。</value>
+  </data>
+  <data name="search_documents" xml:space="preserve">
+    <value>搜索文档</value>
+  </data>
+  <data name="secure_authentication_mechanisms_protect_sensitive_information_while_providing_convenient_access_for_authorized_users" xml:space="preserve">
+    <value>安全身份验证机制保护敏感信息，同时为授权用户提供便捷的访问。</value>
+  </data>
+  <data name="see_your_markdown_rendered_in_real_time_as_you_type" xml:space="preserve">
+    <value>输入时实时查看 Markdown 渲染效果</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="select_a_document_from_the_list_or_create_a_new_one_to_get_started" xml:space="preserve">
+    <value>从列表中选择一个文档或创建一个新的文档开始。</value>
+  </data>
+  <data name="select_color" xml:space="preserve">
+    <value>选择颜色</value>
+  </data>
+  <data name="serif" xml:space="preserve">
+    <value>塞夫</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="show_preview" xml:space="preserve">
+    <value>显示预览</value>
+  </data>
+  <data name="sort" xml:space="preserve">
+    <value>排序</value>
+  </data>
+  <data name="sort_by" xml:space="preserve">
+    <value>排序方式</value>
+  </data>
+  <data name="subscribe_to_mac_md_premium_to_sync_your_documents_across_all_your_apple_devices" xml:space="preserve">
+    <value>订阅 Mac MD Premium，在所有 Apple 设备上同步您的文档。</value>
+  </data>
+  <data name="sync" xml:space="preserve">
+    <value>同步</value>
+  </data>
+  <data name="system_sans_serif" xml:space="preserve">
+    <value>系统（Sans-serif）</value>
+  </data>
+  <data name="tag_color" xml:space="preserve">
+    <value>标签颜色</value>
+  </data>
+  <data name="tag_name" xml:space="preserve">
+    <value>标签名称</value>
+  </data>
+  <data name="tags" xml:space="preserve">
+    <value>标签</value>
+  </data>
+  <data name="test_key" xml:space="preserve">
+    <value>测试密钥</value>
+  </data>
+  <data name="the_innovative_technology_platform_seamlessly_integrates_advanced_features_to_enhance_user_productivity" xml:space="preserve">
+    <value>创新技术平台无缝集成了高级功能，以提高用户生产力。</value>
+  </data>
+  <data name="the_quick_brown_fox_jumps_over_the_lazy_dog" xml:space="preserve">
+    <value>敏捷的棕色狐狸跳过了懒惰的狗。</value>
+  </data>
+  <data name="themes" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="this_action_cannot_be_undone" xml:space="preserve">
+    <value>此操作无法撤销。</value>
+  </data>
+  <data name="three_column_layout" xml:space="preserve">
+    <value>三栏布局</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="toggle_favorite" xml:space="preserve">
+    <value>切换收藏夹</value>
+  </data>
+  <data name="toggle_preview" xml:space="preserve">
+    <value>切换预览</value>
+  </data>
+  <data name="unarchive" xml:space="preserve">
+    <value>取消归档</value>
+  </data>
+  <data name="unlock_powerful_features_that_keep_your_writing_in_sync_across_all_your_apple_devices" xml:space="preserve">
+    <value>解锁强大的功能，使您的书写在所有苹果设备上保持同步。</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>变种</value>
+  </data>
+  <data name="welcome_to_mac_md" xml:space="preserve">
+    <value>欢迎使用 Mac MD</value>
+  </data>
+  <data name="word_count" xml:space="preserve">
+    <value>字数统计</value>
+  </data>
+  <data name="words" xml:space="preserve">
+    <value>{0} 字</value>
+  </data>
+  <data name="your_documents_automatically_sync_across_mac_ipad_and_iphone" xml:space="preserve">
+    <value>您的文档在 Mac、iPad 和 iPhone 上自动同步</value>
+  </data>
+</root>

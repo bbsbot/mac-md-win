@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="AboutItem.Text" xml:space="preserve">
+    <value>Về chủ đề</value>
+  </data>
+  <data name="EditorHeader.Text" xml:space="preserve">
+    <value>Bộ soạn thảo</value>
+  </data>
+  <data name="ExportHtmlItem.Text" xml:space="preserve">
+    <value>Xuất dưới dạng HTML...</value>
+  </data>
+  <data name="ExportMdItem.Text" xml:space="preserve">
+    <value>Xuất dưới dạng Markdown...</value>
+  </data>
+  <data name="ExportPdfItem.Text" xml:space="preserve">
+    <value>Xuất dưới dạng PDF...</value>
+  </data>
+  <data name="NoDocumentSelected.Text" xml:space="preserve">
+    <value>Không có tài liệu nào được chọn</value>
+  </data>
+  <data name="PreviewHeader.Text" xml:space="preserve">
+    <value>Xem trước</value>
+  </data>
+  <data name="SortByLabel.Text" xml:space="preserve">
+    <value>Sắp xếp theo</value>
+  </data>
+  <data name="aa" xml:space="preserve">
+    <value>Aa</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>Về chủ đề</value>
+  </data>
+  <data name="advanced_encryption_protocols_safeguard_confidential_communications_and_ensure_privacy_throughout_transmission" xml:space="preserve">
+    <value>Các giao thức mã hóa nâng cao bảo vệ thông tin liên lạc bí mật và đảm bảo quyền riêng tư trong suốt quá trình truyền tải.</value>
+  </data>
+  <data name="ahammock" xml:space="preserve">
+    <value>Võng</value>
+  </data>
+  <data name="automated_backup_systems_preserve_critical_data_and_enable_quick_recovery_in_case_of_unexpected_failures" xml:space="preserve">
+    <value>Các hệ thống sao lưu tự động bảo tồn dữ liệu quan trọng và cho phép khôi phục nhanh chóng trong trường hợp xảy ra lỗi bất ngờ.</value>
+  </data>
+  <data name="automated_workflow_optimization_reduces_manual_effort_while_maintaining_high_quality_standards_across_operations" xml:space="preserve">
+    <value>Tối ưu hóa quy trình làm việc tự động làm giảm nỗ lực thủ công trong khi vẫn duy trì các tiêu chuẩn chất lượng cao trong các hoạt động.</value>
+  </data>
+  <data name="build" xml:space="preserve">
+    <value>Xây dựng</value>
+  </data>
+  <data name="cloud_based_infrastructure_provides_scalable_resources_that_adapt_to_changing_demands_and_usage_patterns" xml:space="preserve">
+    <value>Cơ sở hạ tầng dựa trên đám mây cung cấp các tài nguyên có thể mở rộng để thích ứng với nhu cầu thay đổi và mô hình sử dụng.</value>
+  </data>
+  <data name="collaborative_editing_features_allow_multiple_users_to_work_simultaneously_on_shared_documents_and_projects" xml:space="preserve">
+    <value>Các tính năng chỉnh sửa cộng tác cho phép nhiều người dùng làm việc đồng thời trên các tài liệu và dự án được chia sẻ.</value>
+  </data>
+  <data name="collaborative_workspace_environments_foster_creativity_and_enable_teams_to_achieve_remarkable_results_together" xml:space="preserve">
+    <value>Môi trường không gian làm việc cộng tác thúc đẩy sự sáng tạo và cho phép các nhóm cùng nhau đạt được những kết quả đáng chú ý.</value>
+  </data>
+  <data name="color_theme" xml:space="preserve">
+    <value>Chủ đề màu sắc</value>
+  </data>
+  <data name="comprehensive_data_analytics_provide_actionable_insights_that_drive_strategic_business_decision_making_processes" xml:space="preserve">
+    <value>Phân tích dữ liệu toàn diện cung cấp thông tin chi tiết có thể hành động để thúc đẩy các quy trình ra quyết định kinh doanh chiến lược.</value>
+  </data>
+  <data name="comprehensive_documentation_resources_provide_detailed_guidance_for_both_novice_and_experienced_users_alike" xml:space="preserve">
+    <value>Tài nguyên tài liệu toàn diện cung cấp hướng dẫn chi tiết cho cả người dùng mới làm quen và người dùng có kinh nghiệm.</value>
+  </data>
+  <data name="continuous_improvement_processes_incorporate_user_feedback_to_refine_features_and_enhance_overall_satisfaction" xml:space="preserve">
+    <value>Các quy trình cải tiến liên tục kết hợp phản hồi của người dùng để tinh chỉnh các tính năng và nâng cao sự hài lòng tổng thể.</value>
+  </data>
+  <data name="customizable_interface_options_allow_users_to_personalize_their_experience_according_to_individual_preferences" xml:space="preserve">
+    <value>Các tùy chọn giao diện có thể tùy chỉnh cho phép người dùng cá nhân hóa trải nghiệm của họ theo sở thích cá nhân.</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Xóa &quot;{0}&quot;?</value>
+  </data>
+  <data name="delete_documents" xml:space="preserve">
+    <value>Xóa tài liệu {0}?</value>
+  </data>
+  <data name="delete_documents_in_this_project_will_not_be_deleted" xml:space="preserve">
+    <value>Xóa &apos;{0}&apos;? Các tài liệu trong dự án này sẽ không bị xóa.</value>
+  </data>
+  <data name="delete_this_tag_will_be_removed_from_all_documents" xml:space="preserve">
+    <value>Xóa &apos;{0}&apos;? Thẻ này sẽ bị xóa khỏi tất cả các tài liệu.</value>
+  </data>
+  <data name="developer" xml:space="preserve">
+    <value>Người phát triển</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>Bộ soạn thảo</value>
+  </data>
+  <data name="export_as_html" xml:space="preserve">
+    <value>Xuất dưới dạng HTML...</value>
+  </data>
+  <data name="export_as_markdown" xml:space="preserve">
+    <value>Xuất dưới dạng Markdown...</value>
+  </data>
+  <data name="export_as_pdf" xml:space="preserve">
+    <value>Xuất dưới dạng PDF...</value>
+  </data>
+  <data name="find_in_documents" xml:space="preserve">
+    <value>Tìm trong Tài liệu...</value>
+  </data>
+  <data name="flexible_configuration_options_enable_administrators_to_tailor_system_behavior_to_organizational_requirements" xml:space="preserve">
+    <value>Các tùy chọn cấu hình linh hoạt cho phép quản trị viên điều chỉnh hành vi hệ thống theo yêu cầu của tổ chức.</value>
+  </data>
+  <data name="font_family" xml:space="preserve">
+    <value>Họ phông chữ</value>
+  </data>
+  <data name="font_size" xml:space="preserve">
+    <value>Kích thước phông chữ</value>
+  </data>
+  <data name="information" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="intelligent_search_algorithms_deliver_precise_results_by_understanding_context_and_user_intent_effectively" xml:space="preserve">
+    <value>Các thuật toán tìm kiếm thông minh mang lại kết quả chính xác bằng cách hiểu ngữ cảnh và ý định của người dùng một cách hiệu quả.</value>
+  </data>
+  <data name="interactive_visualization_components_transform_complex_datasets_into_intuitive_graphical_representations" xml:space="preserve">
+    <value>Các thành phần trực quan hóa tương tác chuyển đổi các tập dữ liệu phức tạp thành các biểu diễn đồ họa trực quan.</value>
+  </data>
+  <data name="intuitive_navigation_structures_help_users_discover_features_and_accomplish_tasks_with_minimal_learning_curve" xml:space="preserve">
+    <value>Cấu trúc điều hướng trực quan giúp người dùng khám phá các tính năng và hoàn thành nhiệm vụ với đường cong học tập tối thiểu.</value>
+  </data>
+  <data name="mac_md_premium" xml:space="preserve">
+    <value>Mac MD cao cấp</value>
+  </data>
+  <data name="md" xml:space="preserve">
+    <value>Bác sĩ y khoa</value>
+  </data>
+  <data name="monospaced" xml:space="preserve">
+    <value>Khoảng cách đơn</value>
+  </data>
+  <data name="navigate" xml:space="preserve">
+    <value>Lái tàu đi khắp</value>
+  </data>
+  <data name="no_document_selected" xml:space="preserve">
+    <value>Không có tài liệu nào được chọn</value>
+  </data>
+  <data name="performance_monitoring_tools_track_system_metrics_and_identify_potential_bottlenecks_before_they_impact_users" xml:space="preserve">
+    <value>Các công cụ giám sát hiệu suất theo dõi các chỉ số hệ thống và xác định các nút thắt cổ chai tiềm ẩn trước khi chúng ảnh hưởng đến người dùng.</value>
+  </data>
+  <data name="premium" xml:space="preserve">
+    <value>Phí bảo hiểm</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>Xem trước</value>
+  </data>
+  <data name="project_color" xml:space="preserve">
+    <value>Màu sắc dự án</value>
+  </data>
+  <data name="real_time_synchronization_ensures_consistent_data_availability_across_all_connected_devices_and_platforms" xml:space="preserve">
+    <value>Đồng bộ hóa thời gian thực đảm bảo tính khả dụng nhất quán của dữ liệu trên tất cả các thiết bị và nền tảng được kết nối.</value>
+  </data>
+  <data name="responsive_design_principles_guarantee_optimal_viewing_experiences_across_various_screen_sizes_and_devices" xml:space="preserve">
+    <value>Các nguyên tắc thiết kế đáp ứng đảm bảo trải nghiệm xem tối ưu trên các kích thước màn hình và thiết bị khác nhau.</value>
+  </data>
+  <data name="rounded" xml:space="preserve">
+    <value>Làm tròn</value>
+  </data>
+  <data name="seamless_integration_capabilities_connect_disparate_systems_and_enable_efficient_data_exchange_between_platforms" xml:space="preserve">
+    <value>Khả năng tích hợp liền mạch kết nối các hệ thống khác nhau và cho phép trao đổi dữ liệu hiệu quả giữa các nền tảng.</value>
+  </data>
+  <data name="secure_authentication_mechanisms_protect_sensitive_information_while_providing_convenient_access_for_authorized_users" xml:space="preserve">
+    <value>Cơ chế xác thực an toàn bảo vệ thông tin nhạy cảm đồng thời cung cấp quyền truy cập thuận tiện cho người dùng được ủy quyền.</value>
+  </data>
+  <data name="select_a_document_from_the_list_or_create_a_new_one_to_get_started" xml:space="preserve">
+    <value>Chọn một tài liệu từ danh sách hoặc tạo một tài liệu mới để bắt đầu.</value>
+  </data>
+  <data name="select_color" xml:space="preserve">
+    <value>Chọn màu</value>
+  </data>
+  <data name="serif" xml:space="preserve">
+    <value>Chân chữ</value>
+  </data>
+  <data name="sort_by" xml:space="preserve">
+    <value>Sắp xếp theo</value>
+  </data>
+  <data name="sync" xml:space="preserve">
+    <value>Đồng bộ hóa</value>
+  </data>
+  <data name="system_sans_serif" xml:space="preserve">
+    <value>Hệ thống (Sans-serif)</value>
+  </data>
+  <data name="test_key" xml:space="preserve">
+    <value>KIỂM TRA-CHÌA KHÓA</value>
+  </data>
+  <data name="the_innovative_technology_platform_seamlessly_integrates_advanced_features_to_enhance_user_productivity" xml:space="preserve">
+    <value>Nền tảng công nghệ tiên tiến tích hợp liền mạch các tính năng tiên tiến để nâng cao năng suất của người dùng.</value>
+  </data>
+  <data name="the_quick_brown_fox_jumps_over_the_lazy_dog" xml:space="preserve">
+    <value>Con cáo nâu nhanh nhẹn nhảy qua con chó lười biếng.</value>
+  </data>
+  <data name="themes" xml:space="preserve">
+    <value>Các chủ đề</value>
+  </data>
+  <data name="toggle_favorite" xml:space="preserve">
+    <value>Chuyển đổi yêu thích</value>
+  </data>
+  <data name="toggle_preview" xml:space="preserve">
+    <value>Chuyển đổi bản xem trước</value>
+  </data>
+  <data name="unlock_powerful_features_that_keep_your_writing_in_sync_across_all_your_apple_devices" xml:space="preserve">
+    <value>Mở khóa các tính năng mạnh mẽ giúp bài viết của bạn đồng bộ trên tất cả các thiết bị Apple của bạn.</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Phiên bản</value>
+  </data>
+</root>

@@ -14,13 +14,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Documents"
+        <TextBlock Grid.Row="0" x:Uid="DocumentsHeader"
                    Style="{StaticResource SubtitleTextBlockStyle}"
                    Margin="0,0,0,12"/>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
-            <Button Content="+ New" Click="OnNewDocumentClick"/>
-            <Button Content="Delete" Click="OnDeleteDocumentClick"/>
+            <Button x:Uid="NewDocumentButton" Click="OnNewDocumentClick"/>
+            <Button x:Uid="DeleteButton" Click="OnDeleteDocumentClick"/>
         </StackPanel>
 
         <ListView Grid.Row="2"

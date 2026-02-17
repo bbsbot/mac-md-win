@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="AboutItem.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AllDocumentsLink.Content" xml:space="preserve">
+    <value>All Documents</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CharCountLabel.Text" xml:space="preserve">
+    <value>{0} characters</value>
+  </data>
+  <data name="DeleteButton.Content" xml:space="preserve">
+    <value>Delete Project</value>
+  </data>
+  <data name="DocumentsHeader.Text" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="DoneButton.Content" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="EditorHeader.Text" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="ExportHtmlItem.Text" xml:space="preserve">
+    <value>Export as HTML...</value>
+  </data>
+  <data name="ExportMdItem.Text" xml:space="preserve">
+    <value>Export as Markdown...</value>
+  </data>
+  <data name="ExportPdfItem.Text" xml:space="preserve">
+    <value>Export as PDF...</value>
+  </data>
+  <data name="FavoritesHeader.Text" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="NewDocumentButton.Content" xml:space="preserve">
+    <value>New Document</value>
+  </data>
+  <data name="NewProjectButton.Content" xml:space="preserve">
+    <value>New Project...</value>
+  </data>
+  <data name="NoDocumentSelected.Text" xml:space="preserve">
+    <value>No Document Selected</value>
+  </data>
+  <data name="PreviewHeader.Text" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="ProjectsHeader.Text" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="SaveButton.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Search documents</value>
+  </data>
+  <data name="SettingsHeader.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SortByLabel.Text" xml:space="preserve">
+    <value>Sort By</value>
+  </data>
+  <data name="TagsHeader.Text" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="WordCountLabel.Text" xml:space="preserve">
+    <value>{0} words</value>
+  </data>
+  <data name="aa" xml:space="preserve">
+    <value>Aa</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="actions" xml:space="preserve">
+    <value>Actions ({0})</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="add_to_favorites" xml:space="preserve">
+    <value>Add to Favorites</value>
+  </data>
+  <data name="advanced_encryption_protocols_safeguard_confidential_communications_and_ensure_privacy_throughout_transmission" xml:space="preserve">
+    <value>Advanced encryption protocols safeguard confidential communications and ensure privacy throughout transmission.</value>
+  </data>
+  <data name="ahammock" xml:space="preserve">
+    <value>ahammock</value>
+  </data>
+  <data name="all_documents" xml:space="preserve">
+    <value>All Documents</value>
+  </data>
+  <data name="apply_tag" xml:space="preserve">
+    <value>Apply Tag</value>
+  </data>
+  <data name="apply_tags" xml:space="preserve">
+    <value>Apply Tags</value>
+  </data>
+  <data name="archive" xml:space="preserve">
+    <value>Archive</value>
+  </data>
+  <data name="archived" xml:space="preserve">
+    <value>Archived</value>
+  </data>
+  <data name="automated_backup_systems_preserve_critical_data_and_enable_quick_recovery_in_case_of_unexpected_failures" xml:space="preserve">
+    <value>Automated backup systems preserve critical data and enable quick recovery in case of unexpected failures.</value>
+  </data>
+  <data name="automated_workflow_optimization_reduces_manual_effort_while_maintaining_high_quality_standards_across_operations" xml:space="preserve">
+    <value>Automated workflow optimization reduces manual effort while maintaining high quality standards across operations.</value>
+  </data>
+  <data name="build" xml:space="preserve">
+    <value>Build</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="characters" xml:space="preserve">
+    <value>{0} characters</value>
+  </data>
+  <data name="cloud_based_infrastructure_provides_scalable_resources_that_adapt_to_changing_demands_and_usage_patterns" xml:space="preserve">
+    <value>Cloud-based infrastructure provides scalable resources that adapt to changing demands and usage patterns.</value>
+  </data>
+  <data name="collaborative_editing_features_allow_multiple_users_to_work_simultaneously_on_shared_documents_and_projects" xml:space="preserve">
+    <value>Collaborative editing features allow multiple users to work simultaneously on shared documents and projects.</value>
+  </data>
+  <data name="collaborative_workspace_environments_foster_creativity_and_enable_teams_to_achieve_remarkable_results_together" xml:space="preserve">
+    <value>Collaborative workspace environments foster creativity and enable teams to achieve remarkable results together.</value>
+  </data>
+  <data name="color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="color_theme" xml:space="preserve">
+    <value>Color Theme</value>
+  </data>
+  <data name="comprehensive_data_analytics_provide_actionable_insights_that_drive_strategic_business_decision_making_processes" xml:space="preserve">
+    <value>Comprehensive data analytics provide actionable insights that drive strategic business decision-making processes.</value>
+  </data>
+  <data name="comprehensive_documentation_resources_provide_detailed_guidance_for_both_novice_and_experienced_users_alike" xml:space="preserve">
+    <value>Comprehensive documentation resources provide detailed guidance for both novice and experienced users alike.</value>
+  </data>
+  <data name="continuous_improvement_processes_incorporate_user_feedback_to_refine_features_and_enhance_overall_satisfaction" xml:space="preserve">
+    <value>Continuous improvement processes incorporate user feedback to refine features and enhance overall satisfaction.</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="customizable_interface_options_allow_users_to_personalize_their_experience_according_to_individual_preferences" xml:space="preserve">
+    <value>Customizable interface options allow users to personalize their experience according to individual preferences.</value>
+  </data>
+  <data name="date_created" xml:space="preserve">
+    <value>Date Created</value>
+  </data>
+  <data name="date_modified" xml:space="preserve">
+    <value>Date Modified</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Delete &quot;{0}&quot;?</value>
+  </data>
+  <data name="delete_documents" xml:space="preserve">
+    <value>Delete {0} Documents?</value>
+  </data>
+  <data name="delete_documents_in_this_project_will_not_be_deleted" xml:space="preserve">
+    <value>Delete &apos;{0}&apos;? Documents in this project will not be deleted.</value>
+  </data>
+  <data name="delete_project" xml:space="preserve">
+    <value>Delete Project</value>
+  </data>
+  <data name="delete_project_only" xml:space="preserve">
+    <value>Delete Project Only</value>
+  </data>
+  <data name="delete_tag" xml:space="preserve">
+    <value>Delete Tag</value>
+  </data>
+  <data name="delete_this_tag_will_be_removed_from_all_documents" xml:space="preserve">
+    <value>Delete &apos;{0}&apos;? This tag will be removed from all documents.</value>
+  </data>
+  <data name="description_optional" xml:space="preserve">
+    <value>Description (Optional)</value>
+  </data>
+  <data name="developer" xml:space="preserve">
+    <value>Developer</value>
+  </data>
+  <data name="document_title" xml:space="preserve">
+    <value>Document Title</value>
+  </data>
+  <data name="documents" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="documents_tagged" xml:space="preserve">
+    <value>{0} document(s) tagged</value>
+  </data>
+  <data name="done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="dont_show_this_again" xml:space="preserve">
+    <value>Don&apos;t show this again</value>
+  </data>
+  <data name="duplicate" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="edit_project" xml:space="preserve">
+    <value>Edit Project</value>
+  </data>
+  <data name="edit_tag" xml:space="preserve">
+    <value>Edit Tag</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="export_as_html" xml:space="preserve">
+    <value>Export as HTML...</value>
+  </data>
+  <data name="export_as_markdown" xml:space="preserve">
+    <value>Export as Markdown...</value>
+  </data>
+  <data name="export_as_pdf" xml:space="preserve">
+    <value>Export as PDF...</value>
+  </data>
+  <data name="favorite" xml:space="preserve">
+    <value>Favorite</value>
+  </data>
+  <data name="favorites" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="find_in_documents" xml:space="preserve">
+    <value>Find in Documents...</value>
+  </data>
+  <data name="flexible_configuration_options_enable_administrators_to_tailor_system_behavior_to_organizational_requirements" xml:space="preserve">
+    <value>Flexible configuration options enable administrators to tailor system behavior to organizational requirements.</value>
+  </data>
+  <data name="font_family" xml:space="preserve">
+    <value>Font Family</value>
+  </data>
+  <data name="font_size" xml:space="preserve">
+    <value>Font Size</value>
+  </data>
+  <data name="get_started" xml:space="preserve">
+    <value>Get Started</value>
+  </data>
+  <data name="grid_view" xml:space="preserve">
+    <value>Grid View</value>
+  </data>
+  <data name="hide_preview" xml:space="preserve">
+    <value>Hide Preview</value>
+  </data>
+  <data name="icloud_sync" xml:space="preserve">
+    <value>iCloud Sync</value>
+  </data>
+  <data name="icon" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="intelligent_search_algorithms_deliver_precise_results_by_understanding_context_and_user_intent_effectively" xml:space="preserve">
+    <value>Intelligent search algorithms deliver precise results by understanding context and user intent effectively.</value>
+  </data>
+  <data name="interactive_visualization_components_transform_complex_datasets_into_intuitive_graphical_representations" xml:space="preserve">
+    <value>Interactive visualization components transform complex datasets into intuitive graphical representations.</value>
+  </data>
+  <data name="intuitive_navigation_structures_help_users_discover_features_and_accomplish_tasks_with_minimal_learning_curve" xml:space="preserve">
+    <value>Intuitive navigation structures help users discover features and accomplish tasks with minimal learning curve.</value>
+  </data>
+  <data name="keep_your_documents_in_sync_across_all_your_apple_devices_automatically" xml:space="preserve">
+    <value>Keep your documents in sync across all your Apple devices automatically.</value>
+  </data>
+  <data name="list_view" xml:space="preserve">
+    <value>List View</value>
+  </data>
+  <data name="live_preview" xml:space="preserve">
+    <value>Live Preview</value>
+  </data>
+  <data name="mac_md" xml:space="preserve">
+    <value>Mac MD</value>
+  </data>
+  <data name="mac_md_premium" xml:space="preserve">
+    <value>Mac MD Premium</value>
+  </data>
+  <data name="md" xml:space="preserve">
+    <value>MD</value>
+  </data>
+  <data name="modern_markdown_editing" xml:space="preserve">
+    <value>Modern Markdown Editing</value>
+  </data>
+  <data name="monospaced" xml:space="preserve">
+    <value>Monospaced</value>
+  </data>
+  <data name="move_to_project" xml:space="preserve">
+    <value>Move to Project</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="navigate" xml:space="preserve">
+    <value>Navigate</value>
+  </data>
+  <data name="new_document" xml:space="preserve">
+    <value>New Document</value>
+  </data>
+  <data name="new_project" xml:space="preserve">
+    <value>New Project...</value>
+  </data>
+  <data name="new_tag" xml:space="preserve">
+    <value>New Tag</value>
+  </data>
+  <data name="no_content" xml:space="preserve">
+    <value>No content</value>
+  </data>
+  <data name="no_document_selected" xml:space="preserve">
+    <value>No Document Selected</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="organize_documents_with_projects_and_apply_multiple_tags" xml:space="preserve">
+    <value>Organize documents with projects and apply multiple tags</value>
+  </data>
+  <data name="performance_monitoring_tools_track_system_metrics_and_identify_potential_bottlenecks_before_they_impact_users" xml:space="preserve">
+    <value>Performance monitoring tools track system metrics and identify potential bottlenecks before they impact users.</value>
+  </data>
+  <data name="premium" xml:space="preserve">
+    <value>Premium</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="preview_below" xml:space="preserve">
+    <value>Preview Below</value>
+  </data>
+  <data name="preview_on_left" xml:space="preserve">
+    <value>Preview on Left</value>
+  </data>
+  <data name="preview_on_right" xml:space="preserve">
+    <value>Preview on Right</value>
+  </data>
+  <data name="preview_position" xml:space="preserve">
+    <value>Preview Position</value>
+  </data>
+  <data name="project_color" xml:space="preserve">
+    <value>Project Color</value>
+  </data>
+  <data name="project_information" xml:space="preserve">
+    <value>Project Information</value>
+  </data>
+  <data name="projects" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="projects_documents_and_editor_side_by_side_for_efficient_workflow" xml:space="preserve">
+    <value>Projects, Documents, and Editor side-by-side for efficient workflow</value>
+  </data>
+  <data name="projects_tags" xml:space="preserve">
+    <value>Projects &amp; Tags</value>
+  </data>
+  <data name="purchase_could_not_be_verified" xml:space="preserve">
+    <value>Purchase could not be verified.</value>
+  </data>
+  <data name="real_time_synchronization_ensures_consistent_data_availability_across_all_connected_devices_and_platforms" xml:space="preserve">
+    <value>Real-time synchronization ensures consistent data availability across all connected devices and platforms.</value>
+  </data>
+  <data name="recent" xml:space="preserve">
+    <value>Recent</value>
+  </data>
+  <data name="remove_from_favorites" xml:space="preserve">
+    <value>Remove from Favorites</value>
+  </data>
+  <data name="responsive_design_principles_guarantee_optimal_viewing_experiences_across_various_screen_sizes_and_devices" xml:space="preserve">
+    <value>Responsive design principles guarantee optimal viewing experiences across various screen sizes and devices.</value>
+  </data>
+  <data name="restart_mac_md_to_apply_sync_changes" xml:space="preserve">
+    <value>Restart Mac MD to apply sync changes.</value>
+  </data>
+  <data name="rounded" xml:space="preserve">
+    <value>Rounded</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="seamless_integration_capabilities_connect_disparate_systems_and_enable_efficient_data_exchange_between_platforms" xml:space="preserve">
+    <value>Seamless integration capabilities connect disparate systems and enable efficient data exchange between platforms.</value>
+  </data>
+  <data name="search_documents" xml:space="preserve">
+    <value>Search documents</value>
+  </data>
+  <data name="secure_authentication_mechanisms_protect_sensitive_information_while_providing_convenient_access_for_authorized_users" xml:space="preserve">
+    <value>Secure authentication mechanisms protect sensitive information while providing convenient access for authorized users.</value>
+  </data>
+  <data name="see_your_markdown_rendered_in_real_time_as_you_type" xml:space="preserve">
+    <value>See your Markdown rendered in real-time as you type</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="select_a_document_from_the_list_or_create_a_new_one_to_get_started" xml:space="preserve">
+    <value>Select a document from the list or create a new one to get started.</value>
+  </data>
+  <data name="select_color" xml:space="preserve">
+    <value>Select color</value>
+  </data>
+  <data name="serif" xml:space="preserve">
+    <value>Serif</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="show_preview" xml:space="preserve">
+    <value>Show Preview</value>
+  </data>
+  <data name="sort" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="sort_by" xml:space="preserve">
+    <value>Sort By</value>
+  </data>
+  <data name="subscribe_to_mac_md_premium_to_sync_your_documents_across_all_your_apple_devices" xml:space="preserve">
+    <value>Subscribe to Mac MD Premium to sync your documents across all your Apple devices.</value>
+  </data>
+  <data name="sync" xml:space="preserve">
+    <value>Sync</value>
+  </data>
+  <data name="system_sans_serif" xml:space="preserve">
+    <value>System (Sans-serif)</value>
+  </data>
+  <data name="tag_color" xml:space="preserve">
+    <value>Tag Color</value>
+  </data>
+  <data name="tag_name" xml:space="preserve">
+    <value>Tag Name</value>
+  </data>
+  <data name="tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="test_key" xml:space="preserve">
+    <value>TEST-KEY</value>
+  </data>
+  <data name="the_innovative_technology_platform_seamlessly_integrates_advanced_features_to_enhance_user_productivity" xml:space="preserve">
+    <value>The innovative technology platform seamlessly integrates advanced features to enhance user productivity.</value>
+  </data>
+  <data name="the_quick_brown_fox_jumps_over_the_lazy_dog" xml:space="preserve">
+    <value>The quick brown fox jumps over the lazy dog.</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>{0} theme{1}</value>
+  </data>
+  <data name="themes" xml:space="preserve">
+    <value>Themes</value>
+  </data>
+  <data name="this_action_cannot_be_undone" xml:space="preserve">
+    <value>This action cannot be undone.</value>
+  </data>
+  <data name="three_column_layout" xml:space="preserve">
+    <value>Three-Column Layout</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="toggle_favorite" xml:space="preserve">
+    <value>Toggle Favorite</value>
+  </data>
+  <data name="toggle_preview" xml:space="preserve">
+    <value>Toggle Preview</value>
+  </data>
+  <data name="unarchive" xml:space="preserve">
+    <value>Unarchive</value>
+  </data>
+  <data name="unlock_powerful_features_that_keep_your_writing_in_sync_across_all_your_apple_devices" xml:space="preserve">
+    <value>Unlock powerful features that keep your writing in sync across all your Apple devices.</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="welcome_to_mac_md" xml:space="preserve">
+    <value>Welcome to Mac MD</value>
+  </data>
+  <data name="word_count" xml:space="preserve">
+    <value>Word Count</value>
+  </data>
+  <data name="words" xml:space="preserve">
+    <value>{0} words</value>
+  </data>
+  <data name="your_documents_automatically_sync_across_mac_ipad_and_iphone" xml:space="preserve">
+    <value>Your documents automatically sync across Mac, iPad, and iPhone</value>
+  </data>
+</root>

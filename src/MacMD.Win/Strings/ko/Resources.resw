@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="AboutItem.Text" xml:space="preserve">
+    <value>에 대하여</value>
+  </data>
+  <data name="EditorHeader.Text" xml:space="preserve">
+    <value>편집자</value>
+  </data>
+  <data name="ExportHtmlItem.Text" xml:space="preserve">
+    <value>HTML로 내보내기...</value>
+  </data>
+  <data name="ExportMdItem.Text" xml:space="preserve">
+    <value>Markdown으로 내보내기...</value>
+  </data>
+  <data name="ExportPdfItem.Text" xml:space="preserve">
+    <value>PDF로 내보내기...</value>
+  </data>
+  <data name="NoDocumentSelected.Text" xml:space="preserve">
+    <value>문서가 선택되지 않았습니다</value>
+  </data>
+  <data name="PreviewHeader.Text" xml:space="preserve">
+    <value>사전 연습</value>
+  </data>
+  <data name="SortByLabel.Text" xml:space="preserve">
+    <value>정렬 기준</value>
+  </data>
+  <data name="aa" xml:space="preserve">
+    <value>준문학사</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>에 대하여</value>
+  </data>
+  <data name="advanced_encryption_protocols_safeguard_confidential_communications_and_ensure_privacy_throughout_transmission" xml:space="preserve">
+    <value>고급 암호화 프로토콜은 기밀 통신을 보호하고 전송 전반에 걸쳐 프라이버시를 보장합니다.</value>
+  </data>
+  <data name="ahammock" xml:space="preserve">
+    <value>Ahammock</value>
+  </data>
+  <data name="automated_backup_systems_preserve_critical_data_and_enable_quick_recovery_in_case_of_unexpected_failures" xml:space="preserve">
+    <value>자동 백업 시스템은 중요한 데이터를 보존하고 예기치 않은 오류가 발생할 경우 신속한 복구를 가능하게 합니다.</value>
+  </data>
+  <data name="automated_workflow_optimization_reduces_manual_effort_while_maintaining_high_quality_standards_across_operations" xml:space="preserve">
+    <value>자동화된 워크플로우 최적화는 작업 전반에 걸쳐 높은 품질 기준을 유지하면서 수동 작업을 감소시킵니다.</value>
+  </data>
+  <data name="build" xml:space="preserve">
+    <value>짓다</value>
+  </data>
+  <data name="cloud_based_infrastructure_provides_scalable_resources_that_adapt_to_changing_demands_and_usage_patterns" xml:space="preserve">
+    <value>클라우드 기반 인프라는 변화하는 요구와 사용 패턴에 적응하는 확장 가능한 리소스를 제공합니다.</value>
+  </data>
+  <data name="collaborative_editing_features_allow_multiple_users_to_work_simultaneously_on_shared_documents_and_projects" xml:space="preserve">
+    <value>협업 편집 기능은 여러 사용자가 공유 문서와 프로젝트를 동시에 작업할 수 있도록 합니다.</value>
+  </data>
+  <data name="collaborative_workspace_environments_foster_creativity_and_enable_teams_to_achieve_remarkable_results_together" xml:space="preserve">
+    <value>협업 작업 공간 환경은 창의성을 촉진하고 팀이 함께 뛰어난 성과를 달성하도록 합니다.</value>
+  </data>
+  <data name="color_theme" xml:space="preserve">
+    <value>색상 테마</value>
+  </data>
+  <data name="comprehensive_data_analytics_provide_actionable_insights_that_drive_strategic_business_decision_making_processes" xml:space="preserve">
+    <value>포괄적인 데이터 분석은 전략적 비즈니스 의사결정 프로세스를 주도하는 실행 가능한 인사이트를 제공합니다.</value>
+  </data>
+  <data name="comprehensive_documentation_resources_provide_detailed_guidance_for_both_novice_and_experienced_users_alike" xml:space="preserve">
+    <value>포괄적인 문서 자료는 초보자와 숙련된 사용자 모두에게 상세한 안내를 제공합니다.</value>
+  </data>
+  <data name="continuous_improvement_processes_incorporate_user_feedback_to_refine_features_and_enhance_overall_satisfaction" xml:space="preserve">
+    <value>지속적인 개선 프로세스는 사용자 피드백을 반영하여 기능을 정교화하고 전반적인 만족도를 향상시킵니다.</value>
+  </data>
+  <data name="customizable_interface_options_allow_users_to_personalize_their_experience_according_to_individual_preferences" xml:space="preserve">
+    <value>맞춤형 인터페이스 옵션을 통해 사용자는 개인별 선호에 따라 경험을 개인화할 수 있습니다.</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>&quot;{0}&quot;를 삭제하시겠습니까?</value>
+  </data>
+  <data name="delete_documents" xml:space="preserve">
+    <value>{0} 문서를 삭제하시겠습니까?</value>
+  </data>
+  <data name="delete_documents_in_this_project_will_not_be_deleted" xml:space="preserve">
+    <value>&apos;{0}&apos;를 삭제하시겠습니까? 이 프로젝트의 문서는 삭제되지 않습니다.</value>
+  </data>
+  <data name="delete_this_tag_will_be_removed_from_all_documents" xml:space="preserve">
+    <value>&apos;{0}&apos;를 삭제하시겠습니까? 이 태그는 모든 문서에서 제거됩니다.</value>
+  </data>
+  <data name="developer" xml:space="preserve">
+    <value>개발자</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>편집자</value>
+  </data>
+  <data name="export_as_html" xml:space="preserve">
+    <value>HTML로 내보내기...</value>
+  </data>
+  <data name="export_as_markdown" xml:space="preserve">
+    <value>Markdown으로 내보내기...</value>
+  </data>
+  <data name="export_as_pdf" xml:space="preserve">
+    <value>PDF로 내보내기...</value>
+  </data>
+  <data name="find_in_documents" xml:space="preserve">
+    <value>문서에서 찾기...</value>
+  </data>
+  <data name="flexible_configuration_options_enable_administrators_to_tailor_system_behavior_to_organizational_requirements" xml:space="preserve">
+    <value>유연한 구성 옵션을 통해 관리자는 조직 요구 사항에 맞게 시스템 동작을 맞춤화할 수 있습니다.</value>
+  </data>
+  <data name="font_family" xml:space="preserve">
+    <value>글꼴 패밀리</value>
+  </data>
+  <data name="font_size" xml:space="preserve">
+    <value>글꼴 크기</value>
+  </data>
+  <data name="information" xml:space="preserve">
+    <value>제보 자료</value>
+  </data>
+  <data name="intelligent_search_algorithms_deliver_precise_results_by_understanding_context_and_user_intent_effectively" xml:space="preserve">
+    <value>지능형 검색 알고리즘은 컨텍스트와 사용자의 의도를 효과적으로 이해함으로써 정확한 결과를 제공합니다.</value>
+  </data>
+  <data name="interactive_visualization_components_transform_complex_datasets_into_intuitive_graphical_representations" xml:space="preserve">
+    <value>대화형 시각화 구성 요소는 복잡한 데이터 세트를 직관적인 그래픽 표현으로 변환합니다.</value>
+  </data>
+  <data name="intuitive_navigation_structures_help_users_discover_features_and_accomplish_tasks_with_minimal_learning_curve" xml:space="preserve">
+    <value>직관적인 탐색 구조는 사용자가 기능을 발견하고 최소한의 학습 곡선으로 작업을 수행하도록 돕습니다.</value>
+  </data>
+  <data name="mac_md_premium" xml:space="preserve">
+    <value>맥 MD 프리미엄</value>
+  </data>
+  <data name="md" xml:space="preserve">
+    <value>MD</value>
+  </data>
+  <data name="monospaced" xml:space="preserve">
+    <value>한도 간격</value>
+  </data>
+  <data name="navigate" xml:space="preserve">
+    <value>항해하다</value>
+  </data>
+  <data name="no_document_selected" xml:space="preserve">
+    <value>문서가 선택되지 않았습니다</value>
+  </data>
+  <data name="performance_monitoring_tools_track_system_metrics_and_identify_potential_bottlenecks_before_they_impact_users" xml:space="preserve">
+    <value>성능 모니터링 도구는 시스템 메트릭을 추적하고 사용자에게 영향을 미치기 전에 잠재적인 병목 현상을 식별합니다.</value>
+  </data>
+  <data name="premium" xml:space="preserve">
+    <value>프리미엄</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>사전 연습</value>
+  </data>
+  <data name="project_color" xml:space="preserve">
+    <value>프로젝트 색상</value>
+  </data>
+  <data name="real_time_synchronization_ensures_consistent_data_availability_across_all_connected_devices_and_platforms" xml:space="preserve">
+    <value>실시간 동기화는 연결된 모든 장치와 플랫폼 전반에 걸쳐 일관된 데이터 가용성을 보장합니다.</value>
+  </data>
+  <data name="responsive_design_principles_guarantee_optimal_viewing_experiences_across_various_screen_sizes_and_devices" xml:space="preserve">
+    <value>반응형 디자인 원칙은 다양한 화면 크기와 기기에서 최적의 시청 경험을 보장합니다.</value>
+  </data>
+  <data name="rounded" xml:space="preserve">
+    <value>둥글게 된</value>
+  </data>
+  <data name="seamless_integration_capabilities_connect_disparate_systems_and_enable_efficient_data_exchange_between_platforms" xml:space="preserve">
+    <value>원활한 통합 기능은 서로 다른 시스템을 연결하고 플랫폼 간 효율적인 데이터 교환을 가능하게 합니다.</value>
+  </data>
+  <data name="secure_authentication_mechanisms_protect_sensitive_information_while_providing_convenient_access_for_authorized_users" xml:space="preserve">
+    <value>보안 인증 메커니즘은 민감한 정보를 보호하면서 권한이 부여된 사용자에게 편리한 접근을 제공합니다.</value>
+  </data>
+  <data name="select_a_document_from_the_list_or_create_a_new_one_to_get_started" xml:space="preserve">
+    <value>목록에서 문서를 선택하거나 새 문서를 생성하여 시작하십시오.</value>
+  </data>
+  <data name="select_color" xml:space="preserve">
+    <value>색상 선택</value>
+  </data>
+  <data name="serif" xml:space="preserve">
+    <value>세리프</value>
+  </data>
+  <data name="sort_by" xml:space="preserve">
+    <value>정렬 기준</value>
+  </data>
+  <data name="sync" xml:space="preserve">
+    <value>동기화하다</value>
+  </data>
+  <data name="system_sans_serif" xml:space="preserve">
+    <value>시스템 (산세리프)</value>
+  </data>
+  <data name="test_key" xml:space="preserve">
+    <value>테스트 키</value>
+  </data>
+  <data name="the_innovative_technology_platform_seamlessly_integrates_advanced_features_to_enhance_user_productivity" xml:space="preserve">
+    <value>혁신적인 기술 플랫폼은 고급 기능을 원활하게 통합하여 사용자 생산성을 향상시킵니다.</value>
+  </data>
+  <data name="the_quick_brown_fox_jumps_over_the_lazy_dog" xml:space="preserve">
+    <value>빠른 갈색 여우가 게으른 개 위를 뛰어넘습니다.</value>
+  </data>
+  <data name="themes" xml:space="preserve">
+    <value>테마</value>
+  </data>
+  <data name="toggle_favorite" xml:space="preserve">
+    <value>즐겨찾기 전환</value>
+  </data>
+  <data name="toggle_preview" xml:space="preserve">
+    <value>미리보기 전환</value>
+  </data>
+  <data name="unlock_powerful_features_that_keep_your_writing_in_sync_across_all_your_apple_devices" xml:space="preserve">
+    <value>모든 Apple 기기에서 글쓰기를 동기화하도록 강력한 기능을 잠금 해제하십시오.</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>버전</value>
+  </data>
+</root>

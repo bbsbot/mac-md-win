@@ -23,6 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PRIResource Include="Strings\**\*.resw" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MacMD.Core\MacMD.Core.csproj" />
   </ItemGroup>
 </Project>

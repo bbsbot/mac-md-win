@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="AboutItem.Text" xml:space="preserve">
+    <value>О</value>
+  </data>
+  <data name="EditorHeader.Text" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="ExportHtmlItem.Text" xml:space="preserve">
+    <value>Экспорт в формате HTML...</value>
+  </data>
+  <data name="ExportMdItem.Text" xml:space="preserve">
+    <value>Экспорт как уценка...</value>
+  </data>
+  <data name="ExportPdfItem.Text" xml:space="preserve">
+    <value>Экспорт в формате PDF...</value>
+  </data>
+  <data name="NoDocumentSelected.Text" xml:space="preserve">
+    <value>Документ Не Выбран</value>
+  </data>
+  <data name="PreviewHeader.Text" xml:space="preserve">
+    <value>Предварительно просматривать, предварительно просмотреть</value>
+  </data>
+  <data name="SortByLabel.Text" xml:space="preserve">
+    <value>Сортировать По</value>
+  </data>
+  <data name="aa" xml:space="preserve">
+    <value>Автомобильная ассоциация</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>О</value>
+  </data>
+  <data name="advanced_encryption_protocols_safeguard_confidential_communications_and_ensure_privacy_throughout_transmission" xml:space="preserve">
+    <value>Продвинутые протоколы шифрования защищают конфиденциальные сообщения и обеспечивают конфиденциальность на протяжении всей передачи.</value>
+  </data>
+  <data name="ahammock" xml:space="preserve">
+    <value>Гамак</value>
+  </data>
+  <data name="automated_backup_systems_preserve_critical_data_and_enable_quick_recovery_in_case_of_unexpected_failures" xml:space="preserve">
+    <value>Автоматизированные системы резервного копирования сохраняют критически важные данные и обеспечивают быстрое восстановление в случае неожиданных сбоев.</value>
+  </data>
+  <data name="automated_workflow_optimization_reduces_manual_effort_while_maintaining_high_quality_standards_across_operations" xml:space="preserve">
+    <value>Автоматизированная оптимизация рабочего процесса сокращает ручные усилия при сохранении высоких стандартов качества во всех операциях.</value>
+  </data>
+  <data name="build" xml:space="preserve">
+    <value>Строить, построить</value>
+  </data>
+  <data name="cloud_based_infrastructure_provides_scalable_resources_that_adapt_to_changing_demands_and_usage_patterns" xml:space="preserve">
+    <value>Облачная инфраструктура предоставляет масштабируемые ресурсы, которые адаптируются к меняющимся требованиям и схемам использования.</value>
+  </data>
+  <data name="collaborative_editing_features_allow_multiple_users_to_work_simultaneously_on_shared_documents_and_projects" xml:space="preserve">
+    <value>Функции совместного редактирования позволяют нескольким пользователям одновременно работать над общими документами и проектами.</value>
+  </data>
+  <data name="collaborative_workspace_environments_foster_creativity_and_enable_teams_to_achieve_remarkable_results_together" xml:space="preserve">
+    <value>Совместная рабочая среда способствует творчеству и позволяет командам вместе достигать замечательных результатов.</value>
+  </data>
+  <data name="color_theme" xml:space="preserve">
+    <value>Цветовая Тема</value>
+  </data>
+  <data name="comprehensive_data_analytics_provide_actionable_insights_that_drive_strategic_business_decision_making_processes" xml:space="preserve">
+    <value>Комплексная аналитика данных предоставляет действенную информацию, которая стимулирует процессы принятия стратегических бизнес-решений.</value>
+  </data>
+  <data name="comprehensive_documentation_resources_provide_detailed_guidance_for_both_novice_and_experienced_users_alike" xml:space="preserve">
+    <value>Комплексные ресурсы документации предоставляют подробные рекомендации как для начинающих, так и для опытных пользователей.</value>
+  </data>
+  <data name="continuous_improvement_processes_incorporate_user_feedback_to_refine_features_and_enhance_overall_satisfaction" xml:space="preserve">
+    <value>Процессы непрерывного совершенствования включают отзывы пользователей для совершенствования функций и повышения общей удовлетворенности.</value>
+  </data>
+  <data name="customizable_interface_options_allow_users_to_personalize_their_experience_according_to_individual_preferences" xml:space="preserve">
+    <value>Настраиваемые параметры интерфейса позволяют пользователям персонализировать свой опыт в соответствии с индивидуальными предпочтениями.</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Удалить &quot;{0}&quot;?</value>
+  </data>
+  <data name="delete_documents" xml:space="preserve">
+    <value>Удалить {0} Документы?</value>
+  </data>
+  <data name="delete_documents_in_this_project_will_not_be_deleted" xml:space="preserve">
+    <value>Удалить &apos;{0}&apos;? Документы в этом проекте не будут удалены.</value>
+  </data>
+  <data name="delete_this_tag_will_be_removed_from_all_documents" xml:space="preserve">
+    <value>Удалить &apos;{0}&apos;? Этот тег будет удален из всех документов.</value>
+  </data>
+  <data name="developer" xml:space="preserve">
+    <value>Застройщик</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="export_as_html" xml:space="preserve">
+    <value>Экспорт в формате HTML...</value>
+  </data>
+  <data name="export_as_markdown" xml:space="preserve">
+    <value>Экспорт как уценка...</value>
+  </data>
+  <data name="export_as_pdf" xml:space="preserve">
+    <value>Экспорт в формате PDF...</value>
+  </data>
+  <data name="find_in_documents" xml:space="preserve">
+    <value>Найти в документах...</value>
+  </data>
+  <data name="flexible_configuration_options_enable_administrators_to_tailor_system_behavior_to_organizational_requirements" xml:space="preserve">
+    <value>Гибкие параметры конфигурации позволяют администраторам адаптировать поведение системы к организационным требованиям.</value>
+  </data>
+  <data name="font_family" xml:space="preserve">
+    <value>Семейство шрифтов</value>
+  </data>
+  <data name="font_size" xml:space="preserve">
+    <value>Размер шрифта</value>
+  </data>
+  <data name="information" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="intelligent_search_algorithms_deliver_precise_results_by_understanding_context_and_user_intent_effectively" xml:space="preserve">
+    <value>Интеллектуальные алгоритмы поиска обеспечивают точные результаты, эффективно понимая контекст и намерения пользователя.</value>
+  </data>
+  <data name="interactive_visualization_components_transform_complex_datasets_into_intuitive_graphical_representations" xml:space="preserve">
+    <value>Компоненты интерактивной визуализации преобразуют сложные наборы данных в интуитивно понятные графические представления.</value>
+  </data>
+  <data name="intuitive_navigation_structures_help_users_discover_features_and_accomplish_tasks_with_minimal_learning_curve" xml:space="preserve">
+    <value>Интуитивно понятные навигационные структуры помогают пользователям находить функции и выполнять задачи с минимальной кривой обучения.</value>
+  </data>
+  <data name="mac_md_premium" xml:space="preserve">
+    <value>Mac MD Премиум</value>
+  </data>
+  <data name="md" xml:space="preserve">
+    <value>Доктор медицины</value>
+  </data>
+  <data name="monospaced" xml:space="preserve">
+    <value>Монопространство</value>
+  </data>
+  <data name="navigate" xml:space="preserve">
+    <value>Летать, лететь</value>
+  </data>
+  <data name="no_document_selected" xml:space="preserve">
+    <value>Документ Не Выбран</value>
+  </data>
+  <data name="performance_monitoring_tools_track_system_metrics_and_identify_potential_bottlenecks_before_they_impact_users" xml:space="preserve">
+    <value>Инструменты мониторинга производительности отслеживают показатели системы и выявляют потенциальные узкие места, прежде чем они повлияют на пользователей.</value>
+  </data>
+  <data name="premium" xml:space="preserve">
+    <value>Награда</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>Предварительно просматривать, предварительно просмотреть</value>
+  </data>
+  <data name="project_color" xml:space="preserve">
+    <value>Цвет проекта</value>
+  </data>
+  <data name="real_time_synchronization_ensures_consistent_data_availability_across_all_connected_devices_and_platforms" xml:space="preserve">
+    <value>Синхронизация в режиме реального времени обеспечивает постоянную доступность данных на всех подключенных устройствах и платформах.</value>
+  </data>
+  <data name="responsive_design_principles_guarantee_optimal_viewing_experiences_across_various_screen_sizes_and_devices" xml:space="preserve">
+    <value>Принципы адаптивного дизайна гарантируют оптимальный опыт просмотра на экранах различных размеров и устройств.</value>
+  </data>
+  <data name="rounded" xml:space="preserve">
+    <value>Закругленный</value>
+  </data>
+  <data name="seamless_integration_capabilities_connect_disparate_systems_and_enable_efficient_data_exchange_between_platforms" xml:space="preserve">
+    <value>Возможности бесшовной интеграции соединяют разрозненные системы и обеспечивают эффективный обмен данными между платформами.</value>
+  </data>
+  <data name="secure_authentication_mechanisms_protect_sensitive_information_while_providing_convenient_access_for_authorized_users" xml:space="preserve">
+    <value>Механизмы безопасной аутентификации защищают конфиденциальную информацию, обеспечивая при этом удобный доступ для авторизованных пользователей.</value>
+  </data>
+  <data name="select_a_document_from_the_list_or_create_a_new_one_to_get_started" xml:space="preserve">
+    <value>Выберите документ из списка или создайте новый, чтобы начать.</value>
+  </data>
+  <data name="select_color" xml:space="preserve">
+    <value>Выберите цвет</value>
+  </data>
+  <data name="serif" xml:space="preserve">
+    <value>Засечка</value>
+  </data>
+  <data name="sort_by" xml:space="preserve">
+    <value>Сортировать По</value>
+  </data>
+  <data name="sync" xml:space="preserve">
+    <value>Синхронизация</value>
+  </data>
+  <data name="system_sans_serif" xml:space="preserve">
+    <value>Система (без засечек)</value>
+  </data>
+  <data name="test_key" xml:space="preserve">
+    <value>ТЕСТОВЫЙ КЛЮЧ</value>
+  </data>
+  <data name="the_innovative_technology_platform_seamlessly_integrates_advanced_features_to_enhance_user_productivity" xml:space="preserve">
+    <value>Инновационная технологическая платформа легко интегрирует передовые функции для повышения производительности пользователей.</value>
+  </data>
+  <data name="the_quick_brown_fox_jumps_over_the_lazy_dog" xml:space="preserve">
+    <value>Быстрая коричневая лиса перепрыгивает через ленивую собаку.</value>
+  </data>
+  <data name="themes" xml:space="preserve">
+    <value>Темы</value>
+  </data>
+  <data name="toggle_favorite" xml:space="preserve">
+    <value>Переключить Избранное</value>
+  </data>
+  <data name="toggle_preview" xml:space="preserve">
+    <value>Переключить предварительный просмотр</value>
+  </data>
+  <data name="unlock_powerful_features_that_keep_your_writing_in_sync_across_all_your_apple_devices" xml:space="preserve">
+    <value>Разблокируйте мощные функции, которые синхронизируют ваше письмо на всех ваших устройствах Apple.</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+</root>

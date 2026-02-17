@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="AboutItem.Text" xml:space="preserve">
+    <value>Tentang</value>
+  </data>
+  <data name="EditorHeader.Text" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="ExportHtmlItem.Text" xml:space="preserve">
+    <value>Ekspor sebagai HTML...</value>
+  </data>
+  <data name="ExportMdItem.Text" xml:space="preserve">
+    <value>Ekspor sebagai Markdown...</value>
+  </data>
+  <data name="ExportPdfItem.Text" xml:space="preserve">
+    <value>Ekspor sebagai PDF...</value>
+  </data>
+  <data name="NoDocumentSelected.Text" xml:space="preserve">
+    <value>Tidak Ada Dokumen Yang Dipilih</value>
+  </data>
+  <data name="PreviewHeader.Text" xml:space="preserve">
+    <value>Pratinjau</value>
+  </data>
+  <data name="SortByLabel.Text" xml:space="preserve">
+    <value>Urutkan berdasarkan</value>
+  </data>
+  <data name="aa" xml:space="preserve">
+    <value>Aa</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>Tentang</value>
+  </data>
+  <data name="advanced_encryption_protocols_safeguard_confidential_communications_and_ensure_privacy_throughout_transmission" xml:space="preserve">
+    <value>Protokol enkripsi tingkat lanjut melindungi komunikasi rahasia dan memastikan privasi selama transmisi.</value>
+  </data>
+  <data name="ahammock" xml:space="preserve">
+    <value>Tempat tidur gantung</value>
+  </data>
+  <data name="automated_backup_systems_preserve_critical_data_and_enable_quick_recovery_in_case_of_unexpected_failures" xml:space="preserve">
+    <value>Sistem cadangan otomatis menyimpan data penting dan memungkinkan pemulihan cepat jika terjadi kegagalan yang tidak terduga.</value>
+  </data>
+  <data name="automated_workflow_optimization_reduces_manual_effort_while_maintaining_high_quality_standards_across_operations" xml:space="preserve">
+    <value>Optimalisasi alur kerja otomatis mengurangi upaya manual sambil mempertahankan standar kualitas tinggi di seluruh operasi.</value>
+  </data>
+  <data name="build" xml:space="preserve">
+    <value>Membangun</value>
+  </data>
+  <data name="cloud_based_infrastructure_provides_scalable_resources_that_adapt_to_changing_demands_and_usage_patterns" xml:space="preserve">
+    <value>Infrastruktur berbasis cloud menyediakan sumber daya yang dapat diskalakan yang beradaptasi dengan perubahan permintaan dan pola penggunaan.</value>
+  </data>
+  <data name="collaborative_editing_features_allow_multiple_users_to_work_simultaneously_on_shared_documents_and_projects" xml:space="preserve">
+    <value>Fitur pengeditan kolaboratif memungkinkan banyak pengguna untuk bekerja secara bersamaan pada dokumen dan proyek bersama.</value>
+  </data>
+  <data name="collaborative_workspace_environments_foster_creativity_and_enable_teams_to_achieve_remarkable_results_together" xml:space="preserve">
+    <value>Lingkungan ruang kerja kolaboratif menumbuhkan kreativitas dan memungkinkan tim untuk mencapai hasil yang luar biasa bersama-sama.</value>
+  </data>
+  <data name="color_theme" xml:space="preserve">
+    <value>Tema Warna</value>
+  </data>
+  <data name="comprehensive_data_analytics_provide_actionable_insights_that_drive_strategic_business_decision_making_processes" xml:space="preserve">
+    <value>Analisis data yang komprehensif memberikan wawasan yang dapat ditindaklanjuti yang mendorong proses pengambilan keputusan bisnis yang strategis.</value>
+  </data>
+  <data name="comprehensive_documentation_resources_provide_detailed_guidance_for_both_novice_and_experienced_users_alike" xml:space="preserve">
+    <value>Sumber daya dokumentasi yang komprehensif memberikan panduan terperinci untuk pengguna pemula dan berpengalaman.</value>
+  </data>
+  <data name="continuous_improvement_processes_incorporate_user_feedback_to_refine_features_and_enhance_overall_satisfaction" xml:space="preserve">
+    <value>Proses peningkatan berkelanjutan menggabungkan umpan balik pengguna untuk menyempurnakan fitur dan meningkatkan kepuasan secara keseluruhan.</value>
+  </data>
+  <data name="customizable_interface_options_allow_users_to_personalize_their_experience_according_to_individual_preferences" xml:space="preserve">
+    <value>Opsi antarmuka yang dapat disesuaikan memungkinkan pengguna untuk mempersonalisasi pengalaman mereka sesuai dengan preferensi individu.</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Hapus &quot;{0}&quot;?</value>
+  </data>
+  <data name="delete_documents" xml:space="preserve">
+    <value>Hapus {0} Dokumen?</value>
+  </data>
+  <data name="delete_documents_in_this_project_will_not_be_deleted" xml:space="preserve">
+    <value>Hapus &apos;{0}&apos;? Dokumen dalam proyek ini tidak akan dihapus.</value>
+  </data>
+  <data name="delete_this_tag_will_be_removed_from_all_documents" xml:space="preserve">
+    <value>Hapus &apos;{0}&apos;? Tag ini akan dihapus dari semua dokumen.</value>
+  </data>
+  <data name="developer" xml:space="preserve">
+    <value>Pengembang</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="export_as_html" xml:space="preserve">
+    <value>Ekspor sebagai HTML...</value>
+  </data>
+  <data name="export_as_markdown" xml:space="preserve">
+    <value>Ekspor sebagai Markdown...</value>
+  </data>
+  <data name="export_as_pdf" xml:space="preserve">
+    <value>Ekspor sebagai PDF...</value>
+  </data>
+  <data name="find_in_documents" xml:space="preserve">
+    <value>Temukan di Dokumen...</value>
+  </data>
+  <data name="flexible_configuration_options_enable_administrators_to_tailor_system_behavior_to_organizational_requirements" xml:space="preserve">
+    <value>Opsi konfigurasi yang fleksibel memungkinkan administrator untuk menyesuaikan perilaku sistem dengan persyaratan organisasi.</value>
+  </data>
+  <data name="font_family" xml:space="preserve">
+    <value>Keluarga Font</value>
+  </data>
+  <data name="font_size" xml:space="preserve">
+    <value>Ukuran Huruf</value>
+  </data>
+  <data name="information" xml:space="preserve">
+    <value>Informasi</value>
+  </data>
+  <data name="intelligent_search_algorithms_deliver_precise_results_by_understanding_context_and_user_intent_effectively" xml:space="preserve">
+    <value>Algoritma pencarian cerdas memberikan hasil yang tepat dengan memahami konteks dan maksud pengguna secara efektif.</value>
+  </data>
+  <data name="interactive_visualization_components_transform_complex_datasets_into_intuitive_graphical_representations" xml:space="preserve">
+    <value>Komponen visualisasi interaktif mengubah kumpulan data yang kompleks menjadi representasi grafis yang intuitif.</value>
+  </data>
+  <data name="intuitive_navigation_structures_help_users_discover_features_and_accomplish_tasks_with_minimal_learning_curve" xml:space="preserve">
+    <value>Struktur navigasi yang intuitif membantu pengguna menemukan fitur dan menyelesaikan tugas dengan kurva pembelajaran minimal.</value>
+  </data>
+  <data name="mac_md_premium" xml:space="preserve">
+    <value>Mac MD Premium</value>
+  </data>
+  <data name="md" xml:space="preserve">
+    <value>Dokter</value>
+  </data>
+  <data name="monospaced" xml:space="preserve">
+    <value>Monospaced</value>
+  </data>
+  <data name="navigate" xml:space="preserve">
+    <value>Navigasi</value>
+  </data>
+  <data name="no_document_selected" xml:space="preserve">
+    <value>Tidak Ada Dokumen Yang Dipilih</value>
+  </data>
+  <data name="performance_monitoring_tools_track_system_metrics_and_identify_potential_bottlenecks_before_they_impact_users" xml:space="preserve">
+    <value>Alat pemantauan kinerja melacak metrik sistem dan mengidentifikasi potensi hambatan sebelum berdampak pada pengguna.</value>
+  </data>
+  <data name="premium" xml:space="preserve">
+    <value>Premium</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>Pratinjau</value>
+  </data>
+  <data name="project_color" xml:space="preserve">
+    <value>Warna Proyek</value>
+  </data>
+  <data name="real_time_synchronization_ensures_consistent_data_availability_across_all_connected_devices_and_platforms" xml:space="preserve">
+    <value>Sinkronisasi waktu nyata memastikan ketersediaan data yang konsisten di semua perangkat dan platform yang terhubung.</value>
+  </data>
+  <data name="responsive_design_principles_guarantee_optimal_viewing_experiences_across_various_screen_sizes_and_devices" xml:space="preserve">
+    <value>Prinsip desain responsif menjamin pengalaman menonton yang optimal di berbagai ukuran layar dan perangkat.</value>
+  </data>
+  <data name="rounded" xml:space="preserve">
+    <value>Bulat</value>
+  </data>
+  <data name="seamless_integration_capabilities_connect_disparate_systems_and_enable_efficient_data_exchange_between_platforms" xml:space="preserve">
+    <value>Kemampuan integrasi yang mulus menghubungkan sistem yang berbeda dan memungkinkan pertukaran data yang efisien antar platform.</value>
+  </data>
+  <data name="secure_authentication_mechanisms_protect_sensitive_information_while_providing_convenient_access_for_authorized_users" xml:space="preserve">
+    <value>Mekanisme otentikasi yang aman melindungi informasi sensitif sambil menyediakan akses yang mudah bagi pengguna yang berwenang.</value>
+  </data>
+  <data name="select_a_document_from_the_list_or_create_a_new_one_to_get_started" xml:space="preserve">
+    <value>Pilih dokumen dari daftar atau buat yang baru untuk memulai.</value>
+  </data>
+  <data name="select_color" xml:space="preserve">
+    <value>Pilih warna</value>
+  </data>
+  <data name="serif" xml:space="preserve">
+    <value>Serif</value>
+  </data>
+  <data name="sort_by" xml:space="preserve">
+    <value>Urutkan berdasarkan</value>
+  </data>
+  <data name="sync" xml:space="preserve">
+    <value>Sinkronisasi</value>
+  </data>
+  <data name="system_sans_serif" xml:space="preserve">
+    <value>Sistem (Sans-serif)</value>
+  </data>
+  <data name="test_key" xml:space="preserve">
+    <value>KUNCI-TES</value>
+  </data>
+  <data name="the_innovative_technology_platform_seamlessly_integrates_advanced_features_to_enhance_user_productivity" xml:space="preserve">
+    <value>Platform teknologi inovatif dengan mulus mengintegrasikan fitur-fitur canggih untuk meningkatkan produktivitas pengguna.</value>
+  </data>
+  <data name="the_quick_brown_fox_jumps_over_the_lazy_dog" xml:space="preserve">
+    <value>Rubah coklat yang cepat melompati anjing yang malas.</value>
+  </data>
+  <data name="themes" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="toggle_favorite" xml:space="preserve">
+    <value>Beralih Favorit</value>
+  </data>
+  <data name="toggle_preview" xml:space="preserve">
+    <value>Beralih Pratinjau</value>
+  </data>
+  <data name="unlock_powerful_features_that_keep_your_writing_in_sync_across_all_your_apple_devices" xml:space="preserve">
+    <value>Buka fitur canggih yang menjaga tulisan Anda tetap sinkron di semua perangkat Apple Anda.</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Versi</value>
+  </data>
+</root>
