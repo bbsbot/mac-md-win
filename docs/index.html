@@ -71,11 +71,11 @@
 <div class="hero">
   <h1>Mac MD <span>for Windows</span></h1>
   <p>A native Markdown editor with live preview, local persistence, and terminal-inspired themes. Built with WinUI 3 and .NET 8.</p>
-  <a class="download-btn" href="https://github.com/bbsbot/mac-md-win/releases/tag/v0.1.0-alpha1">
-    Download Alpha 1
+  <a class="download-btn" href="https://github.com/bbsbot/mac-md-win/releases/tag/v0.2.0-alpha">
+    Download Alpha 2
     <small>Windows 10/11 x64 &middot; 42 MB &middot; No installer needed</small>
   </a>
-  <div class="badge">v0.1.0-alpha1 &middot; Pre-release</div>
+  <div class="badge">v0.2.0-alpha &middot; Pre-release</div>
 </div>
 
 <div class="container">
@@ -130,14 +130,14 @@
       <p>Toggle between dark and light mode. 10 terminal-inspired color palettes defined (selector UI coming soon).</p>
     </div>
     <div class="feature-card">
-      <span class="status status-next">Coming Next</span>
+      <span class="status status-done">Working</span>
       <h3>Localization</h3>
-      <p>38-language support via shared translation JSON, matching the Mac app.</p>
+      <p>23 locales supported via generated .resw resources from shared translation JSON.</p>
     </div>
     <div class="feature-card">
-      <span class="status status-next">Coming Next</span>
+      <span class="status status-done">Working</span>
       <h3>Export</h3>
-      <p>HTML and PDF export using WebView2 print-to-PDF.</p>
+      <p>File &rarr; Export as HTML or PDF. PDF uses WebView2 print-to-PDF with print-friendly styling.</p>
     </div>
   </div>
 </section>
@@ -156,7 +156,7 @@
   <ul class="known-issues">
     <li>No keyboard shortcuts yet (Ctrl+N, Ctrl+S, etc. coming in M6)</li>
     <li>No settings UI — theme palette is defined but selector isn't wired up yet</li>
-    <li>No HTML or PDF export yet (M5)</li>
+    <li>Export PDF may briefly flash the preview pane during generation</li>
     <li>Preview uses a fixed dark theme regardless of the app theme toggle</li>
     <li>No <code>.md</code> file association — you can't double-click a Markdown file to open it</li>
     <li>Windows SmartScreen will warn because the app isn't code-signed</li>

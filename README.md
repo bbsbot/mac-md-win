@@ -2,7 +2,7 @@
 
 A native Windows Markdown editor built with **WinUI 3** and **.NET 8**, porting the [Mac MD](https://github.com/bbsbot/mac-md) SwiftUI app to Windows 10/11.
 
-**[Download Alpha 1](https://github.com/bbsbot/mac-md-win/releases/tag/v0.1.0-alpha1)** — extract, run `MacMD.Win.exe`, no installer needed.
+**[Download Alpha 2](https://github.com/bbsbot/mac-md-win/releases/tag/v0.2.0-alpha)** — extract, run `MacMD.Win.exe`, no installer needed.
 
 ![Mac MD Screenshot](src/MacMD.Tests/M3_acceptance.png)
 
@@ -16,6 +16,8 @@ A native Windows Markdown editor built with **WinUI 3** and **.NET 8**, porting 
 - **Auto-save** — your work is saved 2 seconds after you stop typing
 - **Dark/light theme toggle** — one click to switch
 - **10 terminal-inspired color themes** — Pro, Homebrew, Ocean, Red Sands, and more (theme selector UI coming in M6)
+- **Localization** — 23 locales supported via generated `.resw` resources
+- **Export** — File → Export as HTML or PDF (via WebView2 print-to-PDF)
 
 ## Tech Stack
 
@@ -75,9 +77,9 @@ See **[PROGRESS.md](PROGRESS.md)** for a detailed milestone-by-milestone breakdo
 | M1 — App Shell | Done | Three-column layout, theme toggle, DI |
 | M2 — Preview Pipeline | Done | Markdig + WebView2 live preview |
 | M3 — Persistence | Done | SQLite CRUD, auto-save, navigation |
-| M4 — Localization | Next | 38-language .resw generation |
-| M5 — Export | Planned | HTML + PDF export |
-| M6 — Polish | Planned | Settings, shortcuts, MSIX packaging |
+| M4 — Localization | Done | 23-locale .resw generation |
+| M5 — Export | Done | HTML + PDF export |
+| M6 — Polish | Next | Settings, shortcuts, MSIX packaging |
 
 ## How This Project Is Built
 
