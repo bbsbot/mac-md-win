@@ -5,7 +5,7 @@
     xmlns:local="using:MacMD.Win.Views"
     Title="Mac MD">
 
-    <Grid>
+    <Grid RequestedTheme="Dark" Background="#1E1E1E">
         <Grid.ColumnDefinitions>
             <!-- Left: Projects / Tags / Navigation -->
             <ColumnDefinition Width="220" MinWidth="150" />

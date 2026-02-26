@@ -83,11 +83,19 @@ public sealed partial class MainWindow : Window
         // Theme picker
         ThemePicker.Initialize(_themeService);
         ThemePicker.ThemeSelected += OnThemeSelected;
-        ApplyTheme(_themeService.CurrentTheme);
 
         // Initial load
         AppWindow.Resize(new Windows.Graphics.SizeInt32(1280, 800));
         _ = LoadInitialDataAsync();
+
+        // Apply theme after the visual tree is ready
+        this.Activated += OnWindowActivated;
+    }
+
+    private void OnWindowActivated(object sender, WindowActivatedEventArgs e)
+    {
+        this.Activated -= OnWindowActivated; // only once
+        ApplyTheme(_themeService.CurrentTheme);
     }
 
     private async Task LoadInitialDataAsync()

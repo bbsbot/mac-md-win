@@ -21,13 +21,13 @@
                  Margin="0,0,0,8"
                  TextChanged="OnSearchTextChanged"/>
 
-        <TextBlock Grid.Row="1" x:Uid="DocumentsHeader"
+        <TextBlock Grid.Row="1" Text="Documents"
                    Style="{StaticResource SubtitleTextBlockStyle}"
                    Margin="0,0,0,8"/>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
-            <Button x:Uid="NewDocumentButton" Click="OnNewDocumentClick"/>
-            <Button x:Uid="DeleteButton" Click="OnDeleteDocumentClick"/>
+            <Button Content="New Document" Click="OnNewDocumentClick"/>
+            <Button Content="Delete" Click="OnDeleteDocumentClick"/>
         </StackPanel>
 
         <ListView Grid.Row="3"
