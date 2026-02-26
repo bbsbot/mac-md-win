@@ -2,7 +2,9 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using MacMD.Core.Models;
 using MacMD.Core.Services;
+using MacMD.Win.Services;
 using MacMD.Win.ViewModels;
+using Windows.Storage.Pickers;
 
 namespace MacMD.Win;
 
@@ -14,9 +16,12 @@ public sealed partial class MainWindow : Window
     private readonly EditorViewModel _editorViewModel;
     private readonly ProjectListViewModel _projectListVm;
     private readonly DocumentListViewModel _documentListVm;
+    private readonly ExportService _exportService;
+    private readonly PdfExportService _pdfExportService;
     private readonly DispatcherTimer _previewDebounce;
     private readonly DispatcherTimer _saveDebounce;
     private DocumentId? _currentDocId;
+    private string? _currentDocTitle;
 
     public MainWindow()
     {
@@ -26,6 +31,8 @@ public sealed partial class MainWindow : Window
         // Resolve services
         _markdownService = Resolve<MarkdownService>() ?? new MarkdownService();
         _documentStore = Resolve<DocumentStore>()!;
+        _exportService = Resolve<ExportService>()!;
+        _pdfExportService = Resolve<PdfExportService>()!;
         var projectStore = Resolve<ProjectStore>()!;
 
         // Editor
@@ -87,8 +94,11 @@ public sealed partial class MainWindow : Window
         if (doc is null) return;
 
         _currentDocId = docId;
+        _currentDocTitle = doc.Title;
         _editorViewModel.MarkdownText = doc.Content;
         PreviewView.UpdateHtml(_markdownService.ToHtml(doc.Content));
+        ExportHtmlItem.IsEnabled = true;
+        ExportPdfItem.IsEnabled = true;
     }
 
     private void OnPreviewDebounceTick(object? sender, object e)
@@ -114,6 +124,46 @@ public sealed partial class MainWindow : Window
         _isDark = !_isDark;
         if (this.Content is FrameworkElement root)
             root.RequestedTheme = _isDark ? ElementTheme.Dark : ElementTheme.Light;
+    }
+
+    private async void OnExportHtml(object sender, RoutedEventArgs e)
+    {
+        var picker = new FileSavePicker();
+        picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+        picker.FileTypeChoices.Add("HTML Document", new[] { ".html" });
+        picker.SuggestedFileName = _currentDocTitle ?? "document";
+
+        // Initialize picker with window handle (required for unpackaged WinUI 3)
+        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+        WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+
+        var file = await picker.PickSaveFileAsync();
+        if (file is null) return;
+
+        await _exportService.ExportHtmlAsync(
+            _currentDocTitle ?? "Untitled",
+            _editorViewModel.MarkdownText,
+            file.Path);
+    }
+
+    private async void OnExportPdf(object sender, RoutedEventArgs e)
+    {
+        var picker = new FileSavePicker();
+        picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+        picker.FileTypeChoices.Add("PDF Document", new[] { ".pdf" });
+        picker.SuggestedFileName = _currentDocTitle ?? "document";
+
+        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+        WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+
+        var file = await picker.PickSaveFileAsync();
+        if (file is null) return;
+
+        await _pdfExportService.ExportPdfAsync(
+            _currentDocTitle ?? "Untitled",
+            _editorViewModel.MarkdownText,
+            file.Path,
+            PreviewView.WebView);
     }
 
     private static T? Resolve<T>() where T : class

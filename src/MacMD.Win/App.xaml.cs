@@ -21,6 +21,7 @@ public partial class App : Application
         var services = new ServiceCollection();
         services.AddMacMDCore(dbPath);
         services.AddSingleton<LocalizationService>();
+        services.AddSingleton<PdfExportService>();
         Services = services.BuildServiceProvider();
     }
 

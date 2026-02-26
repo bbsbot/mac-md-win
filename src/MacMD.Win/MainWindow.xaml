@@ -42,9 +42,21 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!-- Toolbar -->
+            <!-- Menu + Toolbar -->
             <StackPanel Grid.Row="0" Orientation="Horizontal"
                         Padding="12,8" Spacing="8">
+                <MenuBar>
+                    <MenuBarItem Title="File">
+                        <MenuFlyoutItem x:Name="ExportHtmlItem"
+                                        Text="Export as HTML…"
+                                        Click="OnExportHtml"
+                                        IsEnabled="False" />
+                        <MenuFlyoutItem x:Name="ExportPdfItem"
+                                        Text="Export as PDF…"
+                                        Click="OnExportPdf"
+                                        IsEnabled="False" />
+                    </MenuBarItem>
+                </MenuBar>
                 <Button x:Name="ThemeToggleButton" Content="Toggle Theme"
                         Click="OnToggleTheme" />
             </StackPanel>

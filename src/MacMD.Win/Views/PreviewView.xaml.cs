@@ -26,6 +26,8 @@ public sealed partial class PreviewView : UserControl
         </html>
         """;
 
+    public Microsoft.UI.Xaml.Controls.WebView2 WebView => PreviewWebView;
+
     public PreviewView()
     {
         this.InitializeComponent();

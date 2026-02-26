@@ -13,6 +13,7 @@ public static class CoreServiceExtensions
     {
         services.AddSingleton<ThemeService>();
         services.AddSingleton<MarkdownService>();
+        services.AddSingleton<ExportService>();
 
         if (dbPath is not null)
         {
