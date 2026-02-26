@@ -69,6 +69,16 @@ out/
 dist/
 build/
 
+############################################
+# Release artifacts (binary zips)
+############################################
+*.zip
+
+############################################
+# Claude Code local settings (machine-specific)
+############################################
+.claude/settings.local.json
+
 # If you generate Windows localization files from JSON and want to keep them
 # in source control, REMOVE these lines. If you want them generated-only,
 # keep them ignored.

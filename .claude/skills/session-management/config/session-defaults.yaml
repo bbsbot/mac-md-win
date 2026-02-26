@@ -1,0 +1,43 @@
+# Agent Session Skill — Configuration
+# Copy this file alongside SKILL.md and adjust values for your environment.
+
+# === Budget Window ===
+budget_window_minutes: 300        # Rolling time window (5 hours)
+estimated_max_tool_calls: 80      # Conservative estimate per window
+estimated_max_tokens: 200000      # Estimated token budget per window
+
+# === Sprint Configuration ===
+sprint:
+  tool_calls: 20                  # Max tool calls per sprint
+  duration_minutes: 15            # Max duration per sprint
+  rest_minutes: 5                 # Rest duration between sprints
+  extended_rest_minutes: 15       # Rest after N sprints
+  sprints_before_extended_rest: 4 # Sprints before extended rest
+
+# === Budget Thresholds (percentage of budget used) ===
+thresholds:
+  green: 50                       # 0% to this value = GREEN
+  yellow: 75                      # green to this value = YELLOW
+  red: 90                         # yellow to this value = RED
+  critical: 100                   # red to this value = CRITICAL
+
+# === Rate Limit Response ===
+rate_limit:
+  backoff_minutes: [5, 10, 30, 60]  # Progressive backoff durations
+  max_retries_per_sprint: 3         # Max retries before escalating
+  slow_response_threshold_seconds: 30  # Threshold for "slow" detection
+
+# === Logging ===
+logging:
+  enabled: true
+  log_file: "SESSION_LOG.md"
+  log_checkpoints: true           # Log every checkpoint
+  log_zone_changes: true          # Log zone transitions
+  log_rate_limits: true           # Log rate limit events
+
+# === Multi-Agent ===
+multi_agent:
+  enabled: false
+  orchestrator_reserve_percent: 20   # Budget reserved for orchestrator
+  sub_agent_max_calls_flag: 15       # Flag tasks exceeding this
+  sub_agent_sprint_size: 10          # Smaller sprints for sub-agents
