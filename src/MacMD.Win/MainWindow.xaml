@@ -57,8 +57,13 @@
                                         IsEnabled="False" />
                     </MenuBarItem>
                 </MenuBar>
-                <Button x:Name="ThemeToggleButton" Content="Toggle Theme"
-                        Click="OnToggleTheme" />
+                <Button x:Name="ThemeButton" Content="Themes">
+                    <Button.Flyout>
+                        <Flyout>
+                            <local:ThemePickerView x:Name="ThemePicker"/>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
             </StackPanel>
 
             <!-- Editor and Preview side-by-side -->

@@ -13,6 +13,7 @@
     <WindowsSdkPackageVersion>10.0.19041.47</WindowsSdkPackageVersion>
     <!-- Field-based [ObservableProperty] not AOT-compatible for WinUI; partial properties need C# 13/.NET 9 -->
     <NoWarn>$(NoWarn);MVVMTK0045</NoWarn>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

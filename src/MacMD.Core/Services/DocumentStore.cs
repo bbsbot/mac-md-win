@@ -15,24 +15,13 @@ public sealed class DocumentStore
         using var conn = _db.CreateConnection();
         using var cmd = conn.CreateCommand();
         cmd.CommandText = """
-            SELECT id, title, word_count, modified_at
+            SELECT id, title, word_count, modified_at, COALESCE(SUBSTR(content, 1, 120), '')
             FROM documents
             ORDER BY modified_at DESC
             LIMIT @limit
             """;
         cmd.Parameters.AddWithValue("@limit", limit);
-
-        var list = new List<DocumentSummary>();
-        using var reader = await cmd.ExecuteReaderAsync();
-        while (await reader.ReadAsync())
-        {
-            list.Add(new DocumentSummary(
-                new DocumentId(reader.GetString(0)),
-                reader.GetString(1),
-                reader.GetInt32(2),
-                DateTimeOffset.Parse(reader.GetString(3))));
-        }
-        return list;
+        return await ReadSummariesAsync(cmd);
     }
 
     public async Task<IReadOnlyList<DocumentSummary>> GetByProjectAsync(ProjectId projectId, int limit = 200)
@@ -40,7 +29,7 @@ public sealed class DocumentStore
         using var conn = _db.CreateConnection();
         using var cmd = conn.CreateCommand();
         cmd.CommandText = """
-            SELECT id, title, word_count, modified_at
+            SELECT id, title, word_count, modified_at, COALESCE(SUBSTR(content, 1, 120), '')
             FROM documents
             WHERE project_id = @projectId
             ORDER BY modified_at DESC
@@ -48,7 +37,84 @@ public sealed class DocumentStore
             """;
         cmd.Parameters.AddWithValue("@projectId", projectId.Value);
         cmd.Parameters.AddWithValue("@limit", limit);
+        return await ReadSummariesAsync(cmd);
+    }
 
+    public async Task<IReadOnlyList<DocumentSummary>> GetByTagAsync(TagId tagId, int limit = 200)
+    {
+        using var conn = _db.CreateConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = """
+            SELECT d.id, d.title, d.word_count, d.modified_at, COALESCE(SUBSTR(d.content, 1, 120), '')
+            FROM documents d
+            INNER JOIN document_tags dt ON dt.document_id = d.id
+            WHERE dt.tag_id = @tagId
+            ORDER BY d.modified_at DESC
+            LIMIT @limit
+            """;
+        cmd.Parameters.AddWithValue("@tagId", tagId.Value);
+        cmd.Parameters.AddWithValue("@limit", limit);
+        return await ReadSummariesAsync(cmd);
+    }
+
+    public async Task<IReadOnlyList<DocumentSummary>> GetFavoritesAsync(int limit = 200)
+    {
+        using var conn = _db.CreateConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = """
+            SELECT id, title, word_count, modified_at, COALESCE(SUBSTR(content, 1, 120), '')
+            FROM documents
+            WHERE is_favorite = 1
+            ORDER BY modified_at DESC
+            LIMIT @limit
+            """;
+        cmd.Parameters.AddWithValue("@limit", limit);
+        return await ReadSummariesAsync(cmd);
+    }
+
+    public async Task<IReadOnlyList<DocumentSummary>> GetRecentAsync(int days = 7, int limit = 200)
+    {
+        using var conn = _db.CreateConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = """
+            SELECT id, title, word_count, modified_at, COALESCE(SUBSTR(content, 1, 120), '')
+            FROM documents
+            WHERE modified_at >= datetime('now', @days)
+            ORDER BY modified_at DESC
+            LIMIT @limit
+            """;
+        cmd.Parameters.AddWithValue("@days", $"-{days} days");
+        cmd.Parameters.AddWithValue("@limit", limit);
+        return await ReadSummariesAsync(cmd);
+    }
+
+    public async Task<IReadOnlyList<DocumentSummary>> SearchAsync(string query, int limit = 200)
+    {
+        using var conn = _db.CreateConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = """
+            SELECT id, title, word_count, modified_at, COALESCE(SUBSTR(content, 1, 120), '')
+            FROM documents
+            WHERE title LIKE @query OR content LIKE @query
+            ORDER BY modified_at DESC
+            LIMIT @limit
+            """;
+        cmd.Parameters.AddWithValue("@query", $"%{query}%");
+        cmd.Parameters.AddWithValue("@limit", limit);
+        return await ReadSummariesAsync(cmd);
+    }
+
+    public async Task ToggleFavoriteAsync(DocumentId id)
+    {
+        using var conn = _db.CreateConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = "UPDATE documents SET is_favorite = CASE WHEN is_favorite = 1 THEN 0 ELSE 1 END WHERE id = @id";
+        cmd.Parameters.AddWithValue("@id", id.Value);
+        await cmd.ExecuteNonQueryAsync();
+    }
+
+    private static async Task<IReadOnlyList<DocumentSummary>> ReadSummariesAsync(SqliteCommand cmd)
+    {
         var list = new List<DocumentSummary>();
         using var reader = await cmd.ExecuteReaderAsync();
         while (await reader.ReadAsync())
@@ -57,7 +123,8 @@ public sealed class DocumentStore
                 new DocumentId(reader.GetString(0)),
                 reader.GetString(1),
                 reader.GetInt32(2),
-                DateTimeOffset.Parse(reader.GetString(3))));
+                DateTimeOffset.Parse(reader.GetString(3)),
+                reader.GetString(4)));
         }
         return list;
     }

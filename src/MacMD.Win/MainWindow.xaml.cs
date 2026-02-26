@@ -10,12 +10,13 @@ namespace MacMD.Win;
 
 public sealed partial class MainWindow : Window
 {
-    private bool _isDark = true;
     private readonly MarkdownService _markdownService;
     private readonly DocumentStore _documentStore;
+    private readonly ThemeService _themeService;
     private readonly EditorViewModel _editorViewModel;
     private readonly ProjectListViewModel _projectListVm;
     private readonly DocumentListViewModel _documentListVm;
+    private readonly TagListViewModel _tagListVm;
     private readonly ExportService _exportService;
     private readonly PdfExportService _pdfExportService;
     private readonly DispatcherTimer _previewDebounce;
@@ -33,7 +34,9 @@ public sealed partial class MainWindow : Window
         _documentStore = Resolve<DocumentStore>()!;
         _exportService = Resolve<ExportService>()!;
         _pdfExportService = Resolve<PdfExportService>()!;
+        _themeService = Resolve<ThemeService>()!;
         var projectStore = Resolve<ProjectStore>()!;
+        var tagStore = Resolve<TagStore>()!;
 
         // Editor
         _editorViewModel = new EditorViewModel();
@@ -48,6 +51,14 @@ public sealed partial class MainWindow : Window
         _documentListVm = new DocumentListViewModel(_documentStore);
         DocumentListView.ViewModel = _documentListVm;
         _documentListVm.DocumentSelected += OnDocumentSelected;
+
+        // Tag list
+        _tagListVm = new TagListViewModel(tagStore);
+        ProjectListView.TagViewModel = _tagListVm;
+        ProjectListView.AllDocumentsClicked += () => _ = _documentListVm.LoadForProjectAsync(null);
+        ProjectListView.FavoritesClicked += () => _ = _documentListVm.LoadFavoritesAsync();
+        ProjectListView.RecentClicked += () => _ = _documentListVm.LoadRecentAsync();
+        ProjectListView.TagClicked += tagId => _ = _documentListVm.LoadForTagAsync(tagId);
 
         // Preview debounce (300 ms)
         _previewDebounce = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(300) };
@@ -69,6 +80,11 @@ public sealed partial class MainWindow : Window
             }
         };
 
+        // Theme picker
+        ThemePicker.Initialize(_themeService);
+        ThemePicker.ThemeSelected += OnThemeSelected;
+        ApplyTheme(_themeService.CurrentTheme);
+
         // Initial load
         AppWindow.Resize(new Windows.Graphics.SizeInt32(1280, 800));
         _ = LoadInitialDataAsync();
@@ -77,6 +93,7 @@ public sealed partial class MainWindow : Window
     private async Task LoadInitialDataAsync()
     {
         await _projectListVm.LoadCommand.ExecuteAsync(null);
+        await _tagListVm.LoadCommand.ExecuteAsync(null);
         await _documentListVm.LoadForProjectAsync(null); // all docs
     }
 
@@ -119,11 +136,19 @@ public sealed partial class MainWindow : Window
             await _documentStore.UpdateContentAsync(id, _editorViewModel.MarkdownText);
     }
 
-    private void OnToggleTheme(object sender, RoutedEventArgs e)
+    private void OnThemeSelected(MacMD.Core.Models.ColorTheme theme)
     {
-        _isDark = !_isDark;
+        ApplyTheme(theme);
+    }
+
+    private void ApplyTheme(MacMD.Core.Models.ColorTheme theme)
+    {
         if (this.Content is FrameworkElement root)
-            root.RequestedTheme = _isDark ? ElementTheme.Dark : ElementTheme.Light;
+            root.RequestedTheme = theme.IsDark ? ElementTheme.Dark : ElementTheme.Light;
+
+        // Update preview CSS to match the selected theme
+        if (_currentDocId is not null)
+            PreviewView.UpdateHtml(_markdownService.ToHtml(_editorViewModel.MarkdownText));
     }
 
     private async void OnExportHtml(object sender, RoutedEventArgs e)
@@ -133,7 +158,6 @@ public sealed partial class MainWindow : Window
         picker.FileTypeChoices.Add("HTML Document", new[] { ".html" });
         picker.SuggestedFileName = _currentDocTitle ?? "document";
 
-        // Initialize picker with window handle (required for unpackaged WinUI 3)
         var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
         WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
 

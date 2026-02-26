@@ -6,10 +6,15 @@ using MacMD.Core.Services;
 
 namespace MacMD.Win.ViewModels;
 
+public enum DocumentFilter { All, Project, Tag, Favorites, Recent }
+
 public partial class DocumentListViewModel : ObservableObject
 {
     private readonly DocumentStore _documentStore;
     private ProjectId? _currentProjectId;
+    private TagId? _currentTagId;
+    private DocumentFilter _currentFilter = DocumentFilter.All;
+    private string _searchQuery = "";
 
     public DocumentListViewModel(DocumentStore documentStore)
     {
@@ -21,7 +26,6 @@ public partial class DocumentListViewModel : ObservableObject
     [ObservableProperty]
     private DocumentSummary? _selectedDocument;
 
-    /// <summary>Raised when the user selects a document to load in the editor.</summary>
     public event Action<DocumentId>? DocumentSelected;
 
     partial void OnSelectedDocumentChanged(DocumentSummary? value)
@@ -32,10 +36,70 @@ public partial class DocumentListViewModel : ObservableObject
 
     public async Task LoadForProjectAsync(ProjectId? projectId)
     {
+        _currentFilter = projectId is null ? DocumentFilter.All : DocumentFilter.Project;
         _currentProjectId = projectId;
-        var docs = projectId is { } pid
-            ? await _documentStore.GetByProjectAsync(pid)
-            : await _documentStore.GetAllAsync();
+        _currentTagId = null;
+        await ReloadAsync();
+    }
+
+    public async Task LoadForTagAsync(TagId tagId)
+    {
+        _currentFilter = DocumentFilter.Tag;
+        _currentTagId = tagId;
+        _currentProjectId = null;
+        await ReloadAsync();
+    }
+
+    public async Task LoadFavoritesAsync()
+    {
+        _currentFilter = DocumentFilter.Favorites;
+        _currentProjectId = null;
+        _currentTagId = null;
+        await ReloadAsync();
+    }
+
+    public async Task LoadRecentAsync()
+    {
+        _currentFilter = DocumentFilter.Recent;
+        _currentProjectId = null;
+        _currentTagId = null;
+        await ReloadAsync();
+    }
+
+    public async Task SearchAsync(string query)
+    {
+        _searchQuery = query;
+        await ReloadAsync();
+    }
+
+    public async Task ToggleFavoriteAsync(DocumentId id)
+    {
+        await _documentStore.ToggleFavoriteAsync(id);
+        await ReloadAsync();
+    }
+
+    private async Task ReloadAsync()
+    {
+        IReadOnlyList<DocumentSummary> docs;
+
+        if (!string.IsNullOrWhiteSpace(_searchQuery))
+        {
+            docs = await _documentStore.SearchAsync(_searchQuery);
+        }
+        else
+        {
+            docs = _currentFilter switch
+            {
+                DocumentFilter.Project when _currentProjectId is { } pid
+                    => await _documentStore.GetByProjectAsync(pid),
+                DocumentFilter.Tag when _currentTagId is { } tid
+                    => await _documentStore.GetByTagAsync(tid),
+                DocumentFilter.Favorites => await _documentStore.GetFavoritesAsync(),
+                DocumentFilter.Recent => await _documentStore.GetRecentAsync(),
+                _ => await _documentStore.GetAllAsync(),
+            };
+        }
+
         Documents.Clear();
         foreach (var d in docs)
             Documents.Add(d);
@@ -45,7 +109,7 @@ public partial class DocumentListViewModel : ObservableObject
     private async Task CreateDocumentAsync()
     {
         var id = await _documentStore.CreateAsync("Untitled", _currentProjectId);
-        await LoadForProjectAsync(_currentProjectId);
+        await ReloadAsync();
         SelectedDocument = Documents.FirstOrDefault(d => d.Id.Value == id.Value);
     }
 
@@ -55,6 +119,6 @@ public partial class DocumentListViewModel : ObservableObject
         if (SelectedDocument is null) return;
         await _documentStore.DeleteAsync(SelectedDocument.Id);
         SelectedDocument = null;
-        await LoadForProjectAsync(_currentProjectId);
+        await ReloadAsync();
     }
 }

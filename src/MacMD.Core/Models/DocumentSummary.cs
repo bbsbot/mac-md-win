@@ -5,4 +5,5 @@ public sealed record DocumentSummary(
     DocumentId Id,
     string Title,
     int WordCount,
-    DateTimeOffset ModifiedAt);
+    DateTimeOffset ModifiedAt,
+    string Preview = "");

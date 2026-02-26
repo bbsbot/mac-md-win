@@ -11,31 +11,49 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" x:Uid="DocumentsHeader"
-                   Style="{StaticResource SubtitleTextBlockStyle}"
-                   Margin="0,0,0,12"/>
+        <!-- Search bar -->
+        <TextBox Grid.Row="0" x:Name="SearchBox"
+                 PlaceholderText="Search documents..."
+                 Margin="0,0,0,8"
+                 TextChanged="OnSearchTextChanged"/>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
+        <TextBlock Grid.Row="1" x:Uid="DocumentsHeader"
+                   Style="{StaticResource SubtitleTextBlockStyle}"
+                   Margin="0,0,0,8"/>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
             <Button x:Uid="NewDocumentButton" Click="OnNewDocumentClick"/>
             <Button x:Uid="DeleteButton" Click="OnDeleteDocumentClick"/>
         </StackPanel>
 
-        <ListView Grid.Row="2"
+        <ListView Grid.Row="3"
                   x:Name="DocumentsList"
                   SelectionChanged="OnDocumentSelectionChanged"
                   SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Padding="0,4">
-                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
-                        <TextBlock FontSize="12"
-                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}">
-                            <Run Text="{Binding WordCount}"/>
-                            <Run Text=" words"/>
-                        </TextBlock>
+                    <StackPanel Padding="0,6">
+                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold"
+                                   TextTrimming="CharacterEllipsis"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock FontSize="11"
+                                       Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                                       Text="{Binding ModifiedAt, Converter={StaticResource DateConverter}}"/>
+                            <TextBlock FontSize="11"
+                                       Foreground="{ThemeResource TextFillColorTertiaryBrush}">
+                                <Run Text="{Binding WordCount}"/>
+                                <Run Text=" words"/>
+                            </TextBlock>
+                        </StackPanel>
+                        <TextBlock Text="{Binding Preview}" FontSize="12"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                   TextTrimming="CharacterEllipsis"
+                                   MaxLines="2" TextWrapping="Wrap"
+                                   Margin="0,2,0,0"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

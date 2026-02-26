@@ -7,6 +7,8 @@ namespace MacMD.Win.Views;
 
 public sealed partial class DocumentListView : UserControl
 {
+    private readonly DispatcherTimer _searchDebounce;
+
     public DocumentListViewModel? ViewModel
     {
         get => _vm;
@@ -22,6 +24,8 @@ public sealed partial class DocumentListView : UserControl
     public DocumentListView()
     {
         this.InitializeComponent();
+        _searchDebounce = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(300) };
+        _searchDebounce.Tick += OnSearchDebounceTick;
     }
 
     private void OnDocumentSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -38,5 +42,18 @@ public sealed partial class DocumentListView : UserControl
     private void OnDeleteDocumentClick(object sender, RoutedEventArgs e)
     {
         ViewModel?.DeleteDocumentCommand.Execute(null);
+    }
+
+    private void OnSearchTextChanged(object sender, TextChangedEventArgs e)
+    {
+        _searchDebounce.Stop();
+        _searchDebounce.Start();
+    }
+
+    private async void OnSearchDebounceTick(object? sender, object e)
+    {
+        _searchDebounce.Stop();
+        if (ViewModel is null) return;
+        await ViewModel.SearchAsync(SearchBox.Text);
     }
 }
