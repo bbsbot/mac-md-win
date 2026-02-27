@@ -8,55 +8,109 @@ public sealed partial class EditorView : UserControl
 {
     public EditorViewModel? ViewModel { get; set; }
 
+    // Cache selection state so toolbar clicks (which steal focus) still work
+    private int _cachedSelectionStart;
+    private int _cachedSelectionLength;
+
     public EditorView()
     {
         this.InitializeComponent();
+        MarkdownTextBox.SelectionChanged += (_, _) =>
+        {
+            _cachedSelectionStart = MarkdownTextBox.SelectionStart;
+            _cachedSelectionLength = MarkdownTextBox.SelectionLength;
+        };
     }
 
     private void WrapSelection(string before, string after)
     {
-        var start = MarkdownTextBox.SelectionStart;
-        var length = MarkdownTextBox.SelectionLength;
+        var start = _cachedSelectionStart;
+        var length = _cachedSelectionLength;
         var text = MarkdownTextBox.Text;
-        var selected = length > 0 ? text.Substring(start, length) : "";
 
+        // Clamp to valid range
+        if (start > text.Length) start = text.Length;
+        if (start + length > text.Length) length = text.Length - start;
+
+        var selected = length > 0 ? text.Substring(start, length) : "";
         var replacement = before + selected + after;
         MarkdownTextBox.Text = text.Remove(start, length).Insert(start, replacement);
-        // Place cursor after the inserted text or inside the markers if no selection
+
         if (length > 0)
             MarkdownTextBox.Select(start, replacement.Length);
         else
             MarkdownTextBox.Select(start + before.Length, 0);
+
+        _cachedSelectionStart = MarkdownTextBox.SelectionStart;
+        _cachedSelectionLength = MarkdownTextBox.SelectionLength;
+        MarkdownTextBox.Focus(FocusState.Programmatic);
     }
 
-    private void InsertAtLineStart(string prefix)
+    private void PrefixLines(string prefix, bool numbered = false)
     {
-        var start = MarkdownTextBox.SelectionStart;
+        var start = _cachedSelectionStart;
+        var length = _cachedSelectionLength;
         var text = MarkdownTextBox.Text;
 
-        // Find the start of the current line
-        var lineStart = text.LastIndexOf('\n', Math.Max(start - 1, 0));
-        lineStart = lineStart < 0 ? 0 : lineStart + 1;
+        // Clamp
+        if (start > text.Length) start = text.Length;
+        if (start + length > text.Length) length = text.Length - start;
 
-        MarkdownTextBox.Text = text.Insert(lineStart, prefix);
-        MarkdownTextBox.Select(start + prefix.Length, 0);
+        if (length > 0)
+        {
+            // Multi-line: prefix each line in the selection
+            var selected = text.Substring(start, length);
+            var lines = selected.Split('\r');
+            for (int i = 0; i < lines.Length; i++)
+                lines[i] = lines[i].TrimStart('\n');
+
+            var result = new System.Text.StringBuilder();
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (i > 0) result.Append("\r\n");
+                var linePrefix = numbered ? $"{i + 1}. " : prefix;
+                result.Append(linePrefix);
+                result.Append(lines[i]);
+            }
+
+            var replacement = result.ToString();
+            MarkdownTextBox.Text = text.Remove(start, length).Insert(start, replacement);
+            MarkdownTextBox.Select(start, replacement.Length);
+        }
+        else
+        {
+            // Single cursor: insert prefix at the start of the current line
+            var lineStart = start > 0 ? text.LastIndexOf('\n', start - 1) : -1;
+            lineStart = lineStart < 0 ? 0 : lineStart + 1;
+
+            MarkdownTextBox.Text = text.Insert(lineStart, prefix);
+            MarkdownTextBox.Select(start + prefix.Length, 0);
+        }
+
+        _cachedSelectionStart = MarkdownTextBox.SelectionStart;
+        _cachedSelectionLength = MarkdownTextBox.SelectionLength;
+        MarkdownTextBox.Focus(FocusState.Programmatic);
     }
 
     private void OnBoldClick(object sender, RoutedEventArgs e) => WrapSelection("**", "**");
     private void OnItalicClick(object sender, RoutedEventArgs e) => WrapSelection("*", "*");
-    private void OnHeadingClick(object sender, RoutedEventArgs e) => InsertAtLineStart("## ");
+    private void OnHeadingClick(object sender, RoutedEventArgs e) => PrefixLines("## ");
     private void OnLinkClick(object sender, RoutedEventArgs e) => WrapSelection("[", "](url)");
     private void OnCodeClick(object sender, RoutedEventArgs e) => WrapSelection("`", "`");
-    private void OnBulletListClick(object sender, RoutedEventArgs e) => InsertAtLineStart("- ");
-    private void OnNumberedListClick(object sender, RoutedEventArgs e) => InsertAtLineStart("1. ");
-    private void OnQuoteClick(object sender, RoutedEventArgs e) => InsertAtLineStart("> ");
+    private void OnBulletListClick(object sender, RoutedEventArgs e) => PrefixLines("- ");
+    private void OnNumberedListClick(object sender, RoutedEventArgs e) => PrefixLines("1. ", numbered: true);
+    private void OnQuoteClick(object sender, RoutedEventArgs e) => PrefixLines("> ");
 
     private void OnHrClick(object sender, RoutedEventArgs e)
     {
-        var start = MarkdownTextBox.SelectionStart;
+        var start = _cachedSelectionStart;
         var text = MarkdownTextBox.Text;
+        if (start > text.Length) start = text.Length;
         var insert = "\n---\n";
         MarkdownTextBox.Text = text.Insert(start, insert);
         MarkdownTextBox.Select(start + insert.Length, 0);
+        _cachedSelectionStart = MarkdownTextBox.SelectionStart;
+        _cachedSelectionLength = 0;
+        MarkdownTextBox.Focus(FocusState.Programmatic);
     }
 }
