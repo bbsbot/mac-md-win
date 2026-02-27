@@ -1,5 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using MacMD.Core.Models;
 using MacMD.Win.ViewModels;
 
 namespace MacMD.Win.Views;
@@ -90,6 +92,27 @@ public sealed partial class EditorView : UserControl
         _cachedSelectionStart = MarkdownTextBox.SelectionStart;
         _cachedSelectionLength = MarkdownTextBox.SelectionLength;
         MarkdownTextBox.Focus(FocusState.Programmatic);
+    }
+
+    public void ApplyTheme(ColorTheme theme)
+    {
+        var bg = ParseHexColor(theme.Background);
+        var fg = ParseHexColor(theme.Foreground);
+        MarkdownTextBox.Background = new SolidColorBrush(bg);
+        MarkdownTextBox.Foreground = new SolidColorBrush(fg);
+    }
+
+    private static Windows.UI.Color ParseHexColor(string hex)
+    {
+        hex = hex.TrimStart('#');
+        if (hex.Length == 6)
+        {
+            return Windows.UI.Color.FromArgb(255,
+                byte.Parse(hex[0..2], System.Globalization.NumberStyles.HexNumber),
+                byte.Parse(hex[2..4], System.Globalization.NumberStyles.HexNumber),
+                byte.Parse(hex[4..6], System.Globalization.NumberStyles.HexNumber));
+        }
+        return Windows.UI.Color.FromArgb(255, 30, 30, 30);
     }
 
     private void OnBoldClick(object sender, RoutedEventArgs e) => WrapSelection("**", "**");

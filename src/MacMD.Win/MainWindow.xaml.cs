@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using MacMD.Core.Models;
 using MacMD.Core.Services;
 using MacMD.Win.Services;
@@ -155,9 +156,31 @@ public sealed partial class MainWindow : Window
         if (this.Content is FrameworkElement root)
             root.RequestedTheme = theme.IsDark ? ElementTheme.Dark : ElementTheme.Light;
 
-        // Update preview CSS to match the selected theme
+        // Apply theme background to the root grid
+        RootGrid.Background = new SolidColorBrush(ParseHexColor(theme.Background));
+
+        // Apply theme colors to the editor
+        EditorView.ApplyTheme(theme);
+
+        // Apply theme colors to the preview
+        PreviewView.ApplyTheme(theme);
+
+        // Re-render preview with new theme colors
         if (_currentDocId is not null)
             PreviewView.UpdateHtml(_markdownService.ToHtml(_editorViewModel.MarkdownText));
+    }
+
+    private static Windows.UI.Color ParseHexColor(string hex)
+    {
+        hex = hex.TrimStart('#');
+        if (hex.Length == 6)
+        {
+            return Windows.UI.Color.FromArgb(255,
+                byte.Parse(hex[0..2], System.Globalization.NumberStyles.HexNumber),
+                byte.Parse(hex[2..4], System.Globalization.NumberStyles.HexNumber),
+                byte.Parse(hex[4..6], System.Globalization.NumberStyles.HexNumber));
+        }
+        return Windows.UI.Color.FromArgb(255, 30, 30, 30);
     }
 
     private async void OnExportHtml(object sender, RoutedEventArgs e)
