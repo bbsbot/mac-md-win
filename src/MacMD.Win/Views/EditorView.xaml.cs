@@ -10,24 +10,35 @@ public sealed partial class EditorView : UserControl
 {
     public EditorViewModel? ViewModel { get; set; }
 
-    // Cache selection state so toolbar clicks (which steal focus) still work
-    private int _cachedSelectionStart;
-    private int _cachedSelectionLength;
+    // Cache selection state so toolbar clicks (which steal focus) still work.
+    // We track both a "live" value (updated on every SelectionChanged) and
+    // a "saved" value (snapshot taken on LostFocus). The toolbar handlers
+    // read from _savedSelection* which won't be clobbered by the focus-loss
+    // SelectionChanged(0,0) that fires before the click handler.
+    private int _liveSelectionStart;
+    private int _liveSelectionLength;
+    private int _savedSelectionStart;
+    private int _savedSelectionLength;
 
     public EditorView()
     {
         this.InitializeComponent();
         MarkdownTextBox.SelectionChanged += (_, _) =>
         {
-            _cachedSelectionStart = MarkdownTextBox.SelectionStart;
-            _cachedSelectionLength = MarkdownTextBox.SelectionLength;
+            _liveSelectionStart = MarkdownTextBox.SelectionStart;
+            _liveSelectionLength = MarkdownTextBox.SelectionLength;
+        };
+        MarkdownTextBox.LostFocus += (_, _) =>
+        {
+            _savedSelectionStart = _liveSelectionStart;
+            _savedSelectionLength = _liveSelectionLength;
         };
     }
 
     private void WrapSelection(string before, string after)
     {
-        var start = _cachedSelectionStart;
-        var length = _cachedSelectionLength;
+        var start = _savedSelectionStart;
+        var length = _savedSelectionLength;
         var text = MarkdownTextBox.Text;
 
         // Clamp to valid range
@@ -43,15 +54,15 @@ public sealed partial class EditorView : UserControl
         else
             MarkdownTextBox.Select(start + before.Length, 0);
 
-        _cachedSelectionStart = MarkdownTextBox.SelectionStart;
-        _cachedSelectionLength = MarkdownTextBox.SelectionLength;
+        _savedSelectionStart = MarkdownTextBox.SelectionStart;
+        _savedSelectionLength = MarkdownTextBox.SelectionLength;
         MarkdownTextBox.Focus(FocusState.Programmatic);
     }
 
     private void PrefixLines(string prefix, bool numbered = false)
     {
-        var start = _cachedSelectionStart;
-        var length = _cachedSelectionLength;
+        var start = _savedSelectionStart;
+        var length = _savedSelectionLength;
         var text = MarkdownTextBox.Text;
 
         // Clamp
@@ -89,8 +100,8 @@ public sealed partial class EditorView : UserControl
             MarkdownTextBox.Select(start + prefix.Length, 0);
         }
 
-        _cachedSelectionStart = MarkdownTextBox.SelectionStart;
-        _cachedSelectionLength = MarkdownTextBox.SelectionLength;
+        _savedSelectionStart = MarkdownTextBox.SelectionStart;
+        _savedSelectionLength = MarkdownTextBox.SelectionLength;
         MarkdownTextBox.Focus(FocusState.Programmatic);
     }
 
@@ -126,14 +137,14 @@ public sealed partial class EditorView : UserControl
 
     private void OnHrClick(object sender, RoutedEventArgs e)
     {
-        var start = _cachedSelectionStart;
+        var start = _savedSelectionStart;
         var text = MarkdownTextBox.Text;
         if (start > text.Length) start = text.Length;
         var insert = "\n---\n";
         MarkdownTextBox.Text = text.Insert(start, insert);
         MarkdownTextBox.Select(start + insert.Length, 0);
-        _cachedSelectionStart = MarkdownTextBox.SelectionStart;
-        _cachedSelectionLength = 0;
+        _savedSelectionStart = MarkdownTextBox.SelectionStart;
+        _savedSelectionLength = 0;
         MarkdownTextBox.Focus(FocusState.Programmatic);
     }
 }

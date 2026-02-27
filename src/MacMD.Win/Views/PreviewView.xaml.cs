@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using MacMD.Core.Models;
 using Microsoft.UI.Xaml.Controls;
 
@@ -18,6 +19,18 @@ public sealed partial class PreviewView : UserControl
     public PreviewView()
     {
         this.InitializeComponent();
+        PreviewWebView.NavigationStarting += OnNavigationStarting;
+    }
+
+    private void OnNavigationStarting(WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs args)
+    {
+        // Allow internal content loads (about:blank and data: URIs)
+        if (args.Uri is null || args.Uri.StartsWith("about:") || args.Uri.StartsWith("data:"))
+            return;
+
+        // External link — cancel navigation and open in default browser
+        args.Cancel = true;
+        Process.Start(new ProcessStartInfo(args.Uri) { UseShellExecute = true });
     }
 
     public void ApplyTheme(ColorTheme theme)
