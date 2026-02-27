@@ -59,6 +59,7 @@ public sealed partial class MainWindow : Window
         ProjectListView.FavoritesClicked += () => _ = _documentListVm.LoadFavoritesAsync();
         ProjectListView.RecentClicked += () => _ = _documentListVm.LoadRecentAsync();
         ProjectListView.TagClicked += tagId => _ = _documentListVm.LoadForTagAsync(tagId);
+        ProjectListView.ArchivedClicked += () => _ = _documentListVm.LoadArchivedAsync();
 
         // Preview debounce (300 ms)
         _previewDebounce = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(300) };

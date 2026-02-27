@@ -92,6 +92,21 @@ public sealed class DocumentStore
         return await ReadSummariesAsync(cmd);
     }
 
+    public async Task<IReadOnlyList<DocumentSummary>> GetArchivedAsync(int limit = 200)
+    {
+        using var conn = _db.CreateConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = $"""
+            SELECT {SummaryColumns}
+            FROM documents
+            WHERE is_archived = 1
+            ORDER BY modified_at DESC
+            LIMIT @limit
+            """;
+        cmd.Parameters.AddWithValue("@limit", limit);
+        return await ReadSummariesAsync(cmd);
+    }
+
     public async Task<IReadOnlyList<DocumentSummary>> SearchAsync(string query, int limit = 200)
     {
         using var conn = _db.CreateConnection();

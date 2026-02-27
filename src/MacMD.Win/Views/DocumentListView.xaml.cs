@@ -80,6 +80,11 @@ public sealed partial class DocumentListView : UserControl
         // Build context menu
         var flyout = new MenuFlyout();
 
+        // Rename
+        var renameItem = new MenuFlyoutItem { Text = "Rename" };
+        renameItem.Click += async (_, _) => await ShowRenameDocumentDialogAsync(doc);
+        flyout.Items.Add(renameItem);
+
         // Duplicate
         var duplicateItem = new MenuFlyoutItem { Text = "Duplicate" };
         duplicateItem.Click += async (_, _) => await ViewModel.DuplicateDocumentAsync(doc.Id);
@@ -91,10 +96,19 @@ public sealed partial class DocumentListView : UserControl
         favoriteItem.Click += async (_, _) => await ViewModel.ToggleFavoriteAsync(doc.Id);
         flyout.Items.Add(favoriteItem);
 
-        // Archive
-        var archiveItem = new MenuFlyoutItem { Text = "Archive" };
-        archiveItem.Click += async (_, _) => await ViewModel.ArchiveDocumentAsync(doc.Id);
-        flyout.Items.Add(archiveItem);
+        // Archive / Unarchive
+        if (ViewModel.CurrentFilter == DocumentFilter.Archived)
+        {
+            var unarchiveItem = new MenuFlyoutItem { Text = "Unarchive" };
+            unarchiveItem.Click += async (_, _) => await ViewModel.UnarchiveDocumentAsync(doc.Id);
+            flyout.Items.Add(unarchiveItem);
+        }
+        else
+        {
+            var archiveItem = new MenuFlyoutItem { Text = "Archive" };
+            archiveItem.Click += async (_, _) => await ViewModel.ArchiveDocumentAsync(doc.Id);
+            flyout.Items.Add(archiveItem);
+        }
 
         flyout.Items.Add(new MenuFlyoutSeparator());
 
@@ -179,6 +193,27 @@ public sealed partial class DocumentListView : UserControl
         // Get from the app's service provider
         return App.Current.Services.GetService(typeof(MacMD.Core.Services.DocumentStore))
             as MacMD.Core.Services.DocumentStore;
+    }
+
+    private async Task ShowRenameDocumentDialogAsync(DocumentSummary doc)
+    {
+        if (ViewModel is null) return;
+        var nameBox = new TextBox { Text = doc.Title };
+        nameBox.SelectAll();
+        var dialog = new ContentDialog
+        {
+            Title = "Rename Document",
+            Content = nameBox,
+            PrimaryButtonText = "Rename",
+            CloseButtonText = "Cancel",
+            XamlRoot = this.XamlRoot,
+            DefaultButton = ContentDialogButton.Primary,
+        };
+        if (await dialog.ShowAsync() == ContentDialogResult.Primary
+            && !string.IsNullOrWhiteSpace(nameBox.Text))
+        {
+            await ViewModel.RenameDocumentAsync(doc.Id, nameBox.Text.Trim());
+        }
     }
 
     private static Color ParseColor(string hex)

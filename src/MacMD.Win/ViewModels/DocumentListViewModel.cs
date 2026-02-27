@@ -6,7 +6,7 @@ using MacMD.Core.Services;
 
 namespace MacMD.Win.ViewModels;
 
-public enum DocumentFilter { All, Project, Tag, Favorites, Recent }
+public enum DocumentFilter { All, Project, Tag, Favorites, Recent, Archived }
 
 public partial class DocumentListViewModel : ObservableObject
 {
@@ -16,6 +16,7 @@ public partial class DocumentListViewModel : ObservableObject
     private ProjectId? _currentProjectId;
     private TagId? _currentTagId;
     private DocumentFilter _currentFilter = DocumentFilter.All;
+    public DocumentFilter CurrentFilter => _currentFilter;
     private string _searchQuery = "";
 
     public DocumentListViewModel(DocumentStore documentStore, ProjectStore projectStore, TagStore tagStore)
@@ -91,10 +92,30 @@ public partial class DocumentListViewModel : ObservableObject
         SelectedDocument = Documents.FirstOrDefault(d => d.Id.Value == newId.Value);
     }
 
+    public async Task RenameDocumentAsync(DocumentId id, string newTitle)
+    {
+        await _documentStore.UpdateTitleAsync(id, newTitle);
+        await ReloadAsync();
+    }
+
     public async Task ArchiveDocumentAsync(DocumentId id)
     {
         await _documentStore.ArchiveAsync(id);
         SelectedDocument = null;
+        await ReloadAsync();
+    }
+
+    public async Task UnarchiveDocumentAsync(DocumentId id)
+    {
+        await _documentStore.UnarchiveAsync(id);
+        await ReloadAsync();
+    }
+
+    public async Task LoadArchivedAsync()
+    {
+        _currentFilter = DocumentFilter.Archived;
+        _currentProjectId = null;
+        _currentTagId = null;
         await ReloadAsync();
     }
 
@@ -144,6 +165,7 @@ public partial class DocumentListViewModel : ObservableObject
                     => await _documentStore.GetByTagAsync(tid),
                 DocumentFilter.Favorites => await _documentStore.GetFavoritesAsync(),
                 DocumentFilter.Recent => await _documentStore.GetRecentAsync(),
+                DocumentFilter.Archived => await _documentStore.GetArchivedAsync(),
                 _ => await _documentStore.GetAllAsync(),
             };
         }

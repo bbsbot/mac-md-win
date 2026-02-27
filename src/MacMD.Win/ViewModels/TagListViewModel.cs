@@ -50,4 +50,16 @@ public partial class TagListViewModel : ObservableObject
         if (SelectedTag?.Id.Value == id.Value)
             SelectedTag = null;
     }
+
+    public async Task RenameTagAsync(TagId id, string newName)
+    {
+        await _tagStore.RenameAsync(id, newName);
+        await LoadAsync();
+    }
+
+    public async Task UpdateTagColorAsync(TagId id, string color)
+    {
+        await _tagStore.UpdateColorAsync(id, color);
+        await LoadAsync();
+    }
 }

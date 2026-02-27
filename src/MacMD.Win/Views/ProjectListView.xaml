@@ -17,6 +17,8 @@
                              Click="OnFavoritesClick" Padding="4,6"/>
             <HyperlinkButton Content="Recent"
                              Click="OnRecentClick" Padding="4,6"/>
+            <HyperlinkButton Content="Archived"
+                             Click="OnArchivedClick" Padding="4,6"/>
 
             <!-- Projects Header + New button -->
             <Grid Margin="0,16,0,4">
@@ -35,6 +37,7 @@
 
             <ListView x:Name="ProjectsList"
                       SelectionChanged="OnProjectSelectionChanged"
+                      RightTapped="OnProjectRightTapped"
                       SelectionMode="Single">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -60,6 +63,7 @@
 
             <ListView x:Name="TagsList"
                       SelectionChanged="OnTagSelectionChanged"
+                      RightTapped="OnTagRightTapped"
                       SelectionMode="Single">
                 <ListView.ItemTemplate>
                     <DataTemplate>
