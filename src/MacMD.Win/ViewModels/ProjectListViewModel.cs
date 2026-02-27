@@ -44,4 +44,23 @@ public partial class ProjectListViewModel : ObservableObject
         await LoadAsync();
         SelectedProject = Projects.FirstOrDefault(p => p.Id.Value == id.Value);
     }
+
+    public async Task RenameProjectAsync(ProjectId id, string newName)
+    {
+        await _projectStore.RenameAsync(id, newName);
+        await LoadAsync();
+    }
+
+    public async Task DeleteProjectAsync(ProjectId id, bool deleteDocuments)
+    {
+        if (!deleteDocuments)
+        {
+            // Unlink documents from this project before deleting
+            await _projectStore.UnlinkDocumentsAsync(id);
+        }
+        await _projectStore.DeleteAsync(id);
+        if (SelectedProject?.Id.Value == id.Value)
+            SelectedProject = null;
+        await LoadAsync();
+    }
 }

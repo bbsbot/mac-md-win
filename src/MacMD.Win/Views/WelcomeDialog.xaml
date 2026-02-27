@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentDialog
+    x:Class="MacMD.Win.Views.WelcomeDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title=""
+    PrimaryButtonText="Get Started"
+    DefaultButton="Primary"
+    CornerRadius="12">
+
+    <StackPanel Spacing="16" Width="420" Padding="8,0">
+
+        <!-- Header -->
+        <StackPanel HorizontalAlignment="Center" Spacing="8">
+            <Border Width="80" Height="80" CornerRadius="16"
+                    HorizontalAlignment="Center">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#007AFF" Offset="0"/>
+                        <GradientStop Color="#AF52DE" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock Text="MD" FontSize="32" FontWeight="Bold"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Border>
+            <TextBlock Text="Mac MD" FontSize="28" FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="Modern Markdown Editing"
+                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Feature list -->
+        <StackPanel Spacing="12" Margin="0,8,0,0">
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <FontIcon Glyph="&#xE700;" FontSize="20" Foreground="#007AFF"
+                          VerticalAlignment="Top" Margin="0,2,0,0"/>
+                <StackPanel>
+                    <TextBlock Text="Three-Column Layout" FontWeight="SemiBold"/>
+                    <TextBlock Text="Projects, documents, and editor side by side"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                               FontSize="12" TextWrapping="Wrap"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <FontIcon Glyph="&#xE8A1;" FontSize="20" Foreground="#007AFF"
+                          VerticalAlignment="Top" Margin="0,2,0,0"/>
+                <StackPanel>
+                    <TextBlock Text="Live Preview" FontWeight="SemiBold"/>
+                    <TextBlock Text="See your Markdown rendered in real time as you type"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                               FontSize="12" TextWrapping="Wrap"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <FontIcon Glyph="&#xE8EC;" FontSize="20" Foreground="#007AFF"
+                          VerticalAlignment="Top" Margin="0,2,0,0"/>
+                <StackPanel>
+                    <TextBlock Text="Projects &amp; Tags" FontWeight="SemiBold"/>
+                    <TextBlock Text="Organize documents with projects and apply multiple tags"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                               FontSize="12" TextWrapping="Wrap"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <FontIcon Glyph="&#xE792;" FontSize="20" Foreground="#007AFF"
+                          VerticalAlignment="Top" Margin="0,2,0,0"/>
+                <StackPanel>
+                    <TextBlock Text="Export HTML &amp; PDF" FontWeight="SemiBold"/>
+                    <TextBlock Text="Share your documents in HTML or PDF format"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                               FontSize="12" TextWrapping="Wrap"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Don't show again -->
+        <CheckBox x:Name="DontShowAgainCheckBox"
+                  Content="Don't show this again"
+                  HorizontalAlignment="Center"
+                  Margin="0,4,0,0"/>
+    </StackPanel>
+</ContentDialog>

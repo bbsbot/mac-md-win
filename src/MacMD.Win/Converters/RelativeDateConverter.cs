@@ -1,0 +1,23 @@
+using Microsoft.UI.Xaml.Data;
+
+namespace MacMD.Win.Converters;
+
+public sealed class RelativeDateConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, string language)
+    {
+        if (value is not DateTimeOffset dto) return "";
+
+        var now = DateTimeOffset.Now;
+        var diff = now - dto;
+
+        if (diff.TotalMinutes < 1) return "Just now";
+        if (diff.TotalMinutes < 60) return $"{(int)diff.TotalMinutes}m ago";
+        if (diff.TotalHours < 24) return $"{(int)diff.TotalHours}h ago";
+        if (diff.TotalDays < 7) return $"{(int)diff.TotalDays}d ago";
+        return dto.ToString("MMM d, yyyy");
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+        => throw new NotImplementedException();
+}

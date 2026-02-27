@@ -7,37 +7,80 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Padding="12">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Padding="12" Spacing="4">
 
-        <TextBlock Grid.Row="0" x:Uid="ProjectsHeader"
-                   Style="{StaticResource SubtitleTextBlockStyle}"
-                   Margin="0,0,0,12"/>
+            <!-- Navigation Filters -->
+            <HyperlinkButton Content="All Documents"
+                             Click="OnAllDocumentsClick" Padding="4,6"/>
+            <HyperlinkButton Content="Favorites"
+                             Click="OnFavoritesClick" Padding="4,6"/>
+            <HyperlinkButton Content="Recent"
+                             Click="OnRecentClick" Padding="4,6"/>
+            <HyperlinkButton Content="Archived"
+                             Click="OnArchivedClick" Padding="4,6"/>
 
-        <Button Grid.Row="1" x:Uid="NewProjectButton"
-                Click="OnNewProjectClick"
-                Margin="0,0,0,8"
-                HorizontalAlignment="Stretch"/>
+            <!-- Projects Header + New button -->
+            <Grid Margin="0,16,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Projects"
+                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                           VerticalAlignment="Center"/>
+                <Button Grid.Column="1" Content="+"
+                        Click="OnNewProjectClick"
+                        FontSize="14" Padding="6,2"
+                        ToolTipService.ToolTip="New Project"/>
+            </Grid>
 
-        <HyperlinkButton Grid.Row="2" x:Uid="AllDocumentsLink"
-                         Margin="0,0,0,4"
-                         Click="OnAllDocumentsClick"
-                         Padding="0"/>
+            <ListView x:Name="ProjectsList"
+                      SelectionChanged="OnProjectSelectionChanged"
+                      RightTapped="OnProjectRightTapped"
+                      SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" Padding="0,2"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-        <ListView Grid.Row="3"
-                  x:Name="ProjectsList"
-                  SelectionChanged="OnProjectSelectionChanged"
-                  SelectionMode="Single">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+            <!-- Tags Header + New button -->
+            <Grid Margin="0,16,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Tags"
+                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                           VerticalAlignment="Center"/>
+                <Button Grid.Column="1" Content="+"
+                        Click="OnNewTagClick"
+                        FontSize="14" Padding="6,2"
+                        ToolTipService.ToolTip="New Tag"/>
+            </Grid>
+
+            <ListView x:Name="TagsList"
+                      SelectionChanged="OnTagSelectionChanged"
+                      RightTapped="OnTagRightTapped"
+                      SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Spacing="8" Padding="0,2">
+                            <Ellipse Width="10" Height="10"
+                                     VerticalAlignment="Center">
+                                <Ellipse.Fill>
+                                    <SolidColorBrush Color="{Binding Color}"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock Text="{Binding Name}"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using MacMD.Core.Models;
 using MacMD.Core.Services;
 using MacMD.Win.Services;
@@ -10,12 +11,13 @@ namespace MacMD.Win;
 
 public sealed partial class MainWindow : Window
 {
-    private bool _isDark = true;
     private readonly MarkdownService _markdownService;
     private readonly DocumentStore _documentStore;
+    private readonly ThemeService _themeService;
     private readonly EditorViewModel _editorViewModel;
     private readonly ProjectListViewModel _projectListVm;
     private readonly DocumentListViewModel _documentListVm;
+    private readonly TagListViewModel _tagListVm;
     private readonly ExportService _exportService;
     private readonly PdfExportService _pdfExportService;
     private readonly DispatcherTimer _previewDebounce;
@@ -33,7 +35,9 @@ public sealed partial class MainWindow : Window
         _documentStore = Resolve<DocumentStore>()!;
         _exportService = Resolve<ExportService>()!;
         _pdfExportService = Resolve<PdfExportService>()!;
+        _themeService = Resolve<ThemeService>()!;
         var projectStore = Resolve<ProjectStore>()!;
+        var tagStore = Resolve<TagStore>()!;
 
         // Editor
         _editorViewModel = new EditorViewModel();
@@ -45,9 +49,18 @@ public sealed partial class MainWindow : Window
         _projectListVm.ProjectSelected += OnProjectSelected;
 
         // Document list
-        _documentListVm = new DocumentListViewModel(_documentStore);
+        _documentListVm = new DocumentListViewModel(_documentStore, projectStore, tagStore);
         DocumentListView.ViewModel = _documentListVm;
         _documentListVm.DocumentSelected += OnDocumentSelected;
+
+        // Tag list
+        _tagListVm = new TagListViewModel(tagStore);
+        ProjectListView.TagViewModel = _tagListVm;
+        ProjectListView.AllDocumentsClicked += () => _ = _documentListVm.LoadForProjectAsync(null);
+        ProjectListView.FavoritesClicked += () => _ = _documentListVm.LoadFavoritesAsync();
+        ProjectListView.RecentClicked += () => _ = _documentListVm.LoadRecentAsync();
+        ProjectListView.TagClicked += tagId => _ = _documentListVm.LoadForTagAsync(tagId);
+        ProjectListView.ArchivedClicked += () => _ = _documentListVm.LoadArchivedAsync();
 
         // Preview debounce (300 ms)
         _previewDebounce = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(300) };
@@ -69,14 +82,28 @@ public sealed partial class MainWindow : Window
             }
         };
 
+        // Theme picker
+        ThemePicker.Initialize(_themeService);
+        ThemePicker.ThemeSelected += OnThemeSelected;
+
         // Initial load
         AppWindow.Resize(new Windows.Graphics.SizeInt32(1280, 800));
         _ = LoadInitialDataAsync();
+
+        // Apply theme after the visual tree is ready
+        this.Activated += OnWindowActivated;
+    }
+
+    private void OnWindowActivated(object sender, WindowActivatedEventArgs e)
+    {
+        this.Activated -= OnWindowActivated; // only once
+        ApplyTheme(_themeService.CurrentTheme);
     }
 
     private async Task LoadInitialDataAsync()
     {
         await _projectListVm.LoadCommand.ExecuteAsync(null);
+        await _tagListVm.LoadCommand.ExecuteAsync(null);
         await _documentListVm.LoadForProjectAsync(null); // all docs
     }
 
@@ -119,11 +146,41 @@ public sealed partial class MainWindow : Window
             await _documentStore.UpdateContentAsync(id, _editorViewModel.MarkdownText);
     }
 
-    private void OnToggleTheme(object sender, RoutedEventArgs e)
+    private void OnThemeSelected(MacMD.Core.Models.ColorTheme theme)
     {
-        _isDark = !_isDark;
+        ApplyTheme(theme);
+    }
+
+    private void ApplyTheme(MacMD.Core.Models.ColorTheme theme)
+    {
         if (this.Content is FrameworkElement root)
-            root.RequestedTheme = _isDark ? ElementTheme.Dark : ElementTheme.Light;
+            root.RequestedTheme = theme.IsDark ? ElementTheme.Dark : ElementTheme.Light;
+
+        // Apply theme background to the root grid
+        RootGrid.Background = new SolidColorBrush(ParseHexColor(theme.Background));
+
+        // Apply theme colors to the editor
+        EditorView.ApplyTheme(theme);
+
+        // Apply theme colors to the preview
+        PreviewView.ApplyTheme(theme);
+
+        // Re-render preview with new theme colors
+        if (_currentDocId is not null)
+            PreviewView.UpdateHtml(_markdownService.ToHtml(_editorViewModel.MarkdownText));
+    }
+
+    private static Windows.UI.Color ParseHexColor(string hex)
+    {
+        hex = hex.TrimStart('#');
+        if (hex.Length == 6)
+        {
+            return Windows.UI.Color.FromArgb(255,
+                byte.Parse(hex[0..2], System.Globalization.NumberStyles.HexNumber),
+                byte.Parse(hex[2..4], System.Globalization.NumberStyles.HexNumber),
+                byte.Parse(hex[4..6], System.Globalization.NumberStyles.HexNumber));
+        }
+        return Windows.UI.Color.FromArgb(255, 30, 30, 30);
     }
 
     private async void OnExportHtml(object sender, RoutedEventArgs e)
@@ -133,7 +190,6 @@ public sealed partial class MainWindow : Window
         picker.FileTypeChoices.Add("HTML Document", new[] { ".html" });
         picker.SuggestedFileName = _currentDocTitle ?? "document";
 
-        // Initialize picker with window handle (required for unpackaged WinUI 3)
         var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
         WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
 

@@ -36,6 +36,26 @@ public sealed class TagStore
         return id;
     }
 
+    public async Task RenameAsync(TagId id, string name)
+    {
+        using var conn = _db.CreateConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = "UPDATE tags SET name = @name WHERE id = @id";
+        cmd.Parameters.AddWithValue("@id", id.Value);
+        cmd.Parameters.AddWithValue("@name", name);
+        await cmd.ExecuteNonQueryAsync();
+    }
+
+    public async Task UpdateColorAsync(TagId id, string color)
+    {
+        using var conn = _db.CreateConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = "UPDATE tags SET color = @color WHERE id = @id";
+        cmd.Parameters.AddWithValue("@id", id.Value);
+        cmd.Parameters.AddWithValue("@color", color);
+        await cmd.ExecuteNonQueryAsync();
+    }
+
     public async Task DeleteAsync(TagId id)
     {
         using var conn = _db.CreateConnection();

@@ -149,6 +149,20 @@ public sealed class DatabaseService : IDisposable
             CREATE INDEX IF NOT EXISTS idx_documents_modified_at ON documents(modified_at DESC);
             """;
         cmd.ExecuteNonQuery();
+
+        RunMigrations(conn);
+    }
+
+    private static void RunMigrations(SqliteConnection conn)
+    {
+        // Add is_archived column (idempotent — ignores if already present)
+        try
+        {
+            using var cmd = conn.CreateCommand();
+            cmd.CommandText = "ALTER TABLE documents ADD COLUMN is_archived INTEGER NOT NULL DEFAULT 0";
+            cmd.ExecuteNonQuery();
+        }
+        catch (SqliteException) { /* column already exists */ }
     }
 
     public void Dispose()

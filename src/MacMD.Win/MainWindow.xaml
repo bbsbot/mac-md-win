@@ -5,7 +5,7 @@
     xmlns:local="using:MacMD.Win.Views"
     Title="Mac MD">
 
-    <Grid>
+    <Grid x:Name="RootGrid" RequestedTheme="Dark">
         <Grid.ColumnDefinitions>
             <!-- Left: Projects / Tags / Navigation -->
             <ColumnDefinition Width="220" MinWidth="150" />
@@ -57,8 +57,13 @@
                                         IsEnabled="False" />
                     </MenuBarItem>
                 </MenuBar>
-                <Button x:Name="ThemeToggleButton" Content="Toggle Theme"
-                        Click="OnToggleTheme" />
+                <Button x:Name="ThemeButton" Content="Themes">
+                    <Button.Flyout>
+                        <Flyout>
+                            <local:ThemePickerView x:Name="ThemePicker"/>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
             </StackPanel>
 
             <!-- Editor and Preview side-by-side -->

@@ -53,6 +53,15 @@ public sealed class ProjectStore
         await cmd.ExecuteNonQueryAsync();
     }
 
+    public async Task UnlinkDocumentsAsync(ProjectId id)
+    {
+        using var conn = _db.CreateConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = "UPDATE documents SET project_id = NULL WHERE project_id = @id";
+        cmd.Parameters.AddWithValue("@id", id.Value);
+        await cmd.ExecuteNonQueryAsync();
+    }
+
     public async Task DeleteAsync(ProjectId id)
     {
         using var conn = _db.CreateConnection();
