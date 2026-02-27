@@ -14,8 +14,11 @@ A native Windows Markdown editor built with **WinUI 3** and **.NET 8**, porting 
 - **Live Markdown preview** — type in the editor, see rendered HTML update in real-time (300ms debounce) via WebView2
 - **Local persistence** — projects, documents, and tags stored in SQLite at `%LOCALAPPDATA%\MacMD\macmd.db`
 - **Auto-save** — your work is saved 2 seconds after you stop typing
-- **Dark/light theme toggle** — one click to switch
-- **10 terminal-inspired color themes** — Pro, Homebrew, Ocean, Red Sands, and more (theme selector UI coming in M6)
+- **10 terminal-inspired themes** — Pro, Homebrew, Ocean, Red Sands, and more — colors apply to editor, preview, and app background
+- **Formatting toolbar** — Bold, italic, heading, link, code, bullet list, numbered list, blockquote, horizontal rule
+- **Full CRUD** — right-click projects to rename/delete, tags to rename/change color/delete, documents to rename/duplicate/archive
+- **Archived documents** — sidebar filter to view and unarchive
+- **Preview links open in browser** — external links in the preview open in your default browser
 - **Localization** — 23 locales supported via generated `.resw` resources
 - **Export** — File → Export as HTML or PDF (via WebView2 print-to-PDF)
 
@@ -26,7 +29,7 @@ A native Windows Markdown editor built with **WinUI 3** and **.NET 8**, porting 
 | UI Framework | WinUI 3 (Windows App SDK 1.6) |
 | Runtime | .NET 8 (C# 12) |
 | Markdown | [Markdig](https://github.com/xoofx/markdig) with advanced extensions |
-| Preview | WebView2 with dark-themed CSS |
+| Preview | WebView2 with theme-aware CSS |
 | Persistence | SQLite via `Microsoft.Data.Sqlite` |
 | MVVM | [CommunityToolkit.Mvvm](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/) |
 | Packaging | Self-contained (no runtime install needed) |
@@ -79,7 +82,8 @@ See **[PROGRESS.md](PROGRESS.md)** for a detailed milestone-by-milestone breakdo
 | M3 — Persistence | Done | SQLite CRUD, auto-save, navigation |
 | M4 — Localization | Done | 23-locale .resw generation |
 | M5 — Export | Done | HTML + PDF export |
-| M6 — Polish | Next | Settings, shortcuts, MSIX packaging |
+| M6 — Parity & Polish | Done | Themes, CRUD, toolbar, context menus, archived view |
+| M7 — Localization | Next | Full 38-language parity with Mac app |
 
 ## How This Project Is Built
 
