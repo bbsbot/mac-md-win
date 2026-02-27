@@ -33,7 +33,8 @@
         <ListView Grid.Row="3"
                   x:Name="DocumentsList"
                   SelectionChanged="OnDocumentSelectionChanged"
-                  SelectionMode="Single">
+                  SelectionMode="Single"
+                  RightTapped="OnDocumentRightTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Padding="0,6">

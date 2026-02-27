@@ -48,7 +48,7 @@ public sealed partial class MainWindow : Window
         _projectListVm.ProjectSelected += OnProjectSelected;
 
         // Document list
-        _documentListVm = new DocumentListViewModel(_documentStore);
+        _documentListVm = new DocumentListViewModel(_documentStore, projectStore, tagStore);
         DocumentListView.ViewModel = _documentListVm;
         _documentListVm.DocumentSelected += OnDocumentSelected;
 

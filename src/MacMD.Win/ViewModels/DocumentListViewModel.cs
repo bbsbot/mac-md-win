@@ -11,17 +11,23 @@ public enum DocumentFilter { All, Project, Tag, Favorites, Recent }
 public partial class DocumentListViewModel : ObservableObject
 {
     private readonly DocumentStore _documentStore;
+    private readonly ProjectStore _projectStore;
+    private readonly TagStore _tagStore;
     private ProjectId? _currentProjectId;
     private TagId? _currentTagId;
     private DocumentFilter _currentFilter = DocumentFilter.All;
     private string _searchQuery = "";
 
-    public DocumentListViewModel(DocumentStore documentStore)
+    public DocumentListViewModel(DocumentStore documentStore, ProjectStore projectStore, TagStore tagStore)
     {
         _documentStore = documentStore;
+        _projectStore = projectStore;
+        _tagStore = tagStore;
     }
 
     public ObservableCollection<DocumentSummary> Documents { get; } = new();
+    public ObservableCollection<Project> AvailableProjects { get; } = new();
+    public ObservableCollection<Tag> AvailableTags { get; } = new();
 
     [ObservableProperty]
     private DocumentSummary? _selectedDocument;
@@ -76,6 +82,48 @@ public partial class DocumentListViewModel : ObservableObject
     {
         await _documentStore.ToggleFavoriteAsync(id);
         await ReloadAsync();
+    }
+
+    public async Task DuplicateDocumentAsync(DocumentId id)
+    {
+        var newId = await _documentStore.DuplicateAsync(id);
+        await ReloadAsync();
+        SelectedDocument = Documents.FirstOrDefault(d => d.Id.Value == newId.Value);
+    }
+
+    public async Task ArchiveDocumentAsync(DocumentId id)
+    {
+        await _documentStore.ArchiveAsync(id);
+        SelectedDocument = null;
+        await ReloadAsync();
+    }
+
+    public async Task MoveToProjectAsync(DocumentId id, ProjectId? projectId)
+    {
+        await _documentStore.MoveToProjectAsync(id, projectId);
+        await ReloadAsync();
+    }
+
+    public async Task ToggleTagAsync(DocumentId docId, TagId tagId)
+    {
+        var currentTags = await _documentStore.GetDocumentTagIdsAsync(docId);
+        if (currentTags.Any(t => t.Value == tagId.Value))
+            await _tagStore.RemoveTagFromDocumentAsync(docId, tagId);
+        else
+            await _tagStore.AddTagToDocumentAsync(docId, tagId);
+    }
+
+    public async Task RefreshContextMenuDataAsync()
+    {
+        var projects = await _projectStore.GetAllAsync();
+        AvailableProjects.Clear();
+        foreach (var p in projects)
+            AvailableProjects.Add(p);
+
+        var tags = await _tagStore.GetAllAsync();
+        AvailableTags.Clear();
+        foreach (var t in tags)
+            AvailableTags.Add(t);
     }
 
     private async Task ReloadAsync()

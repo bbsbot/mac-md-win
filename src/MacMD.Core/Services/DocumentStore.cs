@@ -10,13 +10,17 @@ public sealed class DocumentStore
 
     public DocumentStore(DatabaseService db) => _db = db;
 
+    private const string SummaryColumns =
+        "id, title, word_count, modified_at, COALESCE(SUBSTR(content, 1, 120), ''), is_favorite";
+
     public async Task<IReadOnlyList<DocumentSummary>> GetAllAsync(int limit = 200)
     {
         using var conn = _db.CreateConnection();
         using var cmd = conn.CreateCommand();
-        cmd.CommandText = """
-            SELECT id, title, word_count, modified_at, COALESCE(SUBSTR(content, 1, 120), '')
+        cmd.CommandText = $"""
+            SELECT {SummaryColumns}
             FROM documents
+            WHERE is_archived = 0
             ORDER BY modified_at DESC
             LIMIT @limit
             """;
@@ -28,10 +32,10 @@ public sealed class DocumentStore
     {
         using var conn = _db.CreateConnection();
         using var cmd = conn.CreateCommand();
-        cmd.CommandText = """
-            SELECT id, title, word_count, modified_at, COALESCE(SUBSTR(content, 1, 120), '')
+        cmd.CommandText = $"""
+            SELECT {SummaryColumns}
             FROM documents
-            WHERE project_id = @projectId
+            WHERE project_id = @projectId AND is_archived = 0
             ORDER BY modified_at DESC
             LIMIT @limit
             """;
@@ -44,11 +48,11 @@ public sealed class DocumentStore
     {
         using var conn = _db.CreateConnection();
         using var cmd = conn.CreateCommand();
-        cmd.CommandText = """
-            SELECT d.id, d.title, d.word_count, d.modified_at, COALESCE(SUBSTR(d.content, 1, 120), '')
+        cmd.CommandText = $"""
+            SELECT d.id, d.title, d.word_count, d.modified_at, COALESCE(SUBSTR(d.content, 1, 120), ''), d.is_favorite
             FROM documents d
             INNER JOIN document_tags dt ON dt.document_id = d.id
-            WHERE dt.tag_id = @tagId
+            WHERE dt.tag_id = @tagId AND d.is_archived = 0
             ORDER BY d.modified_at DESC
             LIMIT @limit
             """;
@@ -61,10 +65,10 @@ public sealed class DocumentStore
     {
         using var conn = _db.CreateConnection();
         using var cmd = conn.CreateCommand();
-        cmd.CommandText = """
-            SELECT id, title, word_count, modified_at, COALESCE(SUBSTR(content, 1, 120), '')
+        cmd.CommandText = $"""
+            SELECT {SummaryColumns}
             FROM documents
-            WHERE is_favorite = 1
+            WHERE is_favorite = 1 AND is_archived = 0
             ORDER BY modified_at DESC
             LIMIT @limit
             """;
@@ -76,10 +80,10 @@ public sealed class DocumentStore
     {
         using var conn = _db.CreateConnection();
         using var cmd = conn.CreateCommand();
-        cmd.CommandText = """
-            SELECT id, title, word_count, modified_at, COALESCE(SUBSTR(content, 1, 120), '')
+        cmd.CommandText = $"""
+            SELECT {SummaryColumns}
             FROM documents
-            WHERE modified_at >= datetime('now', @days)
+            WHERE modified_at >= datetime('now', @days) AND is_archived = 0
             ORDER BY modified_at DESC
             LIMIT @limit
             """;
@@ -92,10 +96,10 @@ public sealed class DocumentStore
     {
         using var conn = _db.CreateConnection();
         using var cmd = conn.CreateCommand();
-        cmd.CommandText = """
-            SELECT id, title, word_count, modified_at, COALESCE(SUBSTR(content, 1, 120), '')
+        cmd.CommandText = $"""
+            SELECT {SummaryColumns}
             FROM documents
-            WHERE title LIKE @query OR content LIKE @query
+            WHERE (title LIKE @query OR content LIKE @query) AND is_archived = 0
             ORDER BY modified_at DESC
             LIMIT @limit
             """;
@@ -113,6 +117,74 @@ public sealed class DocumentStore
         await cmd.ExecuteNonQueryAsync();
     }
 
+    public async Task<DocumentId> DuplicateAsync(DocumentId id)
+    {
+        var doc = await GetByIdAsync(id);
+        if (doc is null) throw new InvalidOperationException($"Document {id.Value} not found");
+
+        var newId = new DocumentId(Guid.NewGuid().ToString("N"));
+        using var conn = _db.CreateConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = """
+            INSERT INTO documents (id, title, content, project_id, word_count, character_count, is_favorite, is_archived, created_at, modified_at)
+            VALUES (@id, @title, @content, @projectId, @wc, @cc, @fav, 0, datetime('now'), datetime('now'))
+            """;
+        cmd.Parameters.AddWithValue("@id", newId.Value);
+        cmd.Parameters.AddWithValue("@title", doc.Title + " Copy");
+        cmd.Parameters.AddWithValue("@content", doc.Content);
+        cmd.Parameters.AddWithValue("@projectId", doc.ProjectId?.Value ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@wc", doc.WordCount);
+        cmd.Parameters.AddWithValue("@cc", doc.CharacterCount);
+        cmd.Parameters.AddWithValue("@fav", doc.IsFavorite ? 1 : 0);
+        await cmd.ExecuteNonQueryAsync();
+
+        // Copy tags
+        foreach (var tagId in doc.TagIds)
+        {
+            using var tagCmd = conn.CreateCommand();
+            tagCmd.CommandText = "INSERT OR IGNORE INTO document_tags (document_id, tag_id) VALUES (@docId, @tagId)";
+            tagCmd.Parameters.AddWithValue("@docId", newId.Value);
+            tagCmd.Parameters.AddWithValue("@tagId", tagId.Value);
+            await tagCmd.ExecuteNonQueryAsync();
+        }
+
+        return newId;
+    }
+
+    public async Task MoveToProjectAsync(DocumentId id, ProjectId? projectId)
+    {
+        using var conn = _db.CreateConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = "UPDATE documents SET project_id = @projectId, modified_at = datetime('now') WHERE id = @id";
+        cmd.Parameters.AddWithValue("@id", id.Value);
+        cmd.Parameters.AddWithValue("@projectId", projectId?.Value ?? (object)DBNull.Value);
+        await cmd.ExecuteNonQueryAsync();
+    }
+
+    public async Task ArchiveAsync(DocumentId id)
+    {
+        using var conn = _db.CreateConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = "UPDATE documents SET is_archived = 1, modified_at = datetime('now') WHERE id = @id";
+        cmd.Parameters.AddWithValue("@id", id.Value);
+        await cmd.ExecuteNonQueryAsync();
+    }
+
+    public async Task UnarchiveAsync(DocumentId id)
+    {
+        using var conn = _db.CreateConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = "UPDATE documents SET is_archived = 0, modified_at = datetime('now') WHERE id = @id";
+        cmd.Parameters.AddWithValue("@id", id.Value);
+        await cmd.ExecuteNonQueryAsync();
+    }
+
+    public async Task<IReadOnlyList<TagId>> GetDocumentTagIdsAsync(DocumentId docId)
+    {
+        using var conn = _db.CreateConnection();
+        return await GetTagIdsAsync(conn, docId);
+    }
+
     private static async Task<IReadOnlyList<DocumentSummary>> ReadSummariesAsync(SqliteCommand cmd)
     {
         var list = new List<DocumentSummary>();
@@ -124,7 +196,8 @@ public sealed class DocumentStore
                 reader.GetString(1),
                 reader.GetInt32(2),
                 DateTimeOffset.Parse(reader.GetString(3)),
-                reader.GetString(4)));
+                reader.GetString(4),
+                reader.GetInt32(5) != 0));
         }
         return list;
     }
