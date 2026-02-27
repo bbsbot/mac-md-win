@@ -11,27 +11,24 @@ public sealed partial class EditorView : UserControl
     public EditorViewModel? ViewModel { get; set; }
 
     // Cache selection state so toolbar clicks (which steal focus) still work.
-    // We track both a "live" value (updated on every SelectionChanged) and
-    // a "saved" value (snapshot taken on LostFocus). The toolbar handlers
-    // read from _savedSelection* which won't be clobbered by the focus-loss
-    // SelectionChanged(0,0) that fires before the click handler.
-    private int _liveSelectionStart;
-    private int _liveSelectionLength;
+    // Only update the saved position while the TextBox has focus. When focus
+    // is lost, SelectionChanged fires with (0,0) — we must ignore that.
     private int _savedSelectionStart;
     private int _savedSelectionLength;
+    private bool _textBoxHasFocus;
 
     public EditorView()
     {
         this.InitializeComponent();
+        MarkdownTextBox.GotFocus += (_, _) => _textBoxHasFocus = true;
+        MarkdownTextBox.LostFocus += (_, _) => _textBoxHasFocus = false;
         MarkdownTextBox.SelectionChanged += (_, _) =>
         {
-            _liveSelectionStart = MarkdownTextBox.SelectionStart;
-            _liveSelectionLength = MarkdownTextBox.SelectionLength;
-        };
-        MarkdownTextBox.LostFocus += (_, _) =>
-        {
-            _savedSelectionStart = _liveSelectionStart;
-            _savedSelectionLength = _liveSelectionLength;
+            if (_textBoxHasFocus)
+            {
+                _savedSelectionStart = MarkdownTextBox.SelectionStart;
+                _savedSelectionLength = MarkdownTextBox.SelectionLength;
+            }
         };
     }
 
