@@ -130,6 +130,75 @@ Use a clean, readable structure:
 - Prefer straightforward services: `DatabaseService`, `MarkdownService`, `ThemeService`, `LocalizationService`.
 - Prefer async where needed, but do not overcomplicate concurrency.
 
+## Build System (Hard-Won — Read Before Touching run-latest.ps1)
+
+### The right tool: `dotnet msbuild`, not VS Build Tools `msbuild.exe`
+
+VS Build Tools MSBuild lacks the .NET SDK resolver plugin and will fail with
+`Microsoft.NET.Sdk not found`. Always invoke builds via:
+
+```
+dotnet msbuild MacMD.sln -restore -p:Platform=<PLATFORM> -verbosity:minimal ^
+  -p:EnableCoreMrtTooling=false ^
+  -p:EnablePriGenTooling=false ^
+  -p:AppxGeneratePriEnabled=true
+```
+
+The three extra flags are **required**. Without them the old MRT PRI path activates,
+which needs `Microsoft.Build.Packaging.Pri.Tasks.dll` — a VS-only file that is not
+on most developer machines and is not available via NuGet. The flags switch to the
+NuGet-based PRI path; `Microsoft.Windows.SDK.BuildTools` (already a project
+dependency) provides `makepri.exe`.
+
+### Architecture detection
+
+On ARM64 Windows, `C:\Program Files\dotnet` is ARM64-native. Building x64 there
+crashes immediately (`ERROR_BAD_EXE_FORMAT` loading ARM64 hostfxr.dll).
+
+Detect native arch in PowerShell:
+```powershell
+$nativeArch = $env:PROCESSOR_ARCHITEW6432   # set to ARM64 when PS is running x64-emulated
+if (-not $nativeArch) { $nativeArch = $env:PROCESSOR_ARCHITECTURE }
+$platform = if ($nativeArch -eq 'ARM64') { 'ARM64' } else { 'x64' }
+```
+
+### Prerequisites
+
+**To build:** `.NET 8 SDK` only — `winget install Microsoft.DotNet.SDK.8`
+NuGet restore handles everything else. VS Build Tools / MSVC are **not required**.
+
+**To run the built app:** `.NET 8 Desktop Runtime` + WebView2
+- `winget install Microsoft.DotNet.DesktopRuntime.8`
+- `winget install Microsoft.EdgeWebView2Runtime`
+
+### Output paths
+
+- x64: `src\MacMD.Win\bin\x64\Debug\net8.0-windows10.0.19041.0\MacMD.Win.exe`
+- ARM64: `src\MacMD.Win\bin\ARM64\Debug\net8.0-windows10.0.19041.0\MacMD.Win.exe`
+
+## Git Hygiene (Non-Negotiable)
+
+Agents must never leave the repo in an unclean state. Before finishing any
+task and before committing, run `git status` and account for every file:
+
+- **Untracked files**: must be one of:
+  - Committed (if they are real deliverables)
+  - Added to `.gitignore` (if they are build artifacts, OS noise, etc.)
+  - Deleted (if they are temporary debug/scratch files)
+  - **Explicitly flagged to the user** with an explanation if their status is unclear
+
+- **Temp/scratch files** created during debugging (e.g., `tmp_*.ps1`,
+  `debug_*.ps1`, one-off scripts) must be deleted before any commit. Never
+  leave these behind.
+
+- **Submodule dirt** (`reference/apple` or similar): if a submodule shows as
+  modified, explain WHY before touching anything. The submodule's changes
+  live in its own repo — the parent repo only tracks a commit pointer. Do not
+  blindly stage or commit a dirty submodule pointer.
+
+- **Rule of thumb**: `git status` should be clean (or contain only
+  intentionally staged changes) at the end of every work session.
+
 ## Constraints / Don'ts
 
 - Do not implement cloud sync until explicitly scheduled.
