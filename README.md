@@ -36,22 +36,57 @@ A native Windows Markdown editor built with **WinUI 3** and **.NET 8**, porting 
 
 ## Building From Source
 
-**Requirements:** Visual Studio 2022 Build Tools with UWP workload, .NET 8 SDK
+### Prerequisites
 
-```bash
+**To build** — only one thing needed:
+
+```
+winget install Microsoft.DotNet.SDK.8
+```
+
+**To run the built app** — three additional items:
+
+```
+winget install Microsoft.DotNet.DesktopRuntime.8
+winget install Microsoft.EdgeWebView2Runtime
+winget install Microsoft.WindowsAppRuntime.1.6
+```
+
+> **Visual Studio and VS Build Tools are NOT required.** Do not use
+> `MSBuild.exe` from VS Build Tools — it lacks the .NET SDK resolver and
+> will fail with "Microsoft.NET.Sdk not found". Use `dotnet msbuild` instead.
+
+### Build and run
+
+```powershell
 # Clone
 git clone https://github.com/bbsbot/mac-md-win.git
 cd mac-md-win
 
-# Build (must use MSBuild, not dotnet build, for WinUI 3)
-"C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\amd64\MSBuild.exe" MacMD.sln -restore -p:Platform=x64
+# One-shot: build + launch (auto-detects ARM64 vs x64)
+.\run-latest.ps1
 
-# Run tests (dotnet works for non-WinUI projects)
+# Or build manually (x64):
+dotnet msbuild MacMD.sln -restore -p:Platform=x64 -verbosity:minimal `
+    -p:EnableCoreMrtTooling=false `
+    -p:EnablePriGenTooling=false `
+    -p:AppxGeneratePriEnabled=true
+
+# On ARM64 Windows, replace -p:Platform=x64 with -p:Platform=ARM64
+
+# Run tests
 dotnet test src/MacMD.Tests
 
-# Launch
+# Launch (x64)
 src\MacMD.Win\bin\x64\Debug\net8.0-windows10.0.19041.0\MacMD.Win.exe
+
+# Launch (ARM64)
+src\MacMD.Win\bin\ARM64\Debug\net8.0-windows10.0.19041.0\MacMD.Win.exe
 ```
+
+> **ARM64 note:** On ARM64 Windows, `C:\Program Files\dotnet` is ARM64-native.
+> Building x64 there will crash with `ERROR_BAD_EXE_FORMAT`. Always match
+> `-p:Platform` to your machine's native architecture.
 
 ## Project Structure
 

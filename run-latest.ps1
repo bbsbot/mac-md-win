@@ -1,33 +1,23 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-    Check prerequisites, build, and launch Mac MD for Windows.
-    Does NOT install anything — lists what's missing and exits if incomplete.
+    Build and launch Mac MD for Windows.
+    Detects native arch (ARM64 or x64), builds with dotnet msbuild, and launches.
 
 .NOTES
-    Pass --skip-checks to bypass prerequisite detection (useful for debugging
-    build/run issues on machines where prereqs are known to be present).
+    Prerequisites must be installed before running — see README.md "Building From Source".
 
     Build uses `dotnet msbuild` (NOT VS Build Tools msbuild.exe).
-    VS Build Tools MSBuild lacks the .NET SDK resolver plugin and will fail
-    with "Microsoft.NET.Sdk not found". dotnet msbuild has it built in.
-
     Three MSBuild flags are required for WinUI 3 without VS installed:
       -p:EnableCoreMrtTooling=false    — disables old MRT PRI path (VS-only DLL)
       -p:EnablePriGenTooling=false     — disables old PRI gen path (VS-only DLL)
       -p:AppxGeneratePriEnabled=true   — activates NuGet-based PRI generation
 
-    On ARM64 Windows, C:\Program Files\dotnet is ARM64-native. Building x64
-    there causes ERROR_BAD_EXE_FORMAT when the app tries to load ARM64
-    hostfxr.dll. This script detects native arch and builds accordingly.
+    On ARM64 Windows, C:\Program Files\dotnet is ARM64-native. Always build
+    ARM64 on ARM64 machines, x64 on x64 machines.
 #>
 
 $ErrorActionPreference = 'Stop'
-
-# ---------------------------------------------------------------------------
-# Args
-# ---------------------------------------------------------------------------
-$skipChecks = $args -contains '--skip-checks'
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -48,71 +38,14 @@ if (-not $nativeArch) { $nativeArch = $env:PROCESSOR_ARCHITECTURE }
 $platform = if ($nativeArch -eq 'ARM64') { 'ARM64' } else { 'x64' }
 
 # ---------------------------------------------------------------------------
-# Detection
-# ---------------------------------------------------------------------------
-function Test-DotNet8Sdk {
-    foreach ($cmd in @('dotnet', 'C:\Program Files\dotnet\dotnet.exe')) {
-        try { if ((& $cmd --list-sdks 2>$null) -match '^8\.') { return $true } } catch {}
-    }
-    return $false
-}
-
-function Test-DotNet8Runtime {
-    foreach ($cmd in @('dotnet', 'C:\Program Files\dotnet\dotnet.exe')) {
-        try { if ((& $cmd --list-runtimes 2>$null) -match 'Microsoft\.WindowsDesktop\.App 8\.') { return $true } } catch {}
-    }
-    return $false
-}
-
-function Test-WebView2 {
-    # Check both 64-bit and 32-bit registry locations
-    return (
-        (Test-Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}') -or
-        (Test-Path 'HKLM:\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}') -or
-        (Test-Path 'HKCU:\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}')
-    )
-}
-
-# ---------------------------------------------------------------------------
 # Header
 # ---------------------------------------------------------------------------
 Write-Host "`nMac MD for Windows — Bootstrap" -ForegroundColor White
 Write-Host "================================`n"
 Write-Host "  Native arch : $nativeArch  →  building $platform"
-
-# ---------------------------------------------------------------------------
-# Prerequisite check
-# ---------------------------------------------------------------------------
-if ($skipChecks) {
-    Write-Host "  (--skip-checks: skipping prerequisite detection)`n" -ForegroundColor Yellow
-} else {
-    $hasSdk      = Test-DotNet8Sdk
-    $hasRuntime  = Test-DotNet8Runtime
-    $hasWebView2 = Test-WebView2
-
-    # To BUILD you only need the .NET 8 SDK.
-    # To RUN the built app you also need the Desktop Runtime + WebView2.
-    # VS Build Tools / MSVC are NOT required.
-    $canBuild = $hasSdk
-    $canRun   = $hasRuntime -and $hasWebView2
-
-    if (-not $canBuild -or -not $canRun) {
-        Write-Host "Prerequisites" -ForegroundColor Yellow
-        Write-Host "-------------"
-        $ok  = "  [OK]     "
-        $mis = "  [MISSING]"
-
-        Write-Host ($(if ($hasSdk)     { $ok } else { $mis }) + ".NET 8 SDK              winget install Microsoft.DotNet.SDK.8")
-        Write-Host ($(if ($hasRuntime) { $ok } else { $mis }) + ".NET 8 Desktop Runtime  winget install Microsoft.DotNet.DesktopRuntime.8")
-        Write-Host ($(if ($hasWebView2){ $ok } else { $mis }) + "WebView2 Runtime        winget install Microsoft.EdgeWebView2Runtime")
-        Write-Host ""
-        Write-Host "Install missing items, then re-run this script." -ForegroundColor Yellow
-        Write-Host "  Note: VS Build Tools and MSVC are NOT required."
-        exit 1
-    }
-
-    Write-Ok "All prerequisites present`n"
-}
+Write-Host ""
+Write-Host "  Prerequisites: see README.md — 'Building From Source'" -ForegroundColor Yellow
+Write-Host ""
 
 # ---------------------------------------------------------------------------
 # Locate dotnet
