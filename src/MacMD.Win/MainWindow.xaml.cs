@@ -27,6 +27,7 @@ public sealed partial class MainWindow : Window
     private readonly DispatcherTimer _saveDebounce;
     private DocumentId? _currentDocId;
     private string? _currentDocTitle;
+    private bool _selectMode;
 
     // Settings window — singleton, open non-modal
     private SettingsWindow? _settingsWindow;
@@ -113,6 +114,9 @@ public sealed partial class MainWindow : Window
         var savedSort = _settingsService.DocumentSort;
         _documentListVm.CurrentSortBy = SortKeyToEnum(savedSort);
         UpdateSortCheckmarks(savedSort);
+
+        // Restore preview layout (manipulate grid before content renders)
+        SetPreviewLayout(_settingsService.PreviewLayout, persist: false);
 
         await _projectListVm.LoadCommand.ExecuteAsync(null);
         await _tagListVm.LoadCommand.ExecuteAsync(null);
@@ -267,6 +271,128 @@ public sealed partial class MainWindow : Window
             _editorViewModel.MarkdownText,
             file.Path,
             PreviewView.WebView);
+    }
+
+    // ── Preview Layout ────────────────────────────────────────────────────
+
+    private void OnLayoutSelected(object sender, RoutedEventArgs e)
+    {
+        if (sender is not ToggleMenuFlyoutItem item) return;
+        var layout = item.Tag as string ?? "right";
+        SetPreviewLayout(layout, persist: true);
+    }
+
+    private void SetPreviewLayout(string layout, bool persist)
+    {
+        var grid = EditorPreviewGrid;
+        var splitter = EditorPreviewSplitter;
+
+        grid.ColumnDefinitions.Clear();
+        grid.RowDefinitions.Clear();
+
+        // Reset all positions to (row=0, col=0) first
+        Grid.SetRow(EditorView, 0);    Grid.SetColumn(EditorView, 0);
+        Grid.SetRow(splitter, 0);      Grid.SetColumn(splitter, 0);
+        Grid.SetRow(PreviewView, 0);   Grid.SetColumn(PreviewView, 0);
+
+        switch (layout)
+        {
+            case "left":
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                Grid.SetColumn(PreviewView, 0);
+                Grid.SetColumn(splitter, 1);
+                Grid.SetColumn(EditorView, 2);
+                splitter.Width = 1; splitter.Height = double.NaN;
+                break;
+            case "below":
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                Grid.SetRow(EditorView, 0);
+                Grid.SetRow(splitter, 1);
+                Grid.SetRow(PreviewView, 2);
+                splitter.Width = double.NaN; splitter.Height = 1;
+                break;
+            default: // "right"
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                Grid.SetColumn(EditorView, 0);
+                Grid.SetColumn(splitter, 1);
+                Grid.SetColumn(PreviewView, 2);
+                splitter.Width = 1; splitter.Height = double.NaN;
+                break;
+        }
+
+        if (persist)
+            _settingsService.PreviewLayout = layout;
+
+        UpdateLayoutCheckmarks(layout);
+    }
+
+    private void UpdateLayoutCheckmarks(string layout)
+    {
+        LayoutRight.IsChecked = layout == "right";
+        LayoutLeft.IsChecked  = layout == "left";
+        LayoutBelow.IsChecked = layout == "below";
+    }
+
+    // ── Multi-Select ──────────────────────────────────────────────────────
+
+    private void OnSelectModeToggle(object sender, RoutedEventArgs e)
+    {
+        _selectMode = !_selectMode;
+        DocumentListView.SetSelectMode(_selectMode);
+        SelectToggleButton.Content = _selectMode ? "Done" : "Select";
+        BulkActionButton.Visibility = _selectMode ? Visibility.Visible : Visibility.Collapsed;
+        SelectToggleButton.Style = _selectMode
+            ? (Style)Application.Current.Resources["AccentButtonStyle"]
+            : null;
+    }
+
+    private async void OnBulkActionClick(object sender, RoutedEventArgs e)
+    {
+        await _documentListVm.RefreshContextMenuDataAsync();
+        var count = _documentListVm.SelectedDocumentIds.Count;
+        var flyout = new MenuFlyout();
+
+        var deleteItem = new MenuFlyoutItem
+        {
+            Text = $"Delete {count} Document{(count != 1 ? "s" : "")}"
+        };
+        deleteItem.Click += async (_, _) =>
+        {
+            await _documentListVm.DeleteSelectedAsync();
+            OnSelectModeToggle(null!, null!);
+        };
+        flyout.Items.Add(deleteItem);
+
+        var moveSub = new MenuFlyoutSubItem { Text = "Move to Project" };
+        var noneItem = new MenuFlyoutItem { Text = "None" };
+        noneItem.Click += async (_, _) => await _documentListVm.MoveSelectedAsync(null);
+        moveSub.Items.Add(noneItem);
+        foreach (var project in _documentListVm.AvailableProjects)
+        {
+            var pid = project.Id;
+            var pItem = new MenuFlyoutItem { Text = project.Name };
+            pItem.Click += async (_, _) => await _documentListVm.MoveSelectedAsync(pid);
+            moveSub.Items.Add(pItem);
+        }
+        flyout.Items.Add(moveSub);
+
+        var tagSub = new MenuFlyoutSubItem { Text = "Apply Tag" };
+        foreach (var tag in _documentListVm.AvailableTags)
+        {
+            var tid = tag.Id;
+            var tItem = new MenuFlyoutItem { Text = tag.Name };
+            tItem.Click += async (_, _) => await _documentListVm.ApplyTagAsync(tid);
+            tagSub.Items.Add(tItem);
+        }
+        flyout.Items.Add(tagSub);
+
+        flyout.ShowAt(BulkActionButton);
     }
 
     // ── Sort ──────────────────────────────────────────────────────────────

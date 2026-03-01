@@ -62,6 +62,30 @@
                               ToolTipService.ToolTip="Settings"
                               Click="OnSettingsClick"
                               Width="40" Height="40"/>
+                <AppBarButton x:Name="LayoutButton"
+                              ToolTipService.ToolTip="Preview Layout"
+                              Width="40" Height="40">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE90C;" />
+                    </AppBarButton.Icon>
+                    <AppBarButton.Flyout>
+                        <MenuFlyout>
+                            <ToggleMenuFlyoutItem x:Name="LayoutRight"
+                                                  Text="Preview on Right"
+                                                  IsChecked="True"
+                                                  Tag="right"
+                                                  Click="OnLayoutSelected" />
+                            <ToggleMenuFlyoutItem x:Name="LayoutLeft"
+                                                  Text="Preview on Left"
+                                                  Tag="left"
+                                                  Click="OnLayoutSelected" />
+                            <ToggleMenuFlyoutItem x:Name="LayoutBelow"
+                                                  Text="Preview Below"
+                                                  Tag="below"
+                                                  Click="OnLayoutSelected" />
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
                 <AppBarButton x:Name="SortButton"
                               ToolTipService.ToolTip="Sort Documents"
                               Width="40" Height="40">
@@ -90,10 +114,23 @@
                         </MenuFlyout>
                     </AppBarButton.Flyout>
                 </AppBarButton>
+                <Button x:Name="SelectToggleButton"
+                        Content="Select"
+                        Click="OnSelectModeToggle"
+                        Padding="8,4" VerticalAlignment="Center"/>
+                <AppBarButton x:Name="BulkActionButton"
+                              ToolTipService.ToolTip="More actions"
+                              Visibility="Collapsed"
+                              Click="OnBulkActionClick"
+                              Width="40" Height="40">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE712;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </StackPanel>
 
-            <!-- Editor and Preview side-by-side -->
-            <Grid Grid.Row="1">
+            <!-- Editor and Preview -->
+            <Grid Grid.Row="1" x:Name="EditorPreviewGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="1" />
@@ -104,7 +141,8 @@
                 <local:EditorView Grid.Column="0" x:Name="EditorView" />
 
                 <!-- Splitter -->
-                <Border Grid.Column="1" Width="1"
+                <Border x:Name="EditorPreviewSplitter"
+                        Grid.Column="1" Width="1"
                         Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
 
                 <!-- Preview -->

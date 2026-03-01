@@ -30,34 +30,69 @@
             <Button Content="Delete" Click="OnDeleteDocumentClick"/>
         </StackPanel>
 
-        <ListView Grid.Row="3"
+        <GridView Grid.Row="3"
                   x:Name="DocumentsList"
                   SelectionChanged="OnDocumentSelectionChanged"
                   SelectionMode="Single"
-                  RightTapped="OnDocumentRightTapped">
-            <ListView.ItemTemplate>
+                  RightTapped="OnDocumentRightTapped"
+                  HorizontalAlignment="Stretch">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal"
+                                   ItemWidth="260" ItemHeight="140"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="Margin" Value="4"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                </Style>
+            </GridView.ItemContainerStyle>
+            <GridView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Padding="0,6">
-                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold"
-                                   TextTrimming="CharacterEllipsis"/>
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <TextBlock FontSize="11"
-                                       Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                                       Text="{Binding ModifiedAt, Converter={StaticResource DateConverter}}"/>
-                            <TextBlock FontSize="11"
-                                       Foreground="{ThemeResource TextFillColorTertiaryBrush}">
-                                <Run Text="{Binding WordCount}"/>
-                                <Run Text=" words"/>
-                            </TextBlock>
-                        </StackPanel>
-                        <TextBlock Text="{Binding Preview}" FontSize="12"
-                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                   TextTrimming="CharacterEllipsis"
-                                   MaxLines="2" TextWrapping="Wrap"
-                                   Margin="0,2,0,0"/>
-                    </StackPanel>
+                    <Border CornerRadius="8" BorderThickness="1" Padding="10,10,10,8"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <!-- Title -->
+                            <TextBlock Grid.Row="0"
+                                       Text="{Binding Title}"
+                                       FontWeight="SemiBold"
+                                       TextTrimming="CharacterEllipsis"/>
+                            <!-- Snippet -->
+                            <TextBlock Grid.Row="1"
+                                       Text="{Binding Preview}"
+                                       FontSize="12"
+                                       Opacity="0.6"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       TextTrimming="CharacterEllipsis"
+                                       MaxLines="2" TextWrapping="Wrap"
+                                       Margin="0,4,0,0"/>
+                            <!-- Bottom row: word count + star -->
+                            <Grid Grid.Row="2" Margin="0,6,0,0">
+                                <TextBlock HorizontalAlignment="Left"
+                                           FontSize="11"
+                                           Foreground="{ThemeResource TextFillColorTertiaryBrush}">
+                                    <Run Text="{Binding WordCount}"/>
+                                    <Run Text=" words"/>
+                                </TextBlock>
+                                <FontIcon HorizontalAlignment="Right"
+                                          FontFamily="Segoe MDL2 Assets"
+                                          Glyph="&#xE735;"
+                                          FontSize="12"
+                                          Foreground="#FFD60A"
+                                          Visibility="{Binding IsFavorite, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </GridView.ItemTemplate>
+        </GridView>
     </Grid>
 </UserControl>

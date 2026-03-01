@@ -108,6 +108,12 @@ public sealed class SettingsService
         set => SetString("documentSort", value);
     }
 
+    public string PreviewLayout
+    {
+        get => GetString("previewLayout", "right");
+        set => SetString("previewLayout", value);
+    }
+
     // ── Persistence ───────────────────────────────────────────────────────
 
     private void Load()

@@ -32,10 +32,34 @@ public sealed partial class DocumentListView : UserControl
         _searchDebounce.Tick += OnSearchDebounceTick;
     }
 
+    public void SetSelectMode(bool enabled)
+    {
+        DocumentsList.SelectionMode = enabled
+            ? ListViewSelectionMode.Multiple
+            : ListViewSelectionMode.Single;
+
+        if (!enabled)
+        {
+            DocumentsList.SelectedItems.Clear();
+            ViewModel?.SelectedDocumentIds.Clear();
+        }
+    }
+
     private void OnDocumentSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (ViewModel is not null && DocumentsList.SelectedItem is DocumentSummary d)
-            ViewModel.SelectedDocument = d;
+        if (ViewModel is null) return;
+
+        if (DocumentsList.SelectionMode == ListViewSelectionMode.Multiple)
+        {
+            ViewModel.SelectedDocumentIds.Clear();
+            foreach (var item in DocumentsList.SelectedItems)
+                if (item is DocumentSummary d)
+                    ViewModel.SelectedDocumentIds.Add(d.Id);
+        }
+        else if (DocumentsList.SelectedItem is DocumentSummary doc)
+        {
+            ViewModel.SelectedDocument = doc;
+        }
     }
 
     private void OnNewDocumentClick(object sender, RoutedEventArgs e)

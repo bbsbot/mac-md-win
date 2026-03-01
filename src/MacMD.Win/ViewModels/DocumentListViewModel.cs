@@ -32,6 +32,7 @@ public partial class DocumentListViewModel : ObservableObject
     public ObservableCollection<DocumentSummary> Documents { get; } = new();
     public ObservableCollection<Project> AvailableProjects { get; } = new();
     public ObservableCollection<Tag> AvailableTags { get; } = new();
+    public ObservableCollection<DocumentId> SelectedDocumentIds { get; } = new();
 
     [ObservableProperty]
     private DocumentSummary? _selectedDocument;
@@ -135,6 +136,30 @@ public partial class DocumentListViewModel : ObservableObject
             await _tagStore.RemoveTagFromDocumentAsync(docId, tagId);
         else
             await _tagStore.AddTagToDocumentAsync(docId, tagId);
+    }
+
+    public async Task DeleteSelectedAsync()
+    {
+        var ids = SelectedDocumentIds.ToList();
+        foreach (var id in ids)
+            await _documentStore.DeleteAsync(id);
+        SelectedDocumentIds.Clear();
+        await ReloadAsync();
+    }
+
+    public async Task MoveSelectedAsync(ProjectId? projectId)
+    {
+        var ids = SelectedDocumentIds.ToList();
+        foreach (var id in ids)
+            await _documentStore.MoveToProjectAsync(id, projectId);
+        await ReloadAsync();
+    }
+
+    public async Task ApplyTagAsync(TagId tagId)
+    {
+        var ids = SelectedDocumentIds.ToList();
+        foreach (var id in ids)
+            await _tagStore.AddTagToDocumentAsync(id, tagId);
     }
 
     public async Task RefreshContextMenuDataAsync()
