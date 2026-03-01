@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="MacMD.Win.Views.SettingsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MacMD.Win.Views"
+    Title="Settings">
+
+    <Grid x:Name="RootGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="1"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ── Left sidebar ─────────────────────────────────────────── -->
+        <ListBox x:Name="SidebarList"
+                 Grid.Column="0"
+                 SelectionChanged="OnSidebarSelectionChanged"
+                 Padding="4,8"
+                 BorderThickness="0">
+            <ListBoxItem Content="Editor"  Tag="Editor"  Padding="12,8"/>
+            <ListBoxItem Content="Preview" Tag="Preview" Padding="12,8"/>
+            <ListBoxItem Content="Themes"  Tag="Themes"  Padding="12,8"/>
+            <ListBoxItem Content="Sync"    Tag="Sync"    Padding="12,8"/>
+            <ListBoxItem Content="About"   Tag="About"   Padding="12,8"/>
+        </ListBox>
+
+        <!-- ── Divider ──────────────────────────────────────────────── -->
+        <Border Grid.Column="1"
+                Background="{ThemeResource DividerStrokeColorDefaultBrush}"/>
+
+        <!-- ── Content area ─────────────────────────────────────────── -->
+        <Grid Grid.Column="2">
+
+            <!-- Editor panel (visible by default) -->
+            <ScrollViewer x:Name="EditorPanel"
+                          VerticalScrollBarVisibility="Auto">
+                <StackPanel Spacing="20" Padding="24,20">
+
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Font Family"
+                                   Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                        <ComboBox x:Name="FontFamilyCombo"
+                                  Width="220" HorizontalAlignment="Left"
+                                  SelectionChanged="OnFontFamilyChanged">
+                            <ComboBoxItem Tag="monospaced" Content="Monospaced"/>
+                            <ComboBoxItem Tag="sans-serif" Content="Sans-serif"/>
+                            <ComboBoxItem Tag="serif"      Content="Serif"/>
+                            <ComboBoxItem Tag="rounded"    Content="Rounded"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Font Size"
+                                   Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <RepeatButton x:Name="EditorFontDecBtn"
+                                          Content="−" Width="32" Height="32"
+                                          Click="OnEditorFontDec"/>
+                            <TextBlock x:Name="EditorFontSizeLabel"
+                                       VerticalAlignment="Center"
+                                       MinWidth="52" TextAlignment="Center"/>
+                            <RepeatButton x:Name="EditorFontIncBtn"
+                                          Content="+" Width="32" Height="32"
+                                          Click="OnEditorFontInc"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Sample"
+                                   Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                        <Border x:Name="SampleBorder"
+                                CornerRadius="4" Padding="16,12"
+                                BorderThickness="1"
+                                BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+                            <TextBlock x:Name="SampleText"
+                                       Text="The quick brown fox jumps over the lazy dog."
+                                       TextWrapping="Wrap"/>
+                        </Border>
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Preview panel -->
+            <StackPanel x:Name="PreviewPanel"
+                        Visibility="Collapsed"
+                        Spacing="20" Padding="24,20">
+                <StackPanel Spacing="6">
+                    <TextBlock Text="Font Size"
+                               Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <RepeatButton x:Name="PreviewFontDecBtn"
+                                      Content="−" Width="32" Height="32"
+                                      Click="OnPreviewFontDec"/>
+                        <TextBlock x:Name="PreviewFontSizeLabel"
+                                   VerticalAlignment="Center"
+                                   MinWidth="52" TextAlignment="Center"/>
+                        <RepeatButton x:Name="PreviewFontIncBtn"
+                                      Content="+" Width="32" Height="32"
+                                      Click="OnPreviewFontInc"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Themes panel -->
+            <ScrollViewer x:Name="ThemesPanel"
+                          Visibility="Collapsed"
+                          VerticalScrollBarVisibility="Auto">
+                <local:ThemePickerView x:Name="ThemePicker" Padding="8,8"/>
+            </ScrollViewer>
+
+            <!-- Sync panel -->
+            <StackPanel x:Name="SyncPanel"
+                        Visibility="Collapsed"
+                        Spacing="12" Padding="24,20">
+                <ToggleSwitch Header="Cloud Sync" IsEnabled="False"/>
+                <TextBlock Text="Cloud sync is coming to Mac MD for Windows soon."
+                           TextWrapping="Wrap" Opacity="0.6"/>
+            </StackPanel>
+
+            <!-- About panel -->
+            <StackPanel x:Name="AboutPanel"
+                        Visibility="Collapsed"
+                        Spacing="16" Padding="24,20">
+
+                <Grid ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Version"
+                               Style="{StaticResource BodyStrongTextBlockStyle}"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" x:Name="VersionValue"
+                               VerticalAlignment="Center"/>
+                </Grid>
+
+                <Grid ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Build"
+                               Style="{StaticResource BodyStrongTextBlockStyle}"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" x:Name="BuildValue"
+                               VerticalAlignment="Center"/>
+                </Grid>
+
+                <Grid ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Developer"
+                               Style="{StaticResource BodyStrongTextBlockStyle}"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" x:Name="DeveloperValue"
+                               VerticalAlignment="Center"/>
+                </Grid>
+
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Window>

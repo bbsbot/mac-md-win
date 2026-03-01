@@ -57,13 +57,11 @@
                                         IsEnabled="False" />
                     </MenuBarItem>
                 </MenuBar>
-                <Button x:Name="ThemeButton" Content="Themes">
-                    <Button.Flyout>
-                        <Flyout>
-                            <local:ThemePickerView x:Name="ThemePicker"/>
-                        </Flyout>
-                    </Button.Flyout>
-                </Button>
+                <AppBarButton x:Name="SettingsButton"
+                              Icon="Setting"
+                              ToolTipService.ToolTip="Settings"
+                              Click="OnSettingsClick"
+                              Width="40" Height="40"/>
             </StackPanel>
 
             <!-- Editor and Preview side-by-side -->

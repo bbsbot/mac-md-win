@@ -110,6 +110,12 @@ public sealed partial class EditorView : UserControl
         MarkdownTextBox.Foreground = new SolidColorBrush(fg);
     }
 
+    public void ApplyFontSettings(string familyKey, double size)
+    {
+        MarkdownTextBox.FontFamily = SettingsWindow.FontFamilyKeyToObject(familyKey);
+        MarkdownTextBox.FontSize   = size;
+    }
+
     private static Windows.UI.Color ParseHexColor(string hex)
     {
         hex = hex.TrimStart('#');

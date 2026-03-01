@@ -58,8 +58,6 @@
             Text="{x:Bind ViewModel.MarkdownText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             TextWrapping="Wrap"
             AcceptsReturn="True"
-            FontFamily="Cascadia Code,Consolas,Courier New"
-            FontSize="14"
             PlaceholderText="Start writing Markdown here..."
             BorderThickness="0"
             VerticalAlignment="Stretch"

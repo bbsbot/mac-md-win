@@ -490,4 +490,50 @@
   <data name="your_documents_automatically_sync_across_mac_ipad_and_iphone" xml:space="preserve">
     <value>Ihre Dokumente werden automatisch auf Mac, iPad und iPhone synchronisiert</value>
   </data>
+
+  <data name="settings_tab_editor" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="settings_tab_preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="settings_tab_themes" xml:space="preserve">
+    <value>Themes</value>
+  </data>
+  <data name="settings_tab_sync" xml:space="preserve">
+    <value>Sync</value>
+  </data>
+  <data name="settings_tab_about" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="settings_version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="settings_build" xml:space="preserve">
+    <value>Build</value>
+  </data>
+  <data name="settings_developer" xml:space="preserve">
+    <value>Developer</value>
+  </data>
+  <data name="settings_cloud_sync" xml:space="preserve">
+    <value>Cloud Sync</value>
+  </data>
+  <data name="settings_sync_placeholder" xml:space="preserve">
+    <value>Cloud sync is coming to Mac MD for Windows soon.</value>
+  </data>
+  <data name="settings_font_monospaced" xml:space="preserve">
+    <value>Monospaced</value>
+  </data>
+  <data name="settings_font_sans_serif" xml:space="preserve">
+    <value>Sans-serif</value>
+  </data>
+  <data name="settings_font_serif" xml:space="preserve">
+    <value>Serif</value>
+  </data>
+  <data name="settings_font_rounded" xml:space="preserve">
+    <value>Rounded</value>
+  </data>
+  <data name="settings_editor_sample" xml:space="preserve">
+    <value>The quick brown fox jumps over the lazy dog.</value>
+  </data>
 </root>

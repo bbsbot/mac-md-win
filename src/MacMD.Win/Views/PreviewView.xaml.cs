@@ -13,6 +13,7 @@ public sealed partial class PreviewView : UserControl
     private string _borderColor = "#444";
     private string _linkColor = "#58a6ff";
     private string _quoteColor = "#aaa";
+    private double _previewFontSize = 16.0;
 
     public Microsoft.UI.Xaml.Controls.WebView2 WebView => PreviewWebView;
 
@@ -31,6 +32,11 @@ public sealed partial class PreviewView : UserControl
         // External link — cancel navigation and open in default browser
         args.Cancel = true;
         Process.Start(new ProcessStartInfo(args.Uri) { UseShellExecute = true });
+    }
+
+    public void ApplyFontSize(double size)
+    {
+        _previewFontSize = size;
     }
 
     public void ApplyTheme(ColorTheme theme)
@@ -58,6 +64,7 @@ public sealed partial class PreviewView : UserControl
             <meta charset="utf-8"/>
             <style>
               body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                     font-size: {{_previewFontSize.ToString(System.Globalization.CultureInfo.InvariantCulture)}}px;
                      padding: 16px; line-height: 1.6; color: {{_fgColor}}; background: {{_bgColor}}; }
               h1,h2,h3,h4 { color: {{_headingColor}}; }
               code { background: {{_codeBgColor}}; padding: 2px 6px; border-radius: 3px; }
