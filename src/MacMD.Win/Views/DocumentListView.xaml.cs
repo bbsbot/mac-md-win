@@ -12,6 +12,12 @@ namespace MacMD.Win.Views;
 public sealed partial class DocumentListView : UserControl
 {
     private readonly DispatcherTimer _searchDebounce;
+    private bool _switchingMode;
+
+    private static readonly SolidColorBrush SelectionBorderBrush =
+        new(Windows.UI.Color.FromArgb(255, 0, 120, 212));
+    private static readonly SolidColorBrush SelectionTintBrush =
+        new(Windows.UI.Color.FromArgb(40, 0, 120, 212));
 
     public DocumentListViewModel? ViewModel
     {
@@ -34,20 +40,33 @@ public sealed partial class DocumentListView : UserControl
 
     public void SetSelectMode(bool enabled)
     {
-        DocumentsList.SelectionMode = enabled
-            ? ListViewSelectionMode.Multiple
-            : ListViewSelectionMode.Single;
-
-        if (!enabled)
+        _switchingMode = true;
+        try
         {
-            DocumentsList.SelectedItems.Clear();
-            ViewModel?.SelectedDocumentIds.Clear();
+            DocumentsList.SelectionMode = enabled
+                ? ListViewSelectionMode.Multiple
+                : ListViewSelectionMode.Single;
+
+            if (!enabled)
+            {
+                // Reset card visuals before deselecting
+                foreach (var item in DocumentsList.Items)
+                    ApplySelectionBorder(item, false);
+
+                // SelectedItems is read-only in WinUI 3 — use SelectedIndex instead
+                DocumentsList.SelectedIndex = -1;
+                ViewModel?.SelectedDocumentIds.Clear();
+            }
+        }
+        finally
+        {
+            _switchingMode = false;
         }
     }
 
     private void OnDocumentSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (ViewModel is null) return;
+        if (ViewModel is null || _switchingMode) return;
 
         if (DocumentsList.SelectionMode == ListViewSelectionMode.Multiple)
         {
@@ -55,11 +74,53 @@ public sealed partial class DocumentListView : UserControl
             foreach (var item in DocumentsList.SelectedItems)
                 if (item is DocumentSummary d)
                     ViewModel.SelectedDocumentIds.Add(d.Id);
+
+            // Update card border visuals for added/removed selections
+            foreach (var item in e.AddedItems)
+                ApplySelectionBorder(item, true);
+            foreach (var item in e.RemovedItems)
+                ApplySelectionBorder(item, false);
         }
         else if (DocumentsList.SelectedItem is DocumentSummary doc)
         {
             ViewModel.SelectedDocument = doc;
         }
+    }
+
+    private void ApplySelectionBorder(object item, bool selected)
+    {
+        if (DocumentsList.ContainerFromItem(item) is not GridViewItem container) return;
+        var cardBorder = FindCardBorder(container);
+        if (cardBorder is null) return;
+
+        if (selected)
+        {
+            cardBorder.BorderBrush = SelectionBorderBrush;
+            cardBorder.BorderThickness = new Thickness(2);
+            cardBorder.Background = SelectionTintBrush;
+        }
+        else
+        {
+            cardBorder.BorderThickness = new Thickness(1);
+            cardBorder.ClearValue(Border.BorderBrushProperty);   // restores ThemeResource binding
+            cardBorder.ClearValue(Border.BackgroundProperty);    // restores ThemeResource binding
+        }
+    }
+
+    private static Border? FindCardBorder(DependencyObject parent, int depth = 0)
+    {
+        for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+        {
+            var child = VisualTreeHelper.GetChild(parent, i);
+            if (child is Border b && b.CornerRadius.TopLeft >= 8)
+                return b;
+            if (depth < 12)
+            {
+                var found = FindCardBorder(child, depth + 1);
+                if (found is not null) return found;
+            }
+        }
+        return null;
     }
 
     private void OnNewDocumentClick(object sender, RoutedEventArgs e)
