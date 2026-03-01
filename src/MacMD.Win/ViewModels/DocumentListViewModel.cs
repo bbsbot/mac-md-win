@@ -8,6 +8,8 @@ namespace MacMD.Win.ViewModels;
 
 public enum DocumentFilter { All, Project, Tag, Favorites, Recent, Archived }
 
+public enum SortBy { DateModified, DateCreated, Title, WordCount }
+
 public partial class DocumentListViewModel : ObservableObject
 {
     private readonly DocumentStore _documentStore;
@@ -18,6 +20,7 @@ public partial class DocumentListViewModel : ObservableObject
     private DocumentFilter _currentFilter = DocumentFilter.All;
     public DocumentFilter CurrentFilter => _currentFilter;
     private string _searchQuery = "";
+    public SortBy CurrentSortBy { get; set; } = SortBy.DateModified;
 
     public DocumentListViewModel(DocumentStore documentStore, ProjectStore projectStore, TagStore tagStore)
     {
@@ -29,6 +32,7 @@ public partial class DocumentListViewModel : ObservableObject
     public ObservableCollection<DocumentSummary> Documents { get; } = new();
     public ObservableCollection<Project> AvailableProjects { get; } = new();
     public ObservableCollection<Tag> AvailableTags { get; } = new();
+    public ObservableCollection<DocumentId> SelectedDocumentIds { get; } = new();
 
     [ObservableProperty]
     private DocumentSummary? _selectedDocument;
@@ -132,6 +136,91 @@ public partial class DocumentListViewModel : ObservableObject
             await _tagStore.RemoveTagFromDocumentAsync(docId, tagId);
         else
             await _tagStore.AddTagToDocumentAsync(docId, tagId);
+        await ReloadAsync();
+    }
+
+    public async Task DeleteSelectedAsync()
+    {
+        var ids = SelectedDocumentIds.ToList();
+        foreach (var id in ids)
+            await _documentStore.DeleteAsync(id);
+        SelectedDocumentIds.Clear();
+        await ReloadAsync();
+    }
+
+    public async Task MoveSelectedAsync(ProjectId? projectId)
+    {
+        var ids = SelectedDocumentIds.ToList();
+        foreach (var id in ids)
+            await _documentStore.MoveToProjectAsync(id, projectId);
+        await ReloadAsync();
+    }
+
+    /// <summary>Returns tag values (strings) shared by ALL currently selected documents.</summary>
+    public async Task<IReadOnlySet<string>> GetCommonTagValuesAsync()
+    {
+        if (SelectedDocumentIds.Count == 0) return new HashSet<string>();
+        var firstTags = await _documentStore.GetDocumentTagIdsAsync(SelectedDocumentIds[0]);
+        var common = new HashSet<string>(firstTags.Select(t => t.Value));
+        foreach (var id in SelectedDocumentIds.Skip(1))
+        {
+            var tags = await _documentStore.GetDocumentTagIdsAsync(id);
+            common.IntersectWith(tags.Select(t => t.Value));
+            if (common.Count == 0) break;
+        }
+        return common;
+    }
+
+    /// <summary>
+    /// Toggles tag on all selected documents. If allHaveTag=true, removes from all;
+    /// otherwise adds to any that don't already have it.
+    /// </summary>
+    public async Task ToggleTagSelectedAsync(TagId tagId, bool allHaveTag)
+    {
+        var ids = SelectedDocumentIds.ToList();
+        foreach (var id in ids)
+        {
+            var tags = await _documentStore.GetDocumentTagIdsAsync(id);
+            bool hasTag = tags.Any(t => t.Value == tagId.Value);
+            if (allHaveTag && hasTag)
+                await _tagStore.RemoveTagFromDocumentAsync(id, tagId);
+            else if (!allHaveTag && !hasTag)
+                await _tagStore.AddTagToDocumentAsync(id, tagId);
+        }
+        await ReloadAsync();
+    }
+
+    public async Task AddToFavoritesSelectedAsync()
+    {
+        var ids = SelectedDocumentIds.ToList();
+        foreach (var id in ids)
+        {
+            var doc = await _documentStore.GetByIdAsync(id);
+            if (doc is not null && !doc.IsFavorite)
+                await _documentStore.ToggleFavoriteAsync(id);
+        }
+        await ReloadAsync();
+    }
+
+    public async Task RemoveFromFavoritesSelectedAsync()
+    {
+        var ids = SelectedDocumentIds.ToList();
+        foreach (var id in ids)
+        {
+            var doc = await _documentStore.GetByIdAsync(id);
+            if (doc is not null && doc.IsFavorite)
+                await _documentStore.ToggleFavoriteAsync(id);
+        }
+        await ReloadAsync();
+    }
+
+    public async Task ArchiveSelectedAsync()
+    {
+        var ids = SelectedDocumentIds.ToList();
+        foreach (var id in ids)
+            await _documentStore.ArchiveAsync(id);
+        SelectedDocumentIds.Clear();
+        await ReloadAsync();
     }
 
     public async Task RefreshContextMenuDataAsync()
@@ -145,6 +234,12 @@ public partial class DocumentListViewModel : ObservableObject
         AvailableTags.Clear();
         foreach (var t in tags)
             AvailableTags.Add(t);
+    }
+
+    public async Task SetSortAsync(SortBy sortBy)
+    {
+        CurrentSortBy = sortBy;
+        await ReloadAsync();
     }
 
     private async Task ReloadAsync()
@@ -170,8 +265,16 @@ public partial class DocumentListViewModel : ObservableObject
             };
         }
 
+        var sorted = CurrentSortBy switch
+        {
+            SortBy.DateCreated => docs.OrderByDescending(d => d.CreatedAt),
+            SortBy.Title       => docs.OrderBy(d => d.Title, StringComparer.CurrentCultureIgnoreCase),
+            SortBy.WordCount   => docs.OrderByDescending(d => d.WordCount),
+            _                  => docs.OrderByDescending(d => d.ModifiedAt),
+        };
+
         Documents.Clear();
-        foreach (var d in docs)
+        foreach (var d in sorted)
             Documents.Add(d);
     }
 

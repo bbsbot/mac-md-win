@@ -22,18 +22,32 @@
             <local:ProjectListView x:Name="ProjectListView"/>
         </Grid>
 
-        <!-- Splitter 1 -->
-        <Border Grid.Column="1" Width="1"
-                Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+        <!-- Splitter 1 (drag to resize left sidebar) -->
+        <Grid x:Name="Splitter1" Grid.Column="1" Width="6" Tag="0"
+              Background="Transparent"
+              PointerPressed="OnSplitterPointerPressed"
+              PointerMoved="OnSplitterPointerMoved"
+              PointerReleased="OnSplitterPointerReleased"
+>
+            <Border Width="1" HorizontalAlignment="Center"
+                    Background="{ThemeResource DividerStrokeColorDefaultBrush}"/>
+        </Grid>
 
         <!-- Middle Column: Document List -->
         <Grid Grid.Column="2">
             <local:DocumentListView x:Name="DocumentListView"/>
         </Grid>
 
-        <!-- Splitter 2 -->
-        <Border Grid.Column="3" Width="1"
-                Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+        <!-- Splitter 2 (drag to resize document list) -->
+        <Grid x:Name="Splitter2" Grid.Column="3" Width="6" Tag="2"
+              Background="Transparent"
+              PointerPressed="OnSplitterPointerPressed"
+              PointerMoved="OnSplitterPointerMoved"
+              PointerReleased="OnSplitterPointerReleased"
+>
+            <Border Width="1" HorizontalAlignment="Center"
+                    Background="{ThemeResource DividerStrokeColorDefaultBrush}"/>
+        </Grid>
 
         <!-- Right Column: Editor + Preview -->
         <Grid Grid.Column="4">
@@ -62,10 +76,75 @@
                               ToolTipService.ToolTip="Settings"
                               Click="OnSettingsClick"
                               Width="40" Height="40"/>
+                <AppBarButton x:Name="LayoutButton"
+                              ToolTipService.ToolTip="Preview Layout"
+                              Width="40" Height="40">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE90C;" />
+                    </AppBarButton.Icon>
+                    <AppBarButton.Flyout>
+                        <MenuFlyout>
+                            <ToggleMenuFlyoutItem x:Name="LayoutRight"
+                                                  Text="Preview on Right"
+                                                  IsChecked="True"
+                                                  Tag="right"
+                                                  Click="OnLayoutSelected" />
+                            <ToggleMenuFlyoutItem x:Name="LayoutLeft"
+                                                  Text="Preview on Left"
+                                                  Tag="left"
+                                                  Click="OnLayoutSelected" />
+                            <ToggleMenuFlyoutItem x:Name="LayoutBelow"
+                                                  Text="Preview Below"
+                                                  Tag="below"
+                                                  Click="OnLayoutSelected" />
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+                <AppBarButton x:Name="SortButton"
+                              ToolTipService.ToolTip="Sort Documents"
+                              Width="40" Height="40">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8CB;" />
+                    </AppBarButton.Icon>
+                    <AppBarButton.Flyout>
+                        <MenuFlyout>
+                            <ToggleMenuFlyoutItem x:Name="SortByDateModified"
+                                                  Text="Date Modified"
+                                                  IsChecked="True"
+                                                  Tag="dateModified"
+                                                  Click="OnSortSelected" />
+                            <ToggleMenuFlyoutItem x:Name="SortByDateCreated"
+                                                  Text="Date Created"
+                                                  Tag="dateCreated"
+                                                  Click="OnSortSelected" />
+                            <ToggleMenuFlyoutItem x:Name="SortByTitle"
+                                                  Text="Title"
+                                                  Tag="title"
+                                                  Click="OnSortSelected" />
+                            <ToggleMenuFlyoutItem x:Name="SortByWordCount"
+                                                  Text="Word Count"
+                                                  Tag="wordCount"
+                                                  Click="OnSortSelected" />
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+                <Button x:Name="SelectToggleButton"
+                        Content="Select"
+                        Click="OnSelectModeToggle"
+                        Padding="8,4" VerticalAlignment="Center"/>
+                <AppBarButton x:Name="BulkActionButton"
+                              ToolTipService.ToolTip="More actions"
+                              Visibility="Collapsed"
+                              Click="OnBulkActionClick"
+                              Width="40" Height="40">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE712;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </StackPanel>
 
-            <!-- Editor and Preview side-by-side -->
-            <Grid Grid.Row="1">
+            <!-- Editor and Preview -->
+            <Grid Grid.Row="1" x:Name="EditorPreviewGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="1" />
@@ -76,7 +155,8 @@
                 <local:EditorView Grid.Column="0" x:Name="EditorView" />
 
                 <!-- Splitter -->
-                <Border Grid.Column="1" Width="1"
+                <Border x:Name="EditorPreviewSplitter"
+                        Grid.Column="1" Width="1"
                         Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
 
                 <!-- Preview -->

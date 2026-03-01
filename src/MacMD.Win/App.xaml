@@ -10,6 +10,8 @@
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
             </ResourceDictionary.MergedDictionaries>
             <converters:RelativeDateConverter x:Key="DateConverter"/>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            <converters:HexColorToBrushConverter x:Key="HexColorToBrushConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

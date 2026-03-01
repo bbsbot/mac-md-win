@@ -11,7 +11,8 @@ public sealed class DocumentStore
     public DocumentStore(DatabaseService db) => _db = db;
 
     private const string SummaryColumns =
-        "id, title, word_count, modified_at, COALESCE(SUBSTR(content, 1, 120), ''), is_favorite";
+        "id, title, word_count, modified_at, created_at, COALESCE(SUBSTR(content, 1, 120), ''), is_favorite, " +
+        "(SELECT GROUP_CONCAT(tc.color, ',') FROM tags tc INNER JOIN document_tags dtc ON dtc.tag_id = tc.id WHERE dtc.document_id = documents.id)";
 
     public async Task<IReadOnlyList<DocumentSummary>> GetAllAsync(int limit = 200)
     {
@@ -49,7 +50,9 @@ public sealed class DocumentStore
         using var conn = _db.CreateConnection();
         using var cmd = conn.CreateCommand();
         cmd.CommandText = $"""
-            SELECT d.id, d.title, d.word_count, d.modified_at, COALESCE(SUBSTR(d.content, 1, 120), ''), d.is_favorite
+            SELECT d.id, d.title, d.word_count, d.modified_at, d.created_at,
+                   COALESCE(SUBSTR(d.content, 1, 120), ''), d.is_favorite,
+                   (SELECT GROUP_CONCAT(tc.color, ',') FROM tags tc INNER JOIN document_tags dtc ON dtc.tag_id = tc.id WHERE dtc.document_id = d.id)
             FROM documents d
             INNER JOIN document_tags dt ON dt.document_id = d.id
             WHERE dt.tag_id = @tagId AND d.is_archived = 0
@@ -206,13 +209,19 @@ public sealed class DocumentStore
         using var reader = await cmd.ExecuteReaderAsync();
         while (await reader.ReadAsync())
         {
+            var tagColorsRaw = reader.IsDBNull(7) ? null : reader.GetString(7);
+            var tagColors = tagColorsRaw is not null
+                ? (IReadOnlyList<string>)tagColorsRaw.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                : null;
             list.Add(new DocumentSummary(
                 new DocumentId(reader.GetString(0)),
                 reader.GetString(1),
                 reader.GetInt32(2),
                 DateTimeOffset.Parse(reader.GetString(3)),
-                reader.GetString(4),
-                reader.GetInt32(5) != 0));
+                DateTimeOffset.Parse(reader.GetString(4)),
+                reader.GetString(5),
+                reader.GetInt32(6) != 0,
+                tagColors));
         }
         return list;
     }

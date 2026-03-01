@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using MacMD.Core.Models;
 using MacMD.Core.Services;
@@ -7,6 +8,7 @@ using MacMD.Win.Services;
 using MacMD.Win.ViewModels;
 using MacMD.Win.Views;
 using Windows.Storage.Pickers;
+using SortBy = MacMD.Win.ViewModels.SortBy;
 
 namespace MacMD.Win;
 
@@ -26,6 +28,11 @@ public sealed partial class MainWindow : Window
     private readonly DispatcherTimer _saveDebounce;
     private DocumentId? _currentDocId;
     private string? _currentDocTitle;
+    private bool _selectMode;
+    private bool _isDragging;
+    private double _dragStartX;
+    private double _dragStartColWidth;
+    private int _dragTargetCol;
 
     // Settings window — singleton, open non-modal
     private SettingsWindow? _settingsWindow;
@@ -108,6 +115,14 @@ public sealed partial class MainWindow : Window
 
     private async Task LoadInitialDataAsync()
     {
+        // Restore persisted sort preference before first load
+        var savedSort = _settingsService.DocumentSort;
+        _documentListVm.CurrentSortBy = SortKeyToEnum(savedSort);
+        UpdateSortCheckmarks(savedSort);
+
+        // Restore preview layout (manipulate grid before content renders)
+        SetPreviewLayout(_settingsService.PreviewLayout, persist: false);
+
         await _projectListVm.LoadCommand.ExecuteAsync(null);
         await _tagListVm.LoadCommand.ExecuteAsync(null);
         await _documentListVm.LoadForProjectAsync(null); // all docs
@@ -261,6 +276,224 @@ public sealed partial class MainWindow : Window
             _editorViewModel.MarkdownText,
             file.Path,
             PreviewView.WebView);
+    }
+
+    // ── Preview Layout ────────────────────────────────────────────────────
+
+    private void OnLayoutSelected(object sender, RoutedEventArgs e)
+    {
+        if (sender is not ToggleMenuFlyoutItem item) return;
+        var layout = item.Tag as string ?? "right";
+        SetPreviewLayout(layout, persist: true);
+    }
+
+    private void SetPreviewLayout(string layout, bool persist)
+    {
+        var grid = EditorPreviewGrid;
+        var splitter = EditorPreviewSplitter;
+
+        grid.ColumnDefinitions.Clear();
+        grid.RowDefinitions.Clear();
+
+        // Reset all positions to (row=0, col=0) first
+        Grid.SetRow(EditorView, 0);    Grid.SetColumn(EditorView, 0);
+        Grid.SetRow(splitter, 0);      Grid.SetColumn(splitter, 0);
+        Grid.SetRow(PreviewView, 0);   Grid.SetColumn(PreviewView, 0);
+
+        switch (layout)
+        {
+            case "left":
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                Grid.SetColumn(PreviewView, 0);
+                Grid.SetColumn(splitter, 1);
+                Grid.SetColumn(EditorView, 2);
+                splitter.Width = 1; splitter.Height = double.NaN;
+                break;
+            case "below":
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                Grid.SetRow(EditorView, 0);
+                Grid.SetRow(splitter, 1);
+                Grid.SetRow(PreviewView, 2);
+                splitter.Width = double.NaN; splitter.Height = 1;
+                break;
+            default: // "right"
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                Grid.SetColumn(EditorView, 0);
+                Grid.SetColumn(splitter, 1);
+                Grid.SetColumn(PreviewView, 2);
+                splitter.Width = 1; splitter.Height = double.NaN;
+                break;
+        }
+
+        if (persist)
+            _settingsService.PreviewLayout = layout;
+
+        UpdateLayoutCheckmarks(layout);
+    }
+
+    private void UpdateLayoutCheckmarks(string layout)
+    {
+        LayoutRight.IsChecked = layout == "right";
+        LayoutLeft.IsChecked  = layout == "left";
+        LayoutBelow.IsChecked = layout == "below";
+    }
+
+    // ── Multi-Select ──────────────────────────────────────────────────────
+
+    private void OnSelectModeToggle(object sender, RoutedEventArgs e)
+    {
+        _selectMode = !_selectMode;
+        DocumentListView.SetSelectMode(_selectMode);
+        SelectToggleButton.Content = _selectMode ? "Done" : "Select";
+        BulkActionButton.Visibility = _selectMode ? Visibility.Visible : Visibility.Collapsed;
+        SelectToggleButton.Style = _selectMode
+            ? (Style)Application.Current.Resources["AccentButtonStyle"]
+            : null;
+    }
+
+    private async void OnBulkActionClick(object sender, RoutedEventArgs e)
+    {
+        await _documentListVm.RefreshContextMenuDataAsync();
+        var count = _documentListVm.SelectedDocumentIds.Count;
+        var commonTagValues = await _documentListVm.GetCommonTagValuesAsync();
+        var flyout = new MenuFlyout();
+
+        // Delete
+        var deleteItem = new MenuFlyoutItem
+        {
+            Text = $"Delete {count} Document{(count != 1 ? "s" : "")}"
+        };
+        deleteItem.Click += async (_, _) =>
+        {
+            await _documentListVm.DeleteSelectedAsync();
+            OnSelectModeToggle(null!, null!);
+        };
+        flyout.Items.Add(deleteItem);
+
+        flyout.Items.Add(new MenuFlyoutSeparator());
+
+        // Move to Project
+        var moveSub = new MenuFlyoutSubItem { Text = "Move to Project" };
+        var noneItem = new MenuFlyoutItem { Text = "None" };
+        noneItem.Click += async (_, _) => await _documentListVm.MoveSelectedAsync(null);
+        moveSub.Items.Add(noneItem);
+        foreach (var project in _documentListVm.AvailableProjects)
+        {
+            var pid = project.Id;
+            var pItem = new MenuFlyoutItem { Text = project.Name };
+            pItem.Click += async (_, _) => await _documentListVm.MoveSelectedAsync(pid);
+            moveSub.Items.Add(pItem);
+        }
+        flyout.Items.Add(moveSub);
+
+        // Tags — checkmarks show which tags ALL selected docs share; clicking toggles
+        var tagSub = new MenuFlyoutSubItem { Text = "Tags" };
+        foreach (var tag in _documentListVm.AvailableTags)
+        {
+            var tid = tag.Id;
+            bool allHave = commonTagValues.Contains(tag.Id.Value);
+            var tItem = new MenuFlyoutItem { Text = (allHave ? "\u2713 " : "    ") + tag.Name };
+            try
+            {
+                tItem.Icon = new FontIcon
+                {
+                    Glyph = "\u25CF",
+                    Foreground = new SolidColorBrush(ParseHexColor(tag.Color)),
+                    FontSize = 12
+                };
+            }
+            catch { }
+            tItem.Click += async (_, _) => await _documentListVm.ToggleTagSelectedAsync(tid, allHave);
+            tagSub.Items.Add(tItem);
+        }
+        flyout.Items.Add(tagSub);
+
+        flyout.Items.Add(new MenuFlyoutSeparator());
+
+        // Favorites
+        var favItem = new MenuFlyoutItem { Text = "Add to Favorites" };
+        favItem.Click += async (_, _) => await _documentListVm.AddToFavoritesSelectedAsync();
+        flyout.Items.Add(favItem);
+
+        var unfavItem = new MenuFlyoutItem { Text = "Remove from Favorites" };
+        unfavItem.Click += async (_, _) => await _documentListVm.RemoveFromFavoritesSelectedAsync();
+        flyout.Items.Add(unfavItem);
+
+        // Archive
+        var archiveItem = new MenuFlyoutItem { Text = "Archive" };
+        archiveItem.Click += async (_, _) =>
+        {
+            await _documentListVm.ArchiveSelectedAsync();
+            OnSelectModeToggle(null!, null!);
+        };
+        flyout.Items.Add(archiveItem);
+
+        flyout.ShowAt(BulkActionButton);
+    }
+
+    // ── Sort ──────────────────────────────────────────────────────────────
+
+    private void OnSortSelected(object sender, RoutedEventArgs e)
+    {
+        if (sender is not ToggleMenuFlyoutItem item) return;
+        var tag = item.Tag as string ?? "dateModified";
+        UpdateSortCheckmarks(tag);
+        _settingsService.DocumentSort = tag;
+        _ = _documentListVm.SetSortAsync(SortKeyToEnum(tag));
+    }
+
+    private void UpdateSortCheckmarks(string tag)
+    {
+        SortByDateModified.IsChecked = tag == "dateModified";
+        SortByDateCreated.IsChecked  = tag == "dateCreated";
+        SortByTitle.IsChecked        = tag == "title";
+        SortByWordCount.IsChecked    = tag == "wordCount";
+    }
+
+    private static SortBy SortKeyToEnum(string key) => key switch
+    {
+        "dateCreated" => SortBy.DateCreated,
+        "title"       => SortBy.Title,
+        "wordCount"   => SortBy.WordCount,
+        _             => SortBy.DateModified,
+    };
+
+    // ── Resizable Splitters ───────────────────────────────────────────────
+
+    private void OnSplitterPointerPressed(object sender, PointerRoutedEventArgs e)
+    {
+        if (sender is not FrameworkElement elem) return;
+        _dragTargetCol = int.Parse(elem.Tag as string ?? "0");
+        _dragStartX = e.GetCurrentPoint(RootGrid).Position.X;
+        _dragStartColWidth = RootGrid.ColumnDefinitions[_dragTargetCol].ActualWidth;
+        _isDragging = true;
+        elem.CapturePointer(e.Pointer);
+        e.Handled = true;
+    }
+
+    private void OnSplitterPointerMoved(object sender, PointerRoutedEventArgs e)
+    {
+        if (!_isDragging) return;
+        var delta = e.GetCurrentPoint(RootGrid).Position.X - _dragStartX;
+        var (minW, maxW) = _dragTargetCol == 0 ? (150.0, 400.0) : (180.0, 800.0);
+        var newWidth = Math.Clamp(_dragStartColWidth + delta, minW, maxW);
+        RootGrid.ColumnDefinitions[_dragTargetCol].Width = new GridLength(newWidth);
+        e.Handled = true;
+    }
+
+    private void OnSplitterPointerReleased(object sender, PointerRoutedEventArgs e)
+    {
+        if (!_isDragging) return;
+        if (sender is UIElement elem)
+            elem.ReleasePointerCapture(e.Pointer);
+        _isDragging = false;
+        e.Handled = true;
     }
 
     private static T? Resolve<T>() where T : class
