@@ -62,6 +62,34 @@
                               ToolTipService.ToolTip="Settings"
                               Click="OnSettingsClick"
                               Width="40" Height="40"/>
+                <AppBarButton x:Name="SortButton"
+                              ToolTipService.ToolTip="Sort Documents"
+                              Width="40" Height="40">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8CB;" />
+                    </AppBarButton.Icon>
+                    <AppBarButton.Flyout>
+                        <MenuFlyout>
+                            <ToggleMenuFlyoutItem x:Name="SortByDateModified"
+                                                  Text="Date Modified"
+                                                  IsChecked="True"
+                                                  Tag="dateModified"
+                                                  Click="OnSortSelected" />
+                            <ToggleMenuFlyoutItem x:Name="SortByDateCreated"
+                                                  Text="Date Created"
+                                                  Tag="dateCreated"
+                                                  Click="OnSortSelected" />
+                            <ToggleMenuFlyoutItem x:Name="SortByTitle"
+                                                  Text="Title"
+                                                  Tag="title"
+                                                  Click="OnSortSelected" />
+                            <ToggleMenuFlyoutItem x:Name="SortByWordCount"
+                                                  Text="Word Count"
+                                                  Tag="wordCount"
+                                                  Click="OnSortSelected" />
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
             </StackPanel>
 
             <!-- Editor and Preview side-by-side -->

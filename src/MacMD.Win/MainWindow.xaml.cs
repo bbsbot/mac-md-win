@@ -7,6 +7,7 @@ using MacMD.Win.Services;
 using MacMD.Win.ViewModels;
 using MacMD.Win.Views;
 using Windows.Storage.Pickers;
+using SortBy = MacMD.Win.ViewModels.SortBy;
 
 namespace MacMD.Win;
 
@@ -108,6 +109,11 @@ public sealed partial class MainWindow : Window
 
     private async Task LoadInitialDataAsync()
     {
+        // Restore persisted sort preference before first load
+        var savedSort = _settingsService.DocumentSort;
+        _documentListVm.CurrentSortBy = SortKeyToEnum(savedSort);
+        UpdateSortCheckmarks(savedSort);
+
         await _projectListVm.LoadCommand.ExecuteAsync(null);
         await _tagListVm.LoadCommand.ExecuteAsync(null);
         await _documentListVm.LoadForProjectAsync(null); // all docs
@@ -262,6 +268,33 @@ public sealed partial class MainWindow : Window
             file.Path,
             PreviewView.WebView);
     }
+
+    // ── Sort ──────────────────────────────────────────────────────────────
+
+    private void OnSortSelected(object sender, RoutedEventArgs e)
+    {
+        if (sender is not ToggleMenuFlyoutItem item) return;
+        var tag = item.Tag as string ?? "dateModified";
+        UpdateSortCheckmarks(tag);
+        _settingsService.DocumentSort = tag;
+        _ = _documentListVm.SetSortAsync(SortKeyToEnum(tag));
+    }
+
+    private void UpdateSortCheckmarks(string tag)
+    {
+        SortByDateModified.IsChecked = tag == "dateModified";
+        SortByDateCreated.IsChecked  = tag == "dateCreated";
+        SortByTitle.IsChecked        = tag == "title";
+        SortByWordCount.IsChecked    = tag == "wordCount";
+    }
+
+    private static SortBy SortKeyToEnum(string key) => key switch
+    {
+        "dateCreated" => SortBy.DateCreated,
+        "title"       => SortBy.Title,
+        "wordCount"   => SortBy.WordCount,
+        _             => SortBy.DateModified,
+    };
 
     private static T? Resolve<T>() where T : class
         => App.Current.Services.GetService(typeof(T)) as T;

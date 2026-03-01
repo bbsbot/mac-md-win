@@ -6,5 +6,6 @@ public sealed record DocumentSummary(
     string Title,
     int WordCount,
     DateTimeOffset ModifiedAt,
+    DateTimeOffset CreatedAt,
     string Preview = "",
     bool IsFavorite = false);

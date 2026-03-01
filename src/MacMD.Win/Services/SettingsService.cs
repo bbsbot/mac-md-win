@@ -102,6 +102,12 @@ public sealed class SettingsService
         set => SetString("selectedColorTheme", value);
     }
 
+    public string DocumentSort
+    {
+        get => GetString("documentSort", "dateModified");
+        set => SetString("documentSort", value);
+    }
+
     // ── Persistence ───────────────────────────────────────────────────────
 
     private void Load()

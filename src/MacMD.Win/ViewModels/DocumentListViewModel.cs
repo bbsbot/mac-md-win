@@ -8,6 +8,8 @@ namespace MacMD.Win.ViewModels;
 
 public enum DocumentFilter { All, Project, Tag, Favorites, Recent, Archived }
 
+public enum SortBy { DateModified, DateCreated, Title, WordCount }
+
 public partial class DocumentListViewModel : ObservableObject
 {
     private readonly DocumentStore _documentStore;
@@ -18,6 +20,7 @@ public partial class DocumentListViewModel : ObservableObject
     private DocumentFilter _currentFilter = DocumentFilter.All;
     public DocumentFilter CurrentFilter => _currentFilter;
     private string _searchQuery = "";
+    public SortBy CurrentSortBy { get; set; } = SortBy.DateModified;
 
     public DocumentListViewModel(DocumentStore documentStore, ProjectStore projectStore, TagStore tagStore)
     {
@@ -147,6 +150,12 @@ public partial class DocumentListViewModel : ObservableObject
             AvailableTags.Add(t);
     }
 
+    public async Task SetSortAsync(SortBy sortBy)
+    {
+        CurrentSortBy = sortBy;
+        await ReloadAsync();
+    }
+
     private async Task ReloadAsync()
     {
         IReadOnlyList<DocumentSummary> docs;
@@ -170,8 +179,16 @@ public partial class DocumentListViewModel : ObservableObject
             };
         }
 
+        var sorted = CurrentSortBy switch
+        {
+            SortBy.DateCreated => docs.OrderByDescending(d => d.CreatedAt),
+            SortBy.Title       => docs.OrderBy(d => d.Title, StringComparer.CurrentCultureIgnoreCase),
+            SortBy.WordCount   => docs.OrderByDescending(d => d.WordCount),
+            _                  => docs.OrderByDescending(d => d.ModifiedAt),
+        };
+
         Documents.Clear();
-        foreach (var d in docs)
+        foreach (var d in sorted)
             Documents.Add(d);
     }
 
