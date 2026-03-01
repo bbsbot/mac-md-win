@@ -2,6 +2,7 @@
 # OS / editor noise
 ############################################
 .DS_Store
+._*
 Thumbs.db
 Desktop.ini
 

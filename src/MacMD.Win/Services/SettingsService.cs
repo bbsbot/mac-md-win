@@ -11,6 +11,8 @@ public sealed class SettingsService
     private readonly string _filePath;
     private Dictionary<string, JsonElement> _data = new();
 
+    public event Action? SettingsChanged;
+
     public SettingsService()
     {
         var dir = Path.Combine(
@@ -20,6 +22,8 @@ public sealed class SettingsService
         _filePath = Path.Combine(dir, "settings.json");
         Load();
     }
+
+    // ── Bool ──────────────────────────────────────────────────────────────
 
     public bool GetBool(string key, bool defaultValue = false)
     {
@@ -35,7 +39,70 @@ public sealed class SettingsService
         using var doc = JsonDocument.Parse(value ? "true" : "false");
         _data[key] = doc.RootElement.Clone();
         Save();
+        SettingsChanged?.Invoke();
     }
+
+    // ── String ────────────────────────────────────────────────────────────
+
+    public string GetString(string key, string defaultValue = "")
+    {
+        if (_data.TryGetValue(key, out var el) && el.ValueKind == JsonValueKind.String)
+            return el.GetString() ?? defaultValue;
+        return defaultValue;
+    }
+
+    public void SetString(string key, string value)
+    {
+        using var doc = JsonDocument.Parse($"\"{JsonEncodedText.Encode(value)}\"");
+        _data[key] = doc.RootElement.Clone();
+        Save();
+        SettingsChanged?.Invoke();
+    }
+
+    // ── Double ────────────────────────────────────────────────────────────
+
+    public double GetDouble(string key, double defaultValue = 0.0)
+    {
+        if (_data.TryGetValue(key, out var el) && el.ValueKind == JsonValueKind.Number)
+            return el.GetDouble();
+        return defaultValue;
+    }
+
+    public void SetDouble(string key, double value)
+    {
+        using var doc = JsonDocument.Parse(value.ToString(System.Globalization.CultureInfo.InvariantCulture));
+        _data[key] = doc.RootElement.Clone();
+        Save();
+        SettingsChanged?.Invoke();
+    }
+
+    // ── Typed convenience properties ──────────────────────────────────────
+
+    public string EditorFontFamily
+    {
+        get => GetString("editorFontFamily", "monospaced");
+        set => SetString("editorFontFamily", value);
+    }
+
+    public double EditorFontSize
+    {
+        get => GetDouble("editorFontSize", 14.0);
+        set => SetDouble("editorFontSize", value);
+    }
+
+    public double PreviewFontSize
+    {
+        get => GetDouble("previewFontSize", 16.0);
+        set => SetDouble("previewFontSize", value);
+    }
+
+    public string SelectedTheme
+    {
+        get => GetString("selectedColorTheme", "Pro");
+        set => SetString("selectedColorTheme", value);
+    }
+
+    // ── Persistence ───────────────────────────────────────────────────────
 
     private void Load()
     {

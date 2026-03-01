@@ -1,5 +1,6 @@
 using MacMD.Core.Services;
 using MacMD.Win.Services;
+using MacMD.Win.ViewModels;
 using MacMD.Win.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
@@ -24,7 +25,16 @@ public partial class App : Application
         services.AddSingleton<LocalizationService>();
         services.AddSingleton<PdfExportService>();
         services.AddSingleton<SettingsService>();
+        services.AddSingleton<SettingsViewModel>(sp =>
+            new SettingsViewModel(
+                sp.GetRequiredService<SettingsService>(),
+                sp.GetRequiredService<ThemeService>()));
         Services = services.BuildServiceProvider();
+
+        // Apply saved theme before the first window is shown
+        var settings     = Services.GetRequiredService<SettingsService>();
+        var themeService = Services.GetRequiredService<ThemeService>();
+        themeService.SetTheme(settings.SelectedTheme);
     }
 
     public static new App Current => (App)Application.Current;
