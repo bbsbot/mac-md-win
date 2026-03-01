@@ -136,6 +136,7 @@ public partial class DocumentListViewModel : ObservableObject
             await _tagStore.RemoveTagFromDocumentAsync(docId, tagId);
         else
             await _tagStore.AddTagToDocumentAsync(docId, tagId);
+        await ReloadAsync();
     }
 
     public async Task DeleteSelectedAsync()
@@ -155,11 +156,71 @@ public partial class DocumentListViewModel : ObservableObject
         await ReloadAsync();
     }
 
-    public async Task ApplyTagAsync(TagId tagId)
+    /// <summary>Returns tag values (strings) shared by ALL currently selected documents.</summary>
+    public async Task<IReadOnlySet<string>> GetCommonTagValuesAsync()
+    {
+        if (SelectedDocumentIds.Count == 0) return new HashSet<string>();
+        var firstTags = await _documentStore.GetDocumentTagIdsAsync(SelectedDocumentIds[0]);
+        var common = new HashSet<string>(firstTags.Select(t => t.Value));
+        foreach (var id in SelectedDocumentIds.Skip(1))
+        {
+            var tags = await _documentStore.GetDocumentTagIdsAsync(id);
+            common.IntersectWith(tags.Select(t => t.Value));
+            if (common.Count == 0) break;
+        }
+        return common;
+    }
+
+    /// <summary>
+    /// Toggles tag on all selected documents. If allHaveTag=true, removes from all;
+    /// otherwise adds to any that don't already have it.
+    /// </summary>
+    public async Task ToggleTagSelectedAsync(TagId tagId, bool allHaveTag)
     {
         var ids = SelectedDocumentIds.ToList();
         foreach (var id in ids)
-            await _tagStore.AddTagToDocumentAsync(id, tagId);
+        {
+            var tags = await _documentStore.GetDocumentTagIdsAsync(id);
+            bool hasTag = tags.Any(t => t.Value == tagId.Value);
+            if (allHaveTag && hasTag)
+                await _tagStore.RemoveTagFromDocumentAsync(id, tagId);
+            else if (!allHaveTag && !hasTag)
+                await _tagStore.AddTagToDocumentAsync(id, tagId);
+        }
+        await ReloadAsync();
+    }
+
+    public async Task AddToFavoritesSelectedAsync()
+    {
+        var ids = SelectedDocumentIds.ToList();
+        foreach (var id in ids)
+        {
+            var doc = await _documentStore.GetByIdAsync(id);
+            if (doc is not null && !doc.IsFavorite)
+                await _documentStore.ToggleFavoriteAsync(id);
+        }
+        await ReloadAsync();
+    }
+
+    public async Task RemoveFromFavoritesSelectedAsync()
+    {
+        var ids = SelectedDocumentIds.ToList();
+        foreach (var id in ids)
+        {
+            var doc = await _documentStore.GetByIdAsync(id);
+            if (doc is not null && doc.IsFavorite)
+                await _documentStore.ToggleFavoriteAsync(id);
+        }
+        await ReloadAsync();
+    }
+
+    public async Task ArchiveSelectedAsync()
+    {
+        var ids = SelectedDocumentIds.ToList();
+        foreach (var id in ids)
+            await _documentStore.ArchiveAsync(id);
+        SelectedDocumentIds.Clear();
+        await ReloadAsync();
     }
 
     public async Task RefreshContextMenuDataAsync()

@@ -361,8 +361,10 @@ public sealed partial class MainWindow : Window
     {
         await _documentListVm.RefreshContextMenuDataAsync();
         var count = _documentListVm.SelectedDocumentIds.Count;
+        var commonTagValues = await _documentListVm.GetCommonTagValuesAsync();
         var flyout = new MenuFlyout();
 
+        // Delete
         var deleteItem = new MenuFlyoutItem
         {
             Text = $"Delete {count} Document{(count != 1 ? "s" : "")}"
@@ -374,6 +376,9 @@ public sealed partial class MainWindow : Window
         };
         flyout.Items.Add(deleteItem);
 
+        flyout.Items.Add(new MenuFlyoutSeparator());
+
+        // Move to Project
         var moveSub = new MenuFlyoutSubItem { Text = "Move to Project" };
         var noneItem = new MenuFlyoutItem { Text = "None" };
         noneItem.Click += async (_, _) => await _documentListVm.MoveSelectedAsync(null);
@@ -387,15 +392,47 @@ public sealed partial class MainWindow : Window
         }
         flyout.Items.Add(moveSub);
 
-        var tagSub = new MenuFlyoutSubItem { Text = "Apply Tag" };
+        // Tags — checkmarks show which tags ALL selected docs share; clicking toggles
+        var tagSub = new MenuFlyoutSubItem { Text = "Tags" };
         foreach (var tag in _documentListVm.AvailableTags)
         {
             var tid = tag.Id;
-            var tItem = new MenuFlyoutItem { Text = tag.Name };
-            tItem.Click += async (_, _) => await _documentListVm.ApplyTagAsync(tid);
+            bool allHave = commonTagValues.Contains(tag.Id.Value);
+            var tItem = new MenuFlyoutItem { Text = (allHave ? "\u2713 " : "    ") + tag.Name };
+            try
+            {
+                tItem.Icon = new FontIcon
+                {
+                    Glyph = "\u25CF",
+                    Foreground = new SolidColorBrush(ParseHexColor(tag.Color)),
+                    FontSize = 12
+                };
+            }
+            catch { }
+            tItem.Click += async (_, _) => await _documentListVm.ToggleTagSelectedAsync(tid, allHave);
             tagSub.Items.Add(tItem);
         }
         flyout.Items.Add(tagSub);
+
+        flyout.Items.Add(new MenuFlyoutSeparator());
+
+        // Favorites
+        var favItem = new MenuFlyoutItem { Text = "Add to Favorites" };
+        favItem.Click += async (_, _) => await _documentListVm.AddToFavoritesSelectedAsync();
+        flyout.Items.Add(favItem);
+
+        var unfavItem = new MenuFlyoutItem { Text = "Remove from Favorites" };
+        unfavItem.Click += async (_, _) => await _documentListVm.RemoveFromFavoritesSelectedAsync();
+        flyout.Items.Add(unfavItem);
+
+        // Archive
+        var archiveItem = new MenuFlyoutItem { Text = "Archive" };
+        archiveItem.Click += async (_, _) =>
+        {
+            await _documentListVm.ArchiveSelectedAsync();
+            OnSelectModeToggle(null!, null!);
+        };
+        flyout.Items.Add(archiveItem);
 
         flyout.ShowAt(BulkActionButton);
     }
