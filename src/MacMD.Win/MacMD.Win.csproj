@@ -10,6 +10,7 @@
     <UseWinUI>true</UseWinUI>
     <WindowsPackageType>None</WindowsPackageType>
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <EnableMsixTooling>true</EnableMsixTooling>
     <WindowsSdkPackageVersion>10.0.19041.47</WindowsSdkPackageVersion>
     <!-- Field-based [ObservableProperty] not AOT-compatible for WinUI; partial properties need C# 13/.NET 9 -->
     <NoWarn>$(NoWarn);MVVMTK0045</NoWarn>
@@ -21,10 +22,6 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
     <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PRIResource Include="Strings\**\*.resw" />
   </ItemGroup>
 
   <ItemGroup>
