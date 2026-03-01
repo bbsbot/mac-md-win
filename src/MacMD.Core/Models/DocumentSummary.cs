@@ -8,4 +8,5 @@ public sealed record DocumentSummary(
     DateTimeOffset ModifiedAt,
     DateTimeOffset CreatedAt,
     string Preview = "",
-    bool IsFavorite = false);
+    bool IsFavorite = false,
+    IReadOnlyList<string>? TagColors = null);

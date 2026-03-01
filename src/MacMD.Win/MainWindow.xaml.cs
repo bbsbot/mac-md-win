@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using MacMD.Core.Models;
 using MacMD.Core.Services;
@@ -28,6 +29,10 @@ public sealed partial class MainWindow : Window
     private DocumentId? _currentDocId;
     private string? _currentDocTitle;
     private bool _selectMode;
+    private bool _isDragging;
+    private double _dragStartX;
+    private double _dragStartColWidth;
+    private int _dragTargetCol;
 
     // Settings window — singleton, open non-modal
     private SettingsWindow? _settingsWindow;
@@ -421,6 +426,38 @@ public sealed partial class MainWindow : Window
         "wordCount"   => SortBy.WordCount,
         _             => SortBy.DateModified,
     };
+
+    // ── Resizable Splitters ───────────────────────────────────────────────
+
+    private void OnSplitterPointerPressed(object sender, PointerRoutedEventArgs e)
+    {
+        if (sender is not FrameworkElement elem) return;
+        _dragTargetCol = int.Parse(elem.Tag as string ?? "0");
+        _dragStartX = e.GetCurrentPoint(RootGrid).Position.X;
+        _dragStartColWidth = RootGrid.ColumnDefinitions[_dragTargetCol].ActualWidth;
+        _isDragging = true;
+        elem.CapturePointer(e.Pointer);
+        e.Handled = true;
+    }
+
+    private void OnSplitterPointerMoved(object sender, PointerRoutedEventArgs e)
+    {
+        if (!_isDragging) return;
+        var delta = e.GetCurrentPoint(RootGrid).Position.X - _dragStartX;
+        var (minW, maxW) = _dragTargetCol == 0 ? (150.0, 400.0) : (180.0, 800.0);
+        var newWidth = Math.Clamp(_dragStartColWidth + delta, minW, maxW);
+        RootGrid.ColumnDefinitions[_dragTargetCol].Width = new GridLength(newWidth);
+        e.Handled = true;
+    }
+
+    private void OnSplitterPointerReleased(object sender, PointerRoutedEventArgs e)
+    {
+        if (!_isDragging) return;
+        if (sender is UIElement elem)
+            elem.ReleasePointerCapture(e.Pointer);
+        _isDragging = false;
+        e.Handled = true;
+    }
 
     private static T? Resolve<T>() where T : class
         => App.Current.Services.GetService(typeof(T)) as T;

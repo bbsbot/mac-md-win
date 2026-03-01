@@ -74,20 +74,42 @@
                                        TextTrimming="CharacterEllipsis"
                                        MaxLines="2" TextWrapping="Wrap"
                                        Margin="0,4,0,0"/>
-                            <!-- Bottom row: word count + star -->
+                            <!-- Bottom row: tag dots (left) + word count + star (right) -->
                             <Grid Grid.Row="2" Margin="0,6,0,0">
-                                <TextBlock HorizontalAlignment="Left"
-                                           FontSize="11"
-                                           Foreground="{ThemeResource TextFillColorTertiaryBrush}">
-                                    <Run Text="{Binding WordCount}"/>
-                                    <Run Text=" words"/>
-                                </TextBlock>
-                                <FontIcon HorizontalAlignment="Right"
-                                          FontFamily="Segoe MDL2 Assets"
-                                          Glyph="&#xE735;"
-                                          FontSize="12"
-                                          Foreground="#FFD60A"
-                                          Visibility="{Binding IsFavorite, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- Tag color dots -->
+                                <ItemsControl Grid.Column="0"
+                                              ItemsSource="{Binding TagColors}"
+                                              VerticalAlignment="Center">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" Spacing="3"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Ellipse Width="8" Height="8"
+                                                     Fill="{Binding Converter={StaticResource HexColorToBrushConverter}}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <!-- Word count + star -->
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6"
+                                            VerticalAlignment="Center">
+                                    <TextBlock FontSize="11"
+                                               Foreground="{ThemeResource TextFillColorTertiaryBrush}">
+                                        <Run Text="{Binding WordCount}"/>
+                                        <Run Text="w"/>
+                                    </TextBlock>
+                                    <FontIcon FontFamily="Segoe MDL2 Assets"
+                                              Glyph="&#xE735;"
+                                              FontSize="12"
+                                              Foreground="#FFD60A"
+                                              Visibility="{Binding IsFavorite, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                </StackPanel>
                             </Grid>
                         </Grid>
                     </Border>

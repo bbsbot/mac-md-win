@@ -22,18 +22,32 @@
             <local:ProjectListView x:Name="ProjectListView"/>
         </Grid>
 
-        <!-- Splitter 1 -->
-        <Border Grid.Column="1" Width="1"
-                Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+        <!-- Splitter 1 (drag to resize left sidebar) -->
+        <Grid x:Name="Splitter1" Grid.Column="1" Width="6" Tag="0"
+              Background="Transparent"
+              PointerPressed="OnSplitterPointerPressed"
+              PointerMoved="OnSplitterPointerMoved"
+              PointerReleased="OnSplitterPointerReleased"
+>
+            <Border Width="1" HorizontalAlignment="Center"
+                    Background="{ThemeResource DividerStrokeColorDefaultBrush}"/>
+        </Grid>
 
         <!-- Middle Column: Document List -->
         <Grid Grid.Column="2">
             <local:DocumentListView x:Name="DocumentListView"/>
         </Grid>
 
-        <!-- Splitter 2 -->
-        <Border Grid.Column="3" Width="1"
-                Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+        <!-- Splitter 2 (drag to resize document list) -->
+        <Grid x:Name="Splitter2" Grid.Column="3" Width="6" Tag="2"
+              Background="Transparent"
+              PointerPressed="OnSplitterPointerPressed"
+              PointerMoved="OnSplitterPointerMoved"
+              PointerReleased="OnSplitterPointerReleased"
+>
+            <Border Width="1" HorizontalAlignment="Center"
+                    Background="{ThemeResource DividerStrokeColorDefaultBrush}"/>
+        </Grid>
 
         <!-- Right Column: Editor + Preview -->
         <Grid Grid.Column="4">
