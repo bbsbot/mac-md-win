@@ -2,7 +2,7 @@
 
 A native Windows Markdown editor built with **WinUI 3** and **.NET 8**, porting the [Mac MD](https://github.com/bbsbot/mac-md) SwiftUI app to Windows 10/11.
 
-**[Download Alpha 2](https://github.com/bbsbot/mac-md-win/releases/tag/v0.2.0-alpha)** — extract, run `MacMD.Win.exe`, no installer needed.
+**[Download Alpha 4](https://github.com/bbsbot/mac-md-win/releases/tag/v0.4.0-alpha)** — extract, run `MacMD.Win.exe`, no installer needed. ARM64 and x64 builds available.
 
 ![Mac MD Screenshot](src/MacMD.Tests/M3_acceptance.png)
 
@@ -10,11 +10,16 @@ A native Windows Markdown editor built with **WinUI 3** and **.NET 8**, porting 
 
 ## What It Does Today
 
-- **Three-column layout** — Projects | Documents | Editor + Live Preview
+- **Three-column layout** — Projects | Documents | Editor + Live Preview, with **draggable column splitters** to resize each panel
+- **Document cards** — documents displayed as cards with title, snippet, word count, tag color dots, and favorite star
+- **Multi-select** — click "Select" to enter selection mode; bulk delete, move, tag, favorite, and archive
+- **Sort documents** — by Date Modified, Date Created, Title, or Word Count
+- **Preview layout** — switch preview pane to Right (side-by-side), Left, or Below the editor
 - **Live Markdown preview** — type in the editor, see rendered HTML update in real-time (300ms debounce) via WebView2
 - **Local persistence** — projects, documents, and tags stored in SQLite at `%LOCALAPPDATA%\MacMD\macmd.db`
 - **Auto-save** — your work is saved 2 seconds after you stop typing
 - **10 terminal-inspired themes** — Pro, Homebrew, Ocean, Red Sands, and more — colors apply to editor, preview, and app background
+- **Settings window** — configure editor font, preview font, and color theme in a dedicated settings panel
 - **Formatting toolbar** — Bold, italic, heading, link, code, bullet list, numbered list, blockquote, horizontal rule
 - **Full CRUD** — right-click projects to rename/delete, tags to rename/change color/delete, documents to rename/duplicate/archive
 - **Archived documents** — sidebar filter to view and unarchive
@@ -118,7 +123,8 @@ See **[PROGRESS.md](PROGRESS.md)** for a detailed milestone-by-milestone breakdo
 | M4 — Localization | Done | 23-locale .resw generation |
 | M5 — Export | Done | HTML + PDF export |
 | M6 — Parity & Polish | Done | Themes, CRUD, toolbar, context menus, archived view |
-| M7 — Localization | Next | Full 38-language parity with Mac app |
+| M7 — Preferences | Done | Settings window, editor/preview font, theme persistence |
+| M8 — Mac Parity | Done | Document cards, nav icons, preview layout toggle, multi-select, sort |
 
 ## How This Project Is Built
 
